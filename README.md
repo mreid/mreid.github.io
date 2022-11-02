@@ -1,2 +1,3 @@
-# mreid.github.io
-Personal website
+# mark.reid.name
+
+Personal website.
