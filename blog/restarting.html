@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+
+   <!-- Standard site meta information -->
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Reflecting and Restarting ← Inductio Ex Machina ← Mark Reid</title>
+   <meta name="author" content="Mark Reid" />
+
+   <link rel="openid.server" href="http://www.myopenid.com/server" />
+   <link rel="openid.delegate" href="http://mark.reid.name" />
+
+   <link rel="start" href="../" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="../css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="../css/screen.css" type="text/css" media="all" />
+   <link rel="stylesheet" href="../css/print.css" type="text/css" media="print" />
+   <link rel="stylesheet" href="../css/widgets.css" type="text/css" media="all" />
+   <link rel="stylesheet" href="../css/amjr.css" type="text/css" media="all" />
+
+ 	<meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@mdreid">
+    <meta name="twitter:site" content="@mdreid">
+    <meta name="twitter:title" content="Reflecting and Restarting">
+    <meta name="twitter:description" content="After an unintended break of more than a year, I've decided to start up this blog again.">
+
+<!-- MathJax configuration and loading -->
+<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		extensions: ["tex2jax.js"],
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["\\(","\\)"] ],
+			displayMath: [ ["\\[","\\]"] ],
+			processEscapes: true
+		},
+		TeX: { equationNumbers: { autoNumber: "AMS" } },
+		"HTML-CSS": { availableFonts: ["TeX"] }
+	});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+
+</head>
+
+<body id="Blog">
+
+<div id="site">
+  <div id="header">
+<h1>
+	<a href="../blog/" title="A machine learning blog">Inductio ex Machina</a>
+	<span class="byline">← <a href="../">Mark Reid</a></span>
+</h1>
+<ul class="nav">
+  <li><a class="home" href="../blog/">Home</a></li>
+  <li><a class="info" href="../blog/info.html">Info</a></li>
+  <li><a class="past" href="../blog/past.html">Past</a></li>
+  <li><a class="kith" href="../blog/kith.html">Kith</a></li>
+</ul>
+</div>
+
+<div id="page">
+
+<h1 class="emphnext">Reflecting and Restarting</h1>
+
+<p>The date of my last blog post — the 30th of August, 2013 — has been increasingly tormenting me (<em>2013!</em>) so I’ve decided that the start of the new year is as good a time as any to start writing here again.</p>
+<p>I’m not entirely sure why blogging fell by the wayside in 2014. As my <a href="../work/news">news feed</a> suggests, it’s not as though there has been a lack of things to write about in the last 16 months:</p>
+<ul>
+<li><p>two papers at <a href="http://www.maxent2013.org/">MaxEnt 2013</a>, one on <a href="../bits/pubs/maxent13-convex-gefs.pdf">generalised exponential families</a> and the other on their <a href="../bits/pubs/maxent13-update-gefs.pdf">conjugate priors</a>;</p></li>
+<li><p>a couple of journal papers, one in <a href="http://dx.doi.org/10.1109/TPAMI.2014.2306414">PAMI on hybrid losses</a> and the other in <a href="http://dx.doi.org/10.1007/s10994-014-5434-3">MLJ on a new boosting technique</a>;</p></li>
+<li><p>co-organising two workshops, one on <a href="http://bigml.cs.tsinghua.edu.cn/~dmpi-icml2014-workshop/home">divergence methods for probabilistic inference</a> at ICML and the other on <a href="http://workshops.inf.ed.ac.uk/ml/nipstransactional/">transactional ML and e-commerce</a> at NIPS;</p></li>
+<li><p>releasing <a href="https://github.com/psi-project/">the code</a> and <a href="http://psi.cecs.anu.edu.au/demo/">demo service</a> for the <a href="http://psi.cecs.anu.edu.au/">Protocols and Structures for Inference project</a>, as well as receiving a generous Amazon <a href="http://aws.amazon.com/grants/">AWS in Education</a> grant to launch the demo site on AWS;</p></li>
+<li><p>a fantastic, month-long visit at <a href="http://research.microsoft.com/en-us/labs/newyork/default.aspx">Microsoft’s New York lab</a>;</p></li>
+<li><p>a two week visit to Tsinghua University as part of the <a href="http://industry.gov.au/science/internationalcollaboration/acsrf/Pages/YoungResearchers.aspx">Australia-China Young Scientist Exchange Program</a>;</p></li>
+<li><p>and last, but not least, Mindika Premachandra submitted her PhD thesis on prediction markets for review.</p></li>
+</ul>
+<p>Amongst all that, I’ve been working with a number of collaborators on some fascinating connections via convex duality between fast rates for online learning, mirror descent, risk measures, prediction markets, and graphical models. You can grab preprints of some of this stuff on the arXiv (<em><a href="http://arxiv.org/abs/1410.0413">Risk Dynamics in Trade Networks</a></em> and <em><a href="http://arxiv.org/abs/1406.6130">Generalized Mixability via Entropic Duality</a></em>).</p>
+<p>I’ve been meaning to write up some overviews of this most recent work for ages so expect some posts on risk measures and entropic duals very soon.</p>
+
+
+<address class="signature">
+	<a class="author" href="http://mark.reid.name">Mark Reid</a>
+  <span class="date">January  5, 2015</span>
+  <span class="location">Canberra, Australia</span>
+</address>
+
+</div>
+<address id="feed" class="quiet right">Subscribe: <a href="../blog/atom.xml" title="Subscribe to Atom feed"><em>Atom Feed</em></a></address>
+
+
+<!-- Disqus Comments -->
+<div id="disqus_thread"></div>
+
+<!-- Enable Disqus comments -->
+<script type="text/javascript">
+        var disqus_iframe_css = "http://mark.reid.name/css/screen.css";
+        var disqus_title = "Reflecting and Restarting";
+        var disqus_message = "After an unintended break of more than a year, I've decided to start up this blog again.";
+</script>
+<script type="text/javascript" src="http://disqus.com/forums/markreid/embed.js"></script>
+
+<noscript>
+    <a href="http://markreid.disqus.com/?url=ref">View the discussion thread.</a>
+</noscript>
+
+
+
+
+    <!-- Footer with copyright and contact information -->
+  <div id="footer">
+	<address>
+		<span class="copyright">
+			Content &amp; Design by 
+			<a href="../info/site.html">Mark Reid</a>
+			<br />
+			(<a rel="licence" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Some rights reserved</a>)			
+		</span>
+		<span class="engine">
+			Powered by 
+			<a href="http://jaspervdj.be/hakyll/" title="A static, minimalist, Haskell-powered CMS">Hakyll</a>
+		</span>
+	</address>
+  </div>
+
+</div>
+
+
+<!-- Google Analytics script -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-1051817-4");
+pageTracker._trackPageview();
+</script>
+<!--[if IE 6]>
+<script type="text/javascript"> 
+	/*Load jQuery if not already loaded*/ if(typeof jQuery == 'undefined'){ document.write("<script type=\"text/javascript\"   src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\"></"+"script>"); var __noconflict = true; } 
+	var IE6UPDATE_OPTIONS = {
+		icons_path: "http://static.ie6update.com/hosted/ie6update/images/"
+	}
+</script>
+<script type="text/javascript" src="http://static.ie6update.com/hosted/ie6update/ie6update.js"></script>
+<![endif]-->
+
+
+</body>
+</html>
+
+
+

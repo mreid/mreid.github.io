@@ -1,0 +1,276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+
+   <!-- Standard site meta information -->
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Meet the Bregman Divergences ← Inductio Ex Machina ← Mark Reid</title>
+   <meta name="author" content="Mark Reid" />
+
+   <link rel="openid.server" href="http://www.myopenid.com/server" />
+   <link rel="openid.delegate" href="http://mark.reid.name" />
+
+   <link rel="start" href="../" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="../css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="../css/screen.css" type="text/css" media="all" />
+   <link rel="stylesheet" href="../css/print.css" type="text/css" media="print" />
+   <link rel="stylesheet" href="../css/widgets.css" type="text/css" media="all" />
+   <link rel="stylesheet" href="../css/amjr.css" type="text/css" media="all" />
+
+ 	<meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@mdreid">
+    <meta name="twitter:site" content="@mdreid">
+    <meta name="twitter:title" content="Meet the Bregman Divergences">
+    <meta name="twitter:description" content="An introduction to and survey of some interesting results about Bregman divergences.">
+
+<!-- MathJax configuration and loading -->
+<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		extensions: ["tex2jax.js"],
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["\\(","\\)"] ],
+			displayMath: [ ["\\[","\\]"] ],
+			processEscapes: true
+		},
+		TeX: { equationNumbers: { autoNumber: "AMS" } },
+		"HTML-CSS": { availableFonts: ["TeX"] }
+	});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+
+</head>
+
+<body id="Blog">
+
+<div id="site">
+  <div id="header">
+<h1>
+	<a href="../blog/" title="A machine learning blog">Inductio ex Machina</a>
+	<span class="byline">← <a href="../">Mark Reid</a></span>
+</h1>
+<ul class="nav">
+  <li><a class="home" href="../blog/">Home</a></li>
+  <li><a class="info" href="../blog/info.html">Info</a></li>
+  <li><a class="past" href="../blog/past.html">Past</a></li>
+  <li><a class="kith" href="../blog/kith.html">Kith</a></li>
+</ul>
+</div>
+
+<div id="page">
+
+<h1 class="emphnext">Meet the Bregman Divergences</h1>
+
+<p>If you’ve read theoretical papers in machine learning then you’ve likely seen the term “Bregman divergences” thrown about and might be wondering what they are and what the fuss is about. As with most mathematical topics, the <a href="http://en.wikipedia.org/wiki/Bregman_divergence">Wikipedia page on Bregman divergences</a> is heavy on formalism and light on context, which is fine as a reference but not ideal if you are reading about something for the first time.</p>
+<p>What I hope to do in this post is gently introduce you to the Bregman divergences, point out some of their interesting properties, and highlight one result that I found surprising and I believe is underappreciated. Roughly speaking, the surprising result<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> – due to <a href="http://dx.doi.org/10.1109/TIT.2005.850145">Banerjee, Gou, and Wang in 2005</a> – is the following:</p>
+<blockquote>
+<p>If you have some abstract way of measuring the “distance” between any two points and, for any choice of distribution over points the mean point minimises the average distance to all the others, then your distance measure must be a Bregman divergence.</p>
+</blockquote>
+<p>Interest piqued? Good, let’s get started.</p>
+<!-- Interactive Paper.js Bregman divergence scripts -->
+<script type="text/javascript" src="../js/paper.js"></script>
+<script type="text/paperscript" src="../js/bregman/bregman.js" canvas="myCanvas"></script>
+<script type="text/paperscript" src="../js/bregman/bregman2.js" canvas="euclideanCanvas"></script>
+
+<!-- LaTeX macros -->
+<h2 id="a-geometric-look-at-squared-euclidean-distance">A Geometric Look at Squared Euclidean Distance</h2>
+<p>Most high school students have met at least one member of the Bregman divergence family: the squared Euclidean distance (SED). As the name suggests, this is just the square of the standard <a href="http://en.wikipedia.org/wiki/Euclidean_distance">Euclidean distance</a> between the two points. That is, given two points <span class="math">\(n\)</span>-dimensional points <span class="math">\(x, y \in {\mathbb{R}}^n\)</span>, the SED between them is simply: <span class="math">\[
+	d^2(x,y) := \sum_{i=1}^n (x_i - y_i)^2.
+\]</span></p>
+<p>For the rest of the post, I will use the terms <em>distance</em> and <em>divergence</em> loosely and interchangeably to mean some non-negative valued function of two points that measures “how far apart” they are. The SED above is clearly a distance in this sense.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></p>
+<p>Now, by introducing a little notation we can re-express the above distance in a curious way. We will use <span class="math">\({\langle x,y \rangle} := \sum_{i=1}^n x_i\,y_i\)</span> to denote the <em><a href="http://en.wikipedia.org/wiki/Inner_product_spaces">inner product</a></em> between <span class="math">\(x\)</span> and <span class="math">\(y\)</span> and use <span class="math">\(\|x\| := \sqrt{{\langle x,x \rangle}}\)</span> to denote the inner product’s <a href="http://en.wikipedia.org/wiki/Inner_product_spaces#Norms_on_inner_product_spaces">associated <em>norm</em></a>. Using these definitions, the linearity of inner products, and a little manipulation, we get <span class="math">\[
+	d^2(x,y)
+	= \|x - y\|^2  
+	= {\langle x-y, x-y \rangle} 
+	= \|x\|^2 - \|y\|^2 - {\langle 2y,x-y \rangle}.
+\]</span></p>
+<p>You may rightly ask, “Why on earth would I want to write it like that?” Well, this form of the SED lends itself to a particularly nice geometrical interpretation if we notice that the derivative of <span class="math">\(\|y\|^2\)</span> is <span class="math">\(2y\)</span>. Now, if you squint at the term <span class="math">\(\|y\|^2 + {\langle 2y,x-y \rangle}\)</span> you’ll notice it is the value of the tangent line to <span class="math">\(\|y\|^2\)</span> at <span class="math">\(y\)</span> evaluated at <span class="math">\(x\)</span> (it is clearly equal to <span class="math">\(\|y\|^2\)</span> when <span class="math">\(x=y\)</span> and changes linearly in <span class="math">\(x\)</span> as <span class="math">\(x\)</span> deviates from <span class="math">\(y\)</span>). This means the whole expression is just the difference between the function <span class="math">\(f(x) = \|x\|^2\)</span> at <span class="math">\(x\)</span> and the value of <span class="math">\(f\)</span>’s tangent at <span class="math">\(y\)</span> evaluated at <span class="math">\(x\)</span>. That is, <span class="math">\[
+	d^2(x,y) = f(x) - \underbrace{(f(y) + {\langle \nabla f(y), x-y \rangle})}_{\text{Tangent of $f$ at $y$}}
+\]</span></p>
+<p>The interactive <a href="#figure1">Figure 1</a> shows this interpretation in the one dimensional case. The SED between <span class="math">\(x\)</span> and <span class="math">\(y\)</span> is the vertical distance between the black curve and the red tangent line, where both are evaluated at the point <span class="math">\(x\)</span> (shown on the horizontal axis).</p>
+<div class="figure" id="figure1">
+<canvas id="euclideanCanvas" width="600" height="220">
+An interactive visualisation in browsers which support the HTML5 canvas tag and have Javascript enabled.
+</canvas>
+<p class="caption">
+<em>Figure 1</em>: A geometric interpretation of the squared Euclidean distance. <strong>Hover</strong> to move <span class="math">\(x\)</span>; <strong>Click</strong> to place a tangent line at <span class="math">\(y\)</span>. The <span style="color: black;">black curve</span> is <span class="math">\(\|x\|^2\)</span>. The <span style="color: red;">red line</span> is the tangent to <span class="math">\(\|x\|^2\)</span> at <span class="math">\(y\)</span>. The length of the <span style="color: blue;">blue line</span> is the value of <span class="math">\(d^2(x,y)\)</span>.
+</p>
+ </div>
+
+
+<h2 id="convexity-über-alles">Convexity <em>über alles</em></h2>
+<p>So far, the only thing we have wanted from our distance measure <span class="math">\(d^2\)</span> is that it be <em>non-negative</em> for all possible choices of points <span class="math">\(x\)</span> and <span class="math">\(y\)</span>. Viewed geometrically, this is equivalent to the function <span class="math">\(f\)</span> always sitting above its tangent. That is, for <span class="math">\(d^2\)</span> to be a “sensible” distance we require that <span class="math">\[
+	f(x) \ge f(y) + {\langle \nabla f(y), x-y \rangle}, \quad \text{for all}\ x,y\in{\mathbb{R}}^n.
+\]</span></p>
+<p>However, if you pick up any book on convex analysis (<em>e.g.</em>, <a href="http://www.stanford.edu/~boyd/cvxbook/">Boyd &amp; Vandeberghe</a>) you will see results saying that the above condition is equivalent to (suitably differentiable) functions <span class="math">\(f\)</span> being <em>convex</em>. This means that we can a derive a distance measure <span class="math">\(d_f\)</span> that has a similar structure to the squared Euclidean distance by simply choosing a convex function <span class="math">\(f\)</span> and defining <span class="math">\[
+	\fbox{
+	$d_f(x,y) := f(x) - f(y) - {\langle \nabla f(y), x-y \rangle} \ge 0.$
+	}
+\]</span></p>
+<p>Distances defined like this are precisely the <strong>Bregman divergences</strong> and the convexity of <span class="math">\(f\)</span> guarantees they are non-negative for all <span class="math">\(x,y\in{\mathbb{R}}^n\)</span>. These were first introduced by L.M. Bregman in his 1967 paper and first given the name “Bregman distances” by Censor and Lent in 1981 (see the references below).</p>
+<p>There are obviously many convex function you can choose to build a Bregman divergence, but one of the things that makes it a good generalisation is that this class of distances already includes several existing distance measures. For example, the <a href="http://en.wikipedia.org/wiki/Mahalanobis_distance">Mahalanobis distances</a>, which are usually defined in terms of a matrix <span class="math">\(A \in {\mathbb{R}}^{n\times n}\)</span> can be generated as a Bregman divergence from the “distorted” squared norm <span class="math">\(f_A(x) = \frac{1}{2} x^{{\top}} A x\)</span>, which reduces to the usual squared norm when <span class="math">\(A\)</span> is the identity.</p>
+<p>Perhaps more importantly, the famous <a href="http://en.wikipedia.org/wiki/Kullback–Leibler_divergence">Kullback-Leibler (KL) divergence</a> can be expressed as a Bregman divergence using the convex function <span class="math">\(f_{KL}(p) = \sum_{i=1}^n p_i \log p_i\)</span> (i.e., the negative <a href="http://en.wikipedia.org/wiki/Entropy_(information_theory)">Shannon entropy</a>) defined over <span class="math">\(p \in {\mathbb{R}}^n\)</span> with <span class="math">\(\sum_{i=1}^n p_i = 1\)</span>. <a href="#figure2">Figure 2</a> shows an interactive rendering of the KL divergence as a Bregman divergence.</p>
+<div class="figure" id="figure2">
+<canvas id="myCanvas" width="600" height="220">
+An interactive visualisation in browsers which support the HTML5 canvas tag and have Javascript enabled.
+</canvas>
+<p class="caption">
+<em>Figure 2</em>: A geometric interpretation of the KL divergence. <strong>Hover</strong> to move <span class="math">\(x\)</span>; <strong>Click</strong> to place <span class="math">\(y\)</span>. The <span style="color: black;">black curve</span> is <span class="math">\(f_{KL}(x) = x \ln x + (1-x) \ln (1-x)\)</span>. The <span style="color: red;">red line</span> is the tangent at <span class="math">\(y\)</span>. The length of the <span style="color: blue;">blue line</span> is the value of <span class="math">\(KL(x,y)\)</span>.
+</p>
+</p>	
+ </div>
+
+<h2 id="whats-the-point">What’s the point?</h2>
+<p>So we’ve pulled apart and put back together squared Euclidean distance and come up with a generalisation that covers at least two other important distance measures. What? That’s not enough for you?</p>
+<p>One of the main reasons Bregman divergences are studied in machine learning are their close ties with convexity. Convex functions are general enough to be broadly applicable but have just enough structure for us to say interesting things about them. Because Bregman divergences all measure the gap between a convex function and its tangents we can obtain general results about all of them by applying the rich collection of geometric results from convex analysis.</p>
+<p>For example, we already established that <span class="math">\(d_f(x,y) \ge 0\)</span> for all <span class="math">\(x,y \in {\mathbb{R}}^n\)</span> via the convexity of <span class="math">\(f\)</span>. Other readily obtainable facts about Bregman divergences include:</p>
+<ul>
+<li><p><strong>Convexity</strong> in the first argument: <em>i.e.</em>, <span class="math">\(x \mapsto d_f(x,y)\)</span> is convex for all <span class="math">\(y\)</span>.</p></li>
+<li><p><strong>Linearity</strong>: <span class="math">\(d_{\alpha f + \beta g} = \alpha d_f + \beta d_f\)</span> for all convex <span class="math">\(f\)</span> and <span class="math">\(g\)</span> and positive constants <span class="math">\(\alpha\)</span> and <span class="math">\(\beta\)</span>.</p></li>
+<li><p><strong>Affine invariance</strong>: <span class="math">\(d_{f+g} = d_f\)</span> for all convex <span class="math">\(f\)</span> and affine <span class="math">\(g\)</span> (<em>i.e.</em>, <span class="math">\(g(x) = Ax + c\)</span> for constant matrix <span class="math">\(A\)</span> and vector <span class="math">\(c\)</span>)</p></li>
+<li><p>The <strong>Bregman projection</strong> onto a convex set <span class="math">\(C\subseteq{\mathbb{R}}^n\)</span> given by <span class="math">\(y' = {\arg\min}_{x\in C} d_f(x,y)\)</span> is unique.</p></li>
+<li><p>A <strong>generalised Pythagorean theorem</strong> holds: for convex <span class="math">\(C \in {\mathbb{R}}^n\)</span> and for all <span class="math">\(x \in C\)</span> and <span class="math">\(y \in {\mathbb{R}}^n\)</span> we have <span class="math">\(d_f(x,y) \ge d_f(x,y') + d_f(y',y)\)</span> where <span class="math">\(y'\)</span> is the Bregman projection of <span class="math">\(y\)</span>, and equality holds when the convex set <span class="math">\(C\)</span> defining the projection <span class="math">\(y'\)</span> is affine.</p></li>
+<li><p><strong>Duality</strong>: <span class="math">\(d_f(x,y) = d_{f^*}(\nabla f(y), \nabla f(x))\)</span> for all <span class="math">\(x,y\)</span> where <span class="math">\(f^*\)</span> is the <a href="http://en.wikipedia.org/wiki/Convex_conjugate">convex conjugate</a> to <span class="math">\(f\)</span></p></li>
+</ul>
+<p>If you are analysing something that has a convex or concave function in it then, chances are you’re going to bump into a Bregman divergence eventually. If that’s the case, the above properties give you a lot of avenues for understanding what’s going on and providing some geometric intuition.</p>
+<h2 id="bregman-divergence-iff-the-mean-is-a-minimiser">Bregman Divergence iff The Mean is a Minimiser</h2>
+<p>As promised, I wanted to present what I found to be a suprising result about Bregman divergences: that they are characterised by how they are minimised.</p>
+<p>More precisely, and paraphrasing their result slightly, Banerjee et al. (2005) proved the following:</p>
+<blockquote>
+<p>Suppose <span class="math">\(d : {\mathbb{R}}^n \times {\mathbb{R}}^n \to {\mathbb{R}}\)</span> is a continuous, non-negative function such that <span class="math">\(d(x,x) = 0\)</span> for all <span class="math">\(x \in {\mathbb{R}}^n\)</span> and <span class="math">\(\frac{\partial}{\partial x_i \partial y_j} d(x,y)\)</span> are continuous for <span class="math">\(1 \le ,i,j \le n\)</span>. If, for all random variables <span class="math">\(X\)</span> with values in <span class="math">\({\mathbb{R}}^n\)</span>, the mean <span class="math">\({\mathbb{E}}[X]\)</span> is the unique minimiser of <span class="math">\(y \mapsto {\mathbb{E}}[d(X,y)]\)</span> then there exists a strictly convex and differentiable function <span class="math">\(f : {\mathbb{R}}^n \to {\mathbb{R}}\)</span> such that <span class="math">\(d = d_f\)</span>.</p>
+</blockquote>
+<p>Their proof is quite technical but hinges on showing that the minimisation property is enough to show that the derivative of <span class="math">\(d(x,y)\)</span> with respect to <span class="math">\(y\)</span> is linear in <span class="math">\(x\)</span>. More specifically, the minimisation property ensures that we can find functions <span class="math">\(H_{ij} : {\mathbb{R}}^n \to {\mathbb{R}}\)</span> so that for each <span class="math">\(y_i\)</span> the partial derivative <span class="math">\(\frac{\partial}{\partial y_i} d(x,y) = \sum_{j=1}^n H_{ij}(y)(y_j - x_j)\)</span>. The result follows, more or less, by integrating this and checking that the resulting generating function is strictly convex.</p>
+<p>As I noted in the introduction, when I first saw this result a couple of years ago I was quite surprised. At first glance, the definition of Bregman divergences in terms of convex functions leaves a lot of scope for their behaviour and seems to have little to do with means of random variables. However, I’ve since spent a lot of time thinking about convex functions and now know they are intimiately related to expectations — indeed, <a href="../blog/behold-jensens-inequality.html">Jensen’s inequality</a> characterises convex functions in terms of an inequality involving means. That said, I still think it is an impressive result that deserves more attention.</p>
+<h2 id="references-and-further-reading">References and Further Reading</h2>
+<p>I could write several blog posts of this length touching on the many applications of Bregman divergences in machine learning. However, I’d prefer it if someone else did them instead so I’ll just leave these links here for you. No pressure.</p>
+<p>The details of main result I discussed above can be found here:</p>
+<ul>
+<li>Banerjee, A. and Gou, X., and Wang, H., <em><a href="http://www.ecommons.cornell.edu/bitstream/1813/9264/1/TR001387.pdf">On the Optimality of Conditional Expectation as a Bregman Predictor</a></em>, IEEE Trans. on Information Theory, Vol. 51 (7), 2005.</li>
+</ul>
+<p>Another paper by <a href="http://www-users.cs.umn.edu/~banerjee/">Arindam Banerjee</a> and colleagues that I like connects exponential families with Bregman divergences. Its Appendix A has a nice summary of some properites of Bregman divergences:</p>
+<ul>
+<li>Banerjee, A. and Merugu, S. and Dhillon, I.S. and Ghosh, J., <em><a href="http://jmlr.csail.mit.edu/papers/volume6/banerjee05b/banerjee05b.pdf">Clustering with Bregman Divergences</a></em>, Journal of Machine Learning Research, 2005.</li>
+</ul>
+<p>Another concise summary of Bregman divergences along with their application to the analysis of online convex optimisation algorithms can be found in the following lecture notes by <a href="http://www-stat.wharton.upenn.edu/~rakhlin/">Sasha Rakhlin</a>:</p>
+<ul>
+<li>Rakhlin, A., <em><a href="http://www-stat.wharton.upenn.edu/~rakhlin/courses/stat991/papers/lecture_notes.pdf">Lecture Notes on Online Learning</a></em> (Draft), 2009.</li>
+</ul>
+<p>Earlier applications of Bregman divergences to learning theory include these two papers on boosting:</p>
+<ul>
+<li><p>Lafferty, J., <em><a href="http://dl.acm.org/citation.cfm?id=307422">Additive Models, Boosting, and Inference for Generalized Divergences</a></em>, COLT, 1999.</p></li>
+<li><p>Kivinen, J. and Warmuth, M.K., <em><a href="http://dl.acm.org/citation.cfm?id=307424">Boosting as Entropy Projection</a></em>, COLT, 1999.</p></li>
+</ul>
+<p>I first encountered Bregman divergences in the context of <a href="../blog/proper-losses-inevitability-of-rediscovery.html">proper losses</a> in a paper by <a href="http://www-stat.wharton.upenn.edu/~buja/">Andreas Buja</a> and others. It shows that the <em>regret</em> of a prediction (<em>i.e.</em>, the loss of predicting <span class="math">\(q\)</span> when the true distribution of outcomes is <span class="math">\(p\)</span>) is the Bregman divergence between <span class="math">\(p\)</span> and <span class="math">\(q\)</span>:</p>
+<ul>
+<li>Buja, A. and Stuetzle, W. and Shen, Y., <em><a href="http://stat.wharton.upenn.edu/~buja/PAPERS/paper-proper-scoring.pdf">Loss Functions for Binary Class Probability Estimation and Classification</a></em>, Tech. Report, University of Pennsylvania, 2005.</li>
+</ul>
+<p><a href="http://users.cecs.anu.edu.au/~williams/">Bob</a> and I subsequently spent some time looking at properness and various relationships between risk and divergences, including Bregman divergences:</p>
+<ul>
+<li><p>Reid, M.D. and Williamson, R.C., <em><a href="http://jmlr.org/papers/v12/reid11a.html">Information, Divergence and Risk for Binary Experiments</a></em>, JMLR, 2011.</p></li>
+<li><p>Reid, M.D. and Williamson, R.C, <em><a href="http://mark.reid.name/bits/pubs/icml09.pdf">Surrogate Regret Bounds for Proper Losses</a></em>, ICML 2009.</p></li>
+</ul>
+<p>Similar observations to that last paper were also made in the following paper:</p>
+<ul>
+<li>Nock, R. and Nielsen, F., <em><a href="http://www.computer.org/csdl/trans/tp/2009/11/ttp2009112048-abs.html">Bregman Divergences and Surrogates for Learning</a></em>, IEEE Trans. on PAMI, 2009</li>
+</ul>
+<p>More recently, <a href="http://www.seas.upenn.edu/~jaber/">Jake</a> and <a href="http://www.cs.berkeley.edu/~raf/">Raf</a> showed that all proper scoring rules for linear properties are Bregman divergences:</p>
+<ul>
+<li>Abernethy, J.D. and Frongillo, R.M., <em><a href="http://jmlr.org/proceedings/papers/v23/abernethy12/abernethy12.pdf">A Characterization of Scoring Rules for Linear Properties</a></em>, COLT, 2012.</li>
+</ul>
+<p>If infinite dimensional spaces are your thing and you want your favourite Bregman divergence to work there you’re going to have to learn about the Fréchet derivative. I’d recommend starting here:</p>
+<ul>
+<li>Frigyik, B.A. and Srivastava, S. and Gupta, M.R., <em><a href="http://www.ee.washington.edu/research/guptalab/publications/FrigyikSrivastavaGupta.pdf">Functional Bregman Divergences and Bayesian Estimation of Distributions</a></em>, Trans. on Information Theory, 2008.</li>
+</ul>
+<p>Finally, for some historical context, you can track down the original paper by Bregman, as well as the paper by Censor &amp; Lent that gave the divergences his name:</p>
+<ul>
+<li><p>Bregman, L.M., <em><a href="http://dx.doi.org/10.1016%2F0041-5553%2867%2990040-7">The relaxation method of finding the common points of convex sets and its application to the solution of problems in convex programming</a></em>, USSR Comp. Math. and Math. Physics 7 (3): 200–217, 1967.</p></li>
+<li><p>Censor, Y. and Lent, A., <em><a href="http://link.springer.com/content/pdf/10.1007/BF00934676">An iterative row-action method for interval convex programming</a></em>, Journal of Optimization Theory and Applications, Vol. 34 (3), pp 321—353, 1981</p></li>
+</ul>
+<p>… and that’s only the tip of the iceberg.</p>
+<p>If there are some other elegant, original, or striking uses of Bregman divergences in the machine learning literature that I haven’t listed above, please feel free to add them in the comments.</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>The converse holds as well but that is much easier to show.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>However, it is not a <em><a href="http://en.wikipedia.org/wiki/Metric_(mathematics)">metric</a></em> – the usual mathematical definition of a distance – as it does not satisfy the <a href="http://en.wikipedia.org/wiki/Triangle_inequality">triangle inequality</a>. As we will see, this is true of Bregman divergences in general.<a href="#fnref2">↩</a></p></li>
+</ol>
+</div>
+
+
+<address class="signature">
+	<a class="author" href="http://mark.reid.name">Mark Reid</a>
+  <span class="date">June  4, 2013</span>
+  <span class="location">Canberra, Australia</span>
+</address>
+
+</div>
+<address id="feed" class="quiet right">Subscribe: <a href="../blog/atom.xml" title="Subscribe to Atom feed"><em>Atom Feed</em></a></address>
+
+
+<!-- Disqus Comments -->
+<div id="disqus_thread"></div>
+
+<!-- Enable Disqus comments -->
+<script type="text/javascript">
+        var disqus_iframe_css = "http://mark.reid.name/css/screen.css";
+        var disqus_title = "Meet the Bregman Divergences";
+        var disqus_message = "An introduction to and survey of some interesting results about Bregman divergences.";
+</script>
+<script type="text/javascript" src="http://disqus.com/forums/markreid/embed.js"></script>
+
+<noscript>
+    <a href="http://markreid.disqus.com/?url=ref">View the discussion thread.</a>
+</noscript>
+
+
+
+
+    <!-- Footer with copyright and contact information -->
+  <div id="footer">
+	<address>
+		<span class="copyright">
+			Content &amp; Design by 
+			<a href="../info/site.html">Mark Reid</a>
+			<br />
+			(<a rel="licence" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Some rights reserved</a>)			
+		</span>
+		<span class="engine">
+			Powered by 
+			<a href="http://jaspervdj.be/hakyll/" title="A static, minimalist, Haskell-powered CMS">Hakyll</a>
+		</span>
+	</address>
+  </div>
+
+</div>
+
+
+<!-- Google Analytics script -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-1051817-4");
+pageTracker._trackPageview();
+</script>
+<!--[if IE 6]>
+<script type="text/javascript"> 
+	/*Load jQuery if not already loaded*/ if(typeof jQuery == 'undefined'){ document.write("<script type=\"text/javascript\"   src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\"></"+"script>"); var __noconflict = true; } 
+	var IE6UPDATE_OPTIONS = {
+		icons_path: "http://static.ie6update.com/hosted/ie6update/images/"
+	}
+</script>
+<script type="text/javascript" src="http://static.ie6update.com/hosted/ie6update/ie6update.js"></script>
+<![endif]-->
+
+
+</body>
+</html>
+
+
+

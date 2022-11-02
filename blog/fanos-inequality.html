@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+
+   <!-- Standard site meta information -->
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>What is Fano's Inequality? ← Inductio Ex Machina ← Mark Reid</title>
+   <meta name="author" content="Mark Reid" />
+
+   <link rel="openid.server" href="http://www.myopenid.com/server" />
+   <link rel="openid.delegate" href="http://mark.reid.name" />
+
+   <link rel="start" href="../" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="../css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="../css/screen.css" type="text/css" media="all" />
+   <link rel="stylesheet" href="../css/print.css" type="text/css" media="print" />
+   <link rel="stylesheet" href="../css/widgets.css" type="text/css" media="all" />
+   <link rel="stylesheet" href="../css/amjr.css" type="text/css" media="all" />
+
+ 	<meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@mdreid">
+    <meta name="twitter:site" content="@mdreid">
+    <meta name="twitter:title" content="What is Fano's Inequality?">
+    <meta name="twitter:description" content="A look at an information theoretic inequality that is useful for establishing lower bounds for minimax risks.">
+
+<!-- MathJax configuration and loading -->
+<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		extensions: ["tex2jax.js"],
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["\\(","\\)"] ],
+			displayMath: [ ["\\[","\\]"] ],
+			processEscapes: true
+		},
+		TeX: { equationNumbers: { autoNumber: "AMS" } },
+		"HTML-CSS": { availableFonts: ["TeX"] }
+	});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+
+</head>
+
+<body id="Blog">
+
+<div id="site">
+  <div id="header">
+<h1>
+	<a href="../blog/" title="A machine learning blog">Inductio ex Machina</a>
+	<span class="byline">← <a href="../">Mark Reid</a></span>
+</h1>
+<ul class="nav">
+  <li><a class="home" href="../blog/">Home</a></li>
+  <li><a class="info" href="../blog/info.html">Info</a></li>
+  <li><a class="past" href="../blog/past.html">Past</a></li>
+  <li><a class="kith" href="../blog/kith.html">Kith</a></li>
+</ul>
+</div>
+
+<div id="page">
+
+<h1 class="emphnext">What is Fano's Inequality?</h1>
+
+<p>I’m something of a newcomer to information theory. I understand the basics—entropy, coding, KL divergence—but have not yet spent enough time with the key results in the area to feel like they are old friends. Since I keep encountering them in my own research I decided it was time to introduce myself and hang out with them a bit.</p>
+<p>One motivation is that I was recently reading <em><a href="http://arxiv.org/abs/1009.0571">Information-theoretic lower bounds on the oracle complexity of convex optimization</a></em> by <a href="http://www.eecs.berkeley.edu/~alekh/">Alekh</a> and others and was intrigued by their use of Fano’s inequality to establish lower bounds for convex optimisation problems.</p>
+<h2 id="lower-bounds-for-convex-optimisation">Lower bounds for convex optimisation</h2>
+<p>Suppose an optimising algorithm is trying to find an input that minimises some unknown convex function drawn from some known class of functions. It is allowed to repeatedly request information about the value of the function and its derivatives from an oracle. An important question about this problem is: given some class of functions and some fixed budget of oracle queries, how close can the <em>best</em> optimisation technique get to minimising the <em>hardest</em> problem from that class?</p>
+<p>As shown in the paper, if an optimiser is allow to make only T requests of the oracle then it cannot get within <span class="math">\(\Omega(T^{-1/2})\)</span> of the minimum in the worst case. The analysis is a lot more refined than my fairly clumsy rephrasing of the result but I hope it gives the general idea.</p>
+<p>What is interesting about this type of result is how strong a statement it is. For <em>any</em> optimisation algorithm you can dream up there are situations where you are not going to get to the minimum any faster than this. The nice insight of setting up the problem with an oracle is that we can quantify and reason about the minimum amount of <em>information</em> that is require to pass between the oracle and any optimiser rather than the algorithmic details of the optimisers themselves. To do this the problem of optimising a function is reduced to identifying one from some finite but “hard” set of functions. Identifying things based on random input is then an information theoretic problem and allows for the application of Fano’s inequality. Apparently this is a fairly common trick for establishing lower bounds for minimax risk.</p>
+<p>I won’t discuss the convex optimisation result any further and instead focus on explaining Fano’s inequality and why it is such an interesting result.</p>
+<h2 id="fanos-inequality">Fano’s Inequality</h2>
+<p><a href="http://www.scholarpedia.org/article/Fano_inequality">Fano’s inequality</a> is a result from information theory that relates the conditional entropy of a random variable <span class="math">\(X\)</span> relative to the correlated variable <span class="math">\(Y\)</span> to the probability of incorrectly estimating <span class="math">\(X\)</span> from <span class="math">\(Y\)</span>. The intuition here is that the probability of making a mistake when estimating <span class="math">\(X\)</span> using the value of <span class="math">\(Y\)</span> is going to depend on how certain we are about the value of <span class="math">\(X\)</span> given <span class="math">\(Y\)</span>.</p>
+<p>Let’s introduce some notation so we can state the result more formally. I’ll more or less use the presentation from §2.10 of Cover and Thomas’s <em><a href="http://www.elementsofinformationtheory.com/">Elements of Information Theory</a></em>. Suppose <span class="math">\(\hat{X}\)</span> is an estimator for a random variable <span class="math">\(X\)</span> and they are conditionally independent given <span class="math">\(Y\)</span>. An example of this situation is when some function of <span class="math">\(Y\)</span> is used to predict <span class="math">\(X\)</span>—that is, <span class="math">\(\hat{X}=f(Y)\)</span>.</p>
+<p>We assume the random variable <span class="math">\(X\)</span> and its estimator <span class="math">\(\hat{X}\)</span> can take on up to <span class="math">\(k\)</span> different values<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. We are interested in when <span class="math">\(X\)</span> and <span class="math">\(\hat{X}\)</span> are not equal—that is, when we’ve incorrectly predicted <span class="math">\(X\)</span>. Let <span class="math">\(E\)</span> denote the event <span class="math">\(X \ne \hat{X}\)</span> and let <span class="math">\(p\)</span> be its probability. Then, Fano’s inequality tells us that</p>
+<p><span class="math">\[ H(E) + p\log k \ge H(X|Y) \]</span></p>
+<p>where <span class="math">\(H(X|Y)\)</span> is the conditional entropy of <span class="math">\(X\)</span> given <span class="math">\(Y\)</span>. This in turn implies a weaker result, namely</p>
+<p><span class="math">\[ p \ge \frac{H(X|Y) - 1}{\log k} \]</span></p>
+<p>since the entropy of the binary event <span class="math">\(E\)</span> is at most 1.</p>
+<p>I won’t go into the proof here even though it is a relatively straight-forward application of the chain rule for entropy to expand the conditional entropy of the misclassification event and <span class="math">\(X\)</span> given <span class="math">\(\hat{X}\)</span>.</p>
+<h2 id="implications">Implications</h2>
+<p>The second, weaker form of the result clearly shows how the probability of incorrectly predicting the value of <span class="math">\(X\)</span> based on information from <span class="math">\(Y\)</span> is constrained by the remaining uncertainty <span class="math">\(H(X|Y)\)</span> about <span class="math">\(X\)</span> when <span class="math">\(Y\)</span> is known.</p>
+<p>An extreme situation is when <span class="math">\(X\)</span> and <span class="math">\(Y\)</span> are independent in which case <span class="math">\(H(X|Y) = H(X)\)</span> and the probability of misclassification depends on how uncertain the value of <span class="math">\(X\)</span>. When it takes on any of its <span class="math">\(k\)</span> values uniformly we see that <span class="math">\(p \ge 1 - \frac{1}{\log k} \)</span>. Unsurprisingly, this says the probability of making an error heads to one as <span class="math">\(X\)</span> can take on more and more possible values.</p>
+<p>The first, tighter form of the inequality gives a converse to this extreme case. We see that when <span class="math">\(p = 0\)</span>—that is, when we can perfectly predict <span class="math">\(X\)</span> based on <span class="math">\(Y\)</span>—the conditional entropy <span class="math">\(H(X|Y)\)</span> is necessarily 0—that is, <span class="math">\(X\)</span> must be perfectly known given <span class="math">\(Y\)</span>.</p>
+<h2 id="abstraction">Abstraction</h2>
+<p>One aspect of Fano’s inequality that is shared with many results in information theory is that the details of exactly <em>how</em> <span class="math">\(X\)</span>, <span class="math">\(Y\)</span> and <span class="math">\(\hat{X}\)</span> are related are abstracted into their joint probability distribution. The choice of function <span class="math">\(f\)</span> that might define the estimator <span class="math">\(\hat{X} = f(Y)\)</span> is only conceived of via the joint distribution it induces.</p>
+<p>It is this level of abstraction away from functions or algorithms that make information theoretic results such handy tools for establishing results like the lower bounds for convex optimisation.</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>The number of values the estimator <span class="math">\(\hat{X}\)</span> can take can be larger than the number of values for <span class="math">\(X\)</span>. When they are the same a slightly tighter bound is possible.<a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+
+
+<address class="signature">
+	<a class="author" href="http://mark.reid.name">Mark Reid</a>
+  <span class="date">September 21, 2010</span>
+  <span class="location">Canberra, Australia</span>
+</address>
+
+</div>
+<address id="feed" class="quiet right">Subscribe: <a href="../blog/atom.xml" title="Subscribe to Atom feed"><em>Atom Feed</em></a></address>
+
+
+<!-- Disqus Comments -->
+<div id="disqus_thread"></div>
+
+<!-- Enable Disqus comments -->
+<script type="text/javascript">
+        var disqus_iframe_css = "http://mark.reid.name/css/screen.css";
+        var disqus_title = "What is Fano's Inequality?";
+        var disqus_message = "A look at an information theoretic inequality that is useful for establishing lower bounds for minimax risks.";
+</script>
+<script type="text/javascript" src="http://disqus.com/forums/markreid/embed.js"></script>
+
+<noscript>
+    <a href="http://markreid.disqus.com/?url=ref">View the discussion thread.</a>
+</noscript>
+
+
+
+
+    <!-- Footer with copyright and contact information -->
+  <div id="footer">
+	<address>
+		<span class="copyright">
+			Content &amp; Design by 
+			<a href="../info/site.html">Mark Reid</a>
+			<br />
+			(<a rel="licence" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Some rights reserved</a>)			
+		</span>
+		<span class="engine">
+			Powered by 
+			<a href="http://jaspervdj.be/hakyll/" title="A static, minimalist, Haskell-powered CMS">Hakyll</a>
+		</span>
+	</address>
+  </div>
+
+</div>
+
+
+<!-- Google Analytics script -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-1051817-4");
+pageTracker._trackPageview();
+</script>
+<!--[if IE 6]>
+<script type="text/javascript"> 
+	/*Load jQuery if not already loaded*/ if(typeof jQuery == 'undefined'){ document.write("<script type=\"text/javascript\"   src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\"></"+"script>"); var __noconflict = true; } 
+	var IE6UPDATE_OPTIONS = {
+		icons_path: "http://static.ie6update.com/hosted/ie6update/images/"
+	}
+</script>
+<script type="text/javascript" src="http://static.ie6update.com/hosted/ie6update/ie6update.js"></script>
+<![endif]-->
+
+
+</body>
+</html>
+
+
+

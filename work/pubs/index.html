@@ -1,0 +1,753 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+
+   <!-- Standard site meta information -->
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Publications ← Mark Reid</title>
+   <meta name="author" content="Mark Reid" />
+
+   <link rel="openid.server" href="http://www.myopenid.com/server" />
+   <link rel="openid.delegate" href="http://mark.reid.name" />
+
+   <link rel="start" href="../../" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="../../css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="../../css/screen.css" type="text/css" media="all" />
+   <link rel="stylesheet" href="../../css/print.css" type="text/css" media="print" />
+   <link rel="stylesheet" href="../../css/widgets.css" type="text/css" media="all" />
+   <link rel="stylesheet" href="../../css/amjr.css" type="text/css" media="all" />
+
+<!-- MathJax configuration and loading -->
+<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		extensions: ["tex2jax.js"],
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["\\(","\\)"] ],
+			displayMath: [ ["\\[","\\]"] ],
+			processEscapes: true
+		},
+		TeX: { equationNumbers: { autoNumber: "AMS" } },
+		"HTML-CSS": { availableFonts: ["TeX"] }
+	});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+
+</head>
+
+<body id="Work">
+
+<div id="site">
+  <div id="header">
+<h1>
+	<a href="../../" title="My Personal Site">Mark Reid</a>
+</h1>
+<ul class="nav">
+  <li><a class="home" href="../../">Home</a></li>
+  <li><a class="info" href="../../info">Info</a></li>
+  <li><a class="work" href="../../work">Work</a></li>
+  <li><a class="code" href="../../code">Code</a></li>
+  <li><a class="play" href="../../play">Play</a></li>
+  <li><a class="blog" href="../../blog">Blog</a></li>
+</ul>
+</div>
+
+<div id="page">
+
+<h1 id="publications">Publications</h1>
+<p>Below is a list of my publications, including <a href="#book_chapters">book chapters</a>, <a href="#journal_articles">journal articles</a>, and refereed <a href="#conference_papers">conference papers</a> and <a href="#refereed_workshops">workshop presentations</a>. Also shown are non-refereed <a href="#technical_reports">technical reports</a>, my <a href="#thesis">PhD thesis</a>, and <a href="#patents">patents</a>. Please see my <a href="http://scholar.google.com/citations?hl=en&amp;user=H2dgqTYAAAAJ">Google Scholar profile</a> for a full list of citations and co-authors.</p>
+<h2 id="journal-articles">Journal Articles</h2>
+<div class="section">
+<h2>2015</h2>
+<p><strong>Fast Rates in Statistical and Online Learning</strong><br /><a href="http://homepages.cwi.nl/~erven/">Tim van Erven</a>, <a href="http://homepages.cwi.nl/~pdg/">Peter D. Grünwald</a>, <a href="http://users.cecs.anu.edu.au/~nmehta/">Nishant A. Mehta</a>, Mark D. Reid, <a href="http://axiom.anu.edu.au/~williams/">Robert C. Williamson</a><br />Journal of Machine Learning Research (Special Issue, Vol. 16)<br />{ <a href="http://jmlr.org/papers/volume16/vanerven15a/vanerven15a.pdf">PDF</a> | <a href="http://jmlr.org/papers/v16/vanerven15a.html">JMLR</a> | <a href="#abstract">Abstract</a> | <a href="#bibtex">BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+The speed with which a learning algorithm converges as it is presented with more data is a central problem in machine learning — a fast rate of convergence means less data is needed for the same level of performance. The pursuit of fast rates in online and statistical learning has led to the discovery of many conditions in learning theory under which fast learning is possible. We show that most of these conditions are special cases of a single, unifying condition, that comes in two forms: the <em>central condition</em> for `proper’ learning algorithms that always output a hypothesis in the given model, and <em>stochastic mixability</em> for online algorithms that may make predictions outside of the model. We show that under surprisingly weak assumptions both conditions are, in a certain sense, equivalent. The central condition has a re-interpretation in terms of convexity of a set of pseudoprobabilities, linking it to density estimation under misspecification. For bounded losses, we show how the central condition enables a direct proof of fast rates and we prove its equivalence to the <em>Bernstein</em> condition, itself a generalization of the <em>Tsybakov margin condition</em>, both of which have played a central role in obtaining fast rates in statistical learning. Yet, while the Bernstein condition is two-sided, the central condition is one-sided, making it more suitable to deal with unbounded losses. In its stochastic mixability form, our condition generalizes both a <em>stochastic exp-concavity</em> condition identified by Juditsky, Rigollet and Tsybakov and Vovk’s notion of <em>mixability</em>. Our unifying conditions thus provide a substantial step towards a characterization of fast rates in statistical learning, similar to how classical mixability characterizes constant regret in the sequential prediction with expert advice setting.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@article{vanErven:2015,
+    Author = {{van Erven}, Tim and Gr\&quot;{u}nwald, Peter and Mehta, Nishant A. and Reid, Mark D. and Williamson, Robert C.},
+	Journal = {Journal of Machine Learning Research},
+	Month = {September},
+	Pages = {1793--1861},
+	Title = {Fast Rates for Statistical and Online Learning},
+	Volume = {16},
+	Year = {2015}
+}</code></pre>
+</div>
+<h2>2014</h2>
+<p><strong>A Hybrid Loss for Multiclass and Structured Prediction</strong><br /><a href="http://users.cecs.anu.edu.au/~qshi/">Qinfeng Shi</a>, Mark D. Reid, <a href="http://www.tiberiocaetano.com/">Tiberio Caetano</a>, <a href="http://cs.adelaide.edu.au/~hengel/">Anton van den Hengel</a>, and <a href="http://cs.adelaide.edu.au/~zhenhua/">Zhenhau Wang</a><br />IEEE Trans. on Pattern Analysis and Machine Intelligence (Vol. 37)<br />{ <a href="http://dx.doi.org/10.1109/TPAMI.2014.2306414">DOI</a> | <a href="http://arxiv.org/abs/1402.1921">arXiv Preprint</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+We propose a novel hybrid loss for multiclass and structured prediction problems that is a convex combination of a log loss for Conditional Random Fields (CRFs) and a multiclass hinge loss for Support Vector Machines (SVMs). We provide a sufficient condition for when the hybrid loss is Fisher consistent for classification. This condition depends on a measure of dominance between labels—specifically, the gap between the probabilities of the best label and the second best label. We also prove Fisher consistency is necessary for parametric consistency when learning models such as CRFs. We demonstrate empirically that the hybrid loss typically performs least as well as—and often better than—both of its constituent losses on a variety of tasks, such as human action recognition. In doing so we also provide an empirical comparison of the efficacy of probabilistic and margin based approaches to multiclass and structured prediction.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@article{Shi:2014,
+    Author = {Qinfeng Shi and Mark D. Reid and Tiberio Caetano and Anton {van den Hengel} and Zhenhau Wang},
+	Journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+	Month = {February},
+	Pages = {2--12},
+	Title = {A Hybrid Loss for Multiclass and Structured Prediction},
+	Volume = {37},
+	Year = {2014}
+}</code></pre>
+</div>
+<p><strong>An Improved Multiclass LogitBoost Using Adaptive-One-vs-One</strong><br /><a href="http://ivg.au.tsinghua.edu.cn/index.php?n=People.PengSun">Peng Sun</a>, Mark D. Reid, and <a href="http://www.tsinghua.edu.cn/publish/auen/1713/2011/20110506105532098625469/20110506105532098625469_.html">Jie Zhou</a><br />Machine Learning Journal (Vol. 97)<br />{ <a href="http://dx.doi.org/10.1007/s10994-014-5434-3">DOI</a> | <a href="../../bits/pubs/mlj14-aoso.pdf">Preprint</a> | <a href>Abstract</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+LogitBoost is a popular Boosting variant that can be applied to either binary or multi-class classification. From a statistical viewpoint Logit- Boost can be seen as additive tree regression by minimizing the Logistic loss. Following this setting, it is still non-trivial to devise a sound multi-class LogitBoost compared with to devise its binary counterpart. The di culties are due to two important factors arising in multiclass Logistic loss. The first is the invariant property implied by the Logistic loss, causing the optimal classifier output being not unique, i.e., adding a constant to each component of the output vector won’t change the loss value. The second is the density of the Hessian matrices that arise when computing tree node split gain and node value fittings. Oversimplification of this learning problem can lead to degraded performance. For example, the original LogitBoost algorithm is outperformed by ABC-LogitBoost thanks to the latter’s more careful treatment of the above two factors. In this paper we propose new techniques to address the two main difficulties in multiclass LogitBoost setting: 1) we adopt a vector tree model (i.e., each node value is vector) where the unique classifier output is guaranteed by adding a sum-to-zero constraint, and 2) we use an adaptive block coordinate descent that exploits the dense Hessian when computing tree split gain and node values. Higher classification accuracy and faster convergence rates are observed for a range of public data sets when compared to both the original and the ABC-LogitBoost implementations. We also discuss another possibility to cope with LogitBoost’s dense Hessian matrix. We derive a loss similar to the multi-class Logistic loss but which guarantees a diagonal Hessian matrix. While this makes the optimization (by Newton descent) easier we unfortunately observe degraded performance for this modification. We argue that working with the dense Hessian is likely unavoidable, therefore making techniques like those proposed in this paper necessary for efficient implementations.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@article{Sun:2014,
+   Author = {Sun, Peng and Reid, Mark D. and Zhou, Jie},
+   Journal = {Machine Learning},
+   Month = {December},
+   Volume = {97},
+   Issue = {3},
+   Pages = {295--326},
+   Title = {An Improved Multiclass LogitBoost Using Adaptive-One-vs-One},
+   Year = {2014}</code></pre>
+</div>
+<h2>2012</h2>
+<p><strong>Mixability is Bayes Risk Curvature Relative to Log Loss</strong><br /><a href="http://homepages.cwi.nl/~erven/">Tim van Erven</a>, Mark D. Reid, and <a href="http://axiom.anu.edu.au/~williams/">Robert C. Williamson</a><br />Journal of Machine Learning Research (Vol. 13)<br />{ <a href="http://jmlr.csail.mit.edu/papers/volume13/vanerven12a/vanerven12a.pdf">PDF</a> | <a href="http://jmlr.csail.mit.edu/papers/v13/vanerven12a.html">JMLR</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+Mixability of a loss characterizes fast rates in the online learning setting of prediction with expert advice. The determination of the mixability constant for binary losses is straightforward but opaque. In the binary case we make this transparent and simpler by characterising mixability in terms of the second derivative of the Bayes risk of proper losses. We then extend this result to multiclass proper losses where there are few existing results. We show that mixability is governed by the maximum eigenvalue of the Hessian of the Bayes risk, relative to the Hessian of the Bayes risk for log loss. We conclude by comparing our result to other work that bounds prediction performance in terms of the geometry of the Bayes risk. Although all calculations are for proper losses, we also show how to carry the results across to improper losses.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@article{van-Erven:2012,
+  Author = { {van Erven}, Tim and Reid, Mark D. and Williamson, Robert C.},
+  Journal = {Journal of Machine Learning Research},
+  Month = {May},
+  Pages = {1639--1663},
+  Title = {Mixability is Bayes Risk Curvature Relative to Log Loss},
+  Volume = {13},
+  Year = {2012}}</code></pre>
+</div>
+<h2>2011</h2>
+<p><strong>Information, Divergence and Risk for Binary Experiments</strong><br />Mark D. Reid and <a href="http://axiom.anu.edu.au/~williams/">Robert C. Williamson</a><br />Journal of Machine Learning Research (Vol. 12)<br />{ <a href="http://www.jmlr.org/papers/volume12/reid11a/reid11a.pdf">PDF</a> | <a href="http://jmlr.csail.mit.edu/papers/v12/reid11a.html">JMLR</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+We unify f-divergences, Bregman divergences, surrogate regret bounds, proper scoring rules, cost curves, ROC-curves and statistical information. We do this by systematically studying integral and variational representations of these objects and in so doing identify their representation primitives which all are related to cost-sensitive binary classification. As well as developing relationships between generative and discriminative views of learning, the new machinery leads to tight and more general surrogate regret bounds and generalised Pinsker inequalities relating f-divergences to variational divergence. The new viewpoint also illuminates existing algorithms: it provides a new derivation of Support Vector Machines in terms of divergences and relates maximum mean discrepancy to Fisher linear discriminants.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@article{Reid:2011,
+  Author = {Reid, Mark D. and Williamson, Robert C.},
+  Journal = {Journal of Machine Learning Research},
+  Month = {March},
+  Pages = {731--817},
+  Title = {Information, Divergence and Risk for Binary Experiments},
+  Volume = {12},
+  Year = {2011}}    </code></pre>
+</div>
+<h2>2010</h2>
+<p><strong>Composite Binary Losses</strong><br />Mark D. Reid and <a href="http://axiom.anu.edu.au/~williams/">Robert C. Williamson</a><br />Journal of Machine Learning Research (Vol. 11)<br />{ <a href="http://www.jmlr.org/papers/volume11/reid10a/reid10a.pdf">PDF</a> | <a href="http://jmlr.csail.mit.edu/papers/v11/reid10a.html">JMLR</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+We study losses for binary classification and class probability estimation and extend the understanding of them from margin losses to general composite losses which are the composition of a proper loss with a link function. We characterise when margin losses can be proper composite losses, explicitly show how to determine a symmetric loss in full from half of one of its partial losses, introduce an intrinsic parametrisation of composite binary losses and give a complete characterisation of the relationship between proper losses and “classification calibrated” losses. We also consider the question of the “best” surrogate binary loss. We introduce a precise notion of “best” and show there exist situations where two convex surrogate losses are incommensurable. We provide a complete explicit characterisation of the convexity of composite binary losses in terms of the link function and the weight function associated with the proper loss which make up the composite loss. This characterisation suggests new ways of “surrogate tuning” as well as providing an explicit characterisation of when Bregman divergences on the unit interval are convex in their second argument. Finally, in an appendix we present some new algorithm-independent results on the relationship between properness, convexity and robustness to misclassification noise for binary losses and show that all convex proper losses are non-robust to misclassification noise.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@article{Reid:2009b,
+  Author = {Reid, M.D. and Williamson, R.C.},
+  Journal = {Journal of Machine Learning Research},
+  Month = {September},
+  Title = {Composite Binary Losses},
+  Volume = {11},
+  Year = {2010}} </code></pre>
+</div>
+<h2>2002</h2>
+<p><strong>Cross-training and its Application to Skill-Mining</strong>.<br />Daniel Oblinger, Mark Reid, Mark Brodie, and Rodrigo de Salvo Braz.<br />IBM Systems Journal (Vol. 41, No. 3)<br />{ <a href="../../bits/pubs/isj02.pdf">PDF</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+We present an approach for cataloging an organization’s skill assets based on electronic communications. Our approach trains classifiers using messages from skill-related discussion groups and then applies those classifiers to a different distribution of person-related e-mail messages. We present a general framework, called cross training, for addressing such discrepancies between the training and test distributions. We outline two instances of the general cross-training problem, develop algorithms for each, and empirically demonstrate the efficacy of our solution in the skill-mining context.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@article{Oblinger:2002,
+  Author = {Oblinger, Daniel and Reid, Mark D. and Brodie, Mark and {de Salvo Braz}, Rodrigo},
+  Journal = {IBM Systems Journal},
+  Number = {3},
+  Pages = {449--460},
+  Title = {Cross-training and its Application to Skill-Mining},
+  Volume = {41},
+  Year = {2002}}</code></pre>
+</div>
+</div>
+<h2 id="conference-papers">Conference Papers</h2>
+<div class="section">
+<h2>2015</h2>
+<p><strong>Convergence Analysis of Prediction Markets via Randomized Subspace Descent</strong><br /><a href="http://www.cs.berkeley.edu/~raf/">Rafael M. Frongillo</a> and Mark D. Reid<br />To appear in Neural Information Processing Systems <a href="https://nips.cc/Conferences/2015/AcceptedPapers">(NIPS 2015)</a><br />{ <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+<p>Prediction markets are economic mechanisms for aggregating information about future events through sequential interactions with traders. The pricing mechanisms in these markets are known to be related to optimization algorithms in machine learning and through these connections we have some understanding of how equilibrium market prices relate to the beliefs of the traders in a market. However, little is known about rates and guarantees for the convergence of these sequential mechanisms, and two recent papers cite this as an important open question.</p>
+In this paper we show how some previously studied prediction market trading models can be understood as a natural generalization of randomized coordinate descent which we call <em>randomized subspace descent</em> (RSD). We establish convergence rates for RSD and leverage them to prove rates for the two prediction market models above, answering the open questions. Our results extend beyond standard centralized markets to arbitrary trade networks.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@InProceedings{frongillo15,
+ author = {Frongillo, Rafael, M. and Reid, Mark D.},
+ title = {Convergence Analysis of Prediction Markets via Randomized Subspace Descent},
+ booktitle = {Proceedings of Neural Information Processing Systems (NIPS)},
+ address = {Montreal, Canada},
+ month = {Decemeber},
+ year = {2015}}</code></pre>
+</div>
+<p><strong>Protocols and Structures for Inference: A RESTful API for Machine Learning</strong><br /><a href="https://researchers.anu.edu.au/researchers/montgomery-ej">James Montgomery</a>, Mark D. Reid and Barry Drake<br />Proceedings of the 2nd International Conference on Predictive APIs and Applications (<a href="http://www.papis.io/2015/">PAPIs 2015</a>)<br />{ <a href>Abstract</a> | <a href>BibTeX</a> | <a href="http://lanyrd.com/2015/papis2015/sdpfzg/">Slides</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+Diversity in machine learning APIs (in both software toolkits and web services), works against realising machine learning’s full potential, making it difficult to draw on individual algorithms from different products or to compose multiple algorithms to solve complex tasks. This paper introduces the <em>Protocols and Structures for Inference</em> (PSI) service architecture and specification, which presents inferential entities—relations, attributes, learners and predictors—as RESTful web resources that are accessible via a common but flexible and extensible interface. Resources describe the data they ingest or emit using a variant of the JSON schema language, and the API has mechanisms to support non-JSON data and future extension of service features.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@InProceedings{montgomery15,
+ author = {Montgomery, James and Reid, Mark D. and Drake, Barry},
+ title = {Protocols and Structures for Inference: A {REST}ful {API} for Machine Learning},
+ booktitle = {Proceedings of the 2nd International Conference on Predictive APIs and Applications (PAPIs)},
+ address = {Sydney, Australia},
+ month = {July},
+ year = {2015}}</code></pre>
+</div>
+<p><strong>Generalized Mixability via Entropic Duality</strong><br />Mark D. Reid, <a href="http://www.cs.berkeley.edu/~raf/">Rafael M. Frongillo</a>, <a href="http://axiom.anu.edu.au/~williams/">Robert C. Williamson</a> and <a href="http://users.cecs.anu.edu.au/~nmehta/">Nishant Mehta</a><br />Conference on Learning Theory <a href="http://jmlr.csail.mit.edu/proceedings/papers/v40/">(COLT 2015)</a><br />{ <a href="../../bits/pubs/colt15.pdf">PDF</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+Mixability is a property of a loss which characterizes when constant regret is possible in the game of prediction with expert advice. We show that a key property of mixability generalizes, and the <span class="math">exp</span> and <span class="math">log</span> operations present in the usual theory are not as special as one might have thought. In doing so we introduce a more general notion of <span class="math">Φ</span>-mixability where <span class="math">Φ</span> is a general entropy (<em>i.e.</em>, any convex function on probabilities). We show how a property shared by the convex dual of any such entropy yields a natural algorithm (the minimizer of a regret bound) which, analogous to the classical Aggregating Algorithm, is guaranteed a constant regret when used with <span class="math">Φ</span>-mixable losses. We characterize which <span class="math">Φ</span> have non-trivial <span class="math">Φ</span>-mixable losses and relate <span class="math">Φ</span>-mixability and its associated Aggregating Algorithm to potential-based methods, a Blackwell-like condition, mirror descent, and risk measures from finance. We also define a notion of ``dominance’’ between different entropies in terms of bounds they guarantee and conjecture that classical mixability gives optimal bounds, for which we provide some supporting empirical evidence.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@InProceedings{reid15,
+ author = {Reid, Mark D. and Frongillo, Rafael M. and Williamson, Robert C. and Mehta, Nishant},
+ title = {Generalized Mixability via Entropic Duality},
+ booktitle = {Proceedings of the 28th Conference on Learning Theory},
+ address = {Paris, France},
+ month = {July},
+ year = {2015}}</code></pre>
+</div>
+<h2>2013</h2>
+<p><strong>Convex Foundations for Generalized MaxEnt Models</strong><br /><a href="http://www.cs.berkeley.edu/~raf/">Rafael Frongillo</a> and Mark D. Reid<br />International Workshop on Bayesian Inference and Maximum Entropy <a href="http://www.maxent2013.org">(MaxEnt 2013)</a><br />{ <a href="../../bits/pubs/maxent13-convex-gefs.pdf">PDF</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+We present an approach to maximum entropy models that highlights the convex geometry and duality of GEFs and their connection to Bregman divergences. Using our framework, we are able to resolve a puzzling aspect of the bijection of Banerjee et al. (2005) between classical exponential families and what they call <em>regular</em> Bregman divergences. Their regularity condition rules out all but Bregman divergences generated from log-convex generators. We recover their bijection and show that a much broader class of divergences correspond to GEFs via two key observations: 1) Like classical exponential families, GEFs have a ``cumulant’’ <span class="math"><em>C</em></span> whose subdifferential contains the mean: <span class="math">E<sub><em>o</em> ∼ <em>p</em><sub><em>θ</em></sub></sub>[<em>ϕ</em>(<em>o</em>)] ∈ ∂<em>C</em>(<em>θ</em>)</span>; 2) Generalized relative entropy is a <span class="math"><em>C</em></span>-Bregman divergence between parameters: <span class="math"><em>D</em><sub><em>F</em></sub>(<em>p</em><sub><em>θ</em></sub>, <em>p</em><sub><em>θ</em>ʹ</sub>) = <em>D</em><sub><em>C</em></sub>(<em>θ</em>, <em>θ</em>ʹ)</span>, where <span class="math"><em>D</em><sub><em>F</em></sub></span> becomes the KL divergence for <span class="math"><em>F</em> =  − <em>H</em></span>. We also show that every <em>incomplete</em> market with cost function <span class="math"><em>C</em></span> (see Abernethy et al. (2011)) can be expressed as a complete market, where the prices are constrained to be a GEF with cumulant <span class="math"><em>C</em></span>. This provides an entirely new interpretation of prediction markets, relating their design back to the principle of maximum entropy.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@InProceedings{Frongillo:2013,
+  Address = {Canberra, Australia},
+  Author = {Frongillo, Rafael and Reid, Mark D.},
+  Booktitle = {Proceedings of the 33rd International Workshop on Bayesian Inference and Maximum Entropy Methods in Science and Engineering},
+  Month = {December},
+  Title = {Convex Foundations for Generalized MaxEnt Models},
+  Year = {2013}}</code></pre>
+</div>
+<p><strong>Conjugate Priors for Generalized MaxEnt Families</strong><br /><a href="https://cs.anu.edu.au/user/4806">Brendan van Rooyen</a> and Mark D. Reid<br />International Workshop on Bayesian Inference and Maximum Entropy <a href="http://www.maxent2013.org">(MaxEnt 2013)</a><br />{ <a href="../../bits/pubs/maxent13-update-gefs.pdf">PDF</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+In this work we show that a notion of a conjugate prior for non exponential family distributions can be recovered if one uses a slightly modified version of Bayesian updating. We prove some theorems concerning this new updating rule before giving a simple example of such a generalized conjugate prior.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@conference{vanRooyen:2013,
+  Address = {Canberra, Australia},
+  Author = {van Rooyen, Brendan and Reid, Mark D.},
+  Booktitle = {Proceedings of the 33rd International Workshop on Bayesian Inference and Maximum Entropy Methods in Science and Engineering},
+  Month = {December},
+  Title = {Conjugate Priors for Generalized MaxEnt Families},
+  Year = {2013}}</code></pre>
+</div>
+<p><strong>Aggregating Predictions via Sequential Mini-Trading</strong><br /><a href="https://cs.anu.edu.au/user/4382">Mindika Premachandra</a> and Mark D. Reid<br />Asian Conference on Machine Learning <a href="http://acml2013.conference.nicta.com.au">(ACML 2013)</a><br />{ <a href="../../bits/pubs/acml13-minitrade.pdf">PDF</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+Prediction markets which trade on contracts representing unknown future outcomes are designed specifically to aggregate expert predictions via the market price. While there are some existing machine learning interpretations for the market price and connections to Bayesian updating under the equilibrium analysis of such markets, there is less of an understanding of what the instantaneous price in sequentially traded markets means. In this paper we show that the prices generated in sequentially traded prediction markets are stochastic approximations to the price given by an equilibrium analysis. We do so by showing the equilibrium price is a solution to a stochastic optimisation problem which is solved by stochastic mirror descent (SMD) by a class of sequential pricing mechanisms. This connection leads us to propose a scheme called “mini-trading” which introduces a parameter related to the learning rate in SMD. We prove several properties of this scheme and show that it can improve the stability of prices in sequentially traded prediction markets.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@conference{Premachandra:2013,
+  Address = {Canberra, Australia},
+  Author = {Premachandra, Mindika and Reid, Mark D.},
+  Booktitle = {Proceedings of Asian Conference on Machine Learning (ACML)},
+  Month = {November},
+  Title = {Aggregating Predictions via Sequential Mini-Trading},
+  Year = {2013}}</code></pre>
+</div>
+<h2>2012</h2>
+<p><strong>Mixability in Statistical Learning</strong><br /><a href="http://homepages.cwi.nl/~erven/">Tim van Erven</a>, <a href="http://homepages.cwi.nl/~pdg/">Peter Grünwald</a>, Mark D. Reid, and <a href="http://axiom.anu.edu.au/~williams/">Robert Williamson</a><br />Neural Information Processing Systems <a href="http://nips.cc/Conferences/2012/">(NIPS 2012)</a><br />{ <a href="../../bits/pubs/nips12-stochmix.pdf">PDF</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+Statistical learning and sequential prediction are two different but related formalisms to study the quality of predictions. Mapping out their relations and transferring ideas is an active area of investigation. We provide another piece of the puzzle by showing that an important concept in sequential prediction, the mixability of a loss, has a natural counterpart in the statistical setting, which we call <em>stochastic mixability</em>. Just as ordinary mixability characterizes fast rates in sequential prediction in terms of worst-case regret, stochastic mixability characterizes fast rates in statistical learning. We show that, in the special case of log-loss, stochastic mixability reduces to a well-known (but usually unnamed) condition used in existing convergence theorems for MDL and Bayesian inference. In the case of 0/1-loss, it reduces to the easiest case of the margin condition of Mammen and Tsybakov, and in the case that the model under consideration contains all possible predictors, it is equivalent to ordinary mixability.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@conference{vanErven:2012,
+  Address = {Lake Tahoe, USA},
+  Author = {van Erven, Tim and Gr\&quot;{u}nwald, Peter and Reid, Mark D. and Williamson, Robert C.},
+  Booktitle = {Proceedings of Neural Information Processing Systems},
+  Month = {December},
+  Title = {Mixability in Statistical Learning},
+  Year = {2012}}</code></pre>
+</div>
+<p><strong>Interpreting Prediction Markets: A Stochastic Approach</strong><br /><a href="http://www.cs.berkeley.edu/~raf/">Rafael M. Frongillo</a>, <a href="http://www.nikete.com/">Nicolás Della Penna</a>, and Mark D. Reid<br />Neural Information Processing Systems <a href="http://nips.cc/Conferences/2012/">(NIPS 2012)</a><br />{ <a href="../../bits/pubs/nips12-markets.pdf">PDF</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+We strengthen recent connections between prediction markets and learning by showing that a natural class of market makers can be understood as performing stochastic mirror descent when trader demands are sequentially drawn from a fixed distribution. This provides new insights into how market prices (and price paths) may be interpreted as a summary of the market’s belief distribution by relating them to the optimization problem being solved. In particular, we show that the stationary point of the stochastic process of prices generated by the market is equal to the market’s Walrasian equilibrium of classic market analysis. Together, these results suggest how traditional market making mechanisms might be replaced with general purpose learning algorithms while still retaining guarantees about their behaviour.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@conference{Frongillo:2012,
+  Address = {Lake Tahoe, USA},
+  Author = {Frongillo, Rafael and Della Penna, Nico\'{a}s and Reid, Mark D.},
+  Booktitle = {Proceedings of Neural Information Processing Systems},
+  Month = {December},
+  Title = {Interpreting Prediction Markets: A Stochastic Approach},
+  Year = {2012}}</code></pre>
+</div>
+<p><strong>Tighter Variational Representations of f-Divergences via Restriction to Probability Measures</strong><br /><a href="http://cs.anu.edu.au/user/4381">Avraham Ruderman</a>, <a href="https://sites.google.com/site/dariogg83/">Dario García-García</a>, <a href="http://users.cecs.anu.edu.au/~jpetterson/">James Petterson</a>, and Mark D. Reid<br />International Conference on Machine Learning <a href="http://icml.cc/2012/">(ICML 2012)</a><br />{ <a href="../../bits/pubs/icml12-fdiv.pdf">PDF</a> | <a href>Abstract</a> | <a href>BibTeX</a> | <a href="http://icml.cc/discuss/2012/361.html">Discuss</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+<p>We show that the variational representations for <span class="math"><em>f</em></span>-divergences currently used in the literature can be tightened. This has implications to a number of methods recently proposed based on this representation. As an example application we use our tighter representation to derive a general <span class="math"><em>f</em></span>-divergence estimator based on two i.i.d. samples and derive the dual program for this estimator that performs well empirically. We also point out a connection between our estimator and MMD.</p>
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@conference{Ruderman:2012,
+  Address = {Edinburgh, Scotland},
+  Author = {Ruderman, Avraham and Garc{\'\i}a-Garc{\'\i}a, Dar{\'\i}o and Petterson, James and Reid, Mark D.},
+  Booktitle = {Proceedings of the International Conference on Machine Learning},
+  Month = {June},
+  Title = {Tighter Variational Representations of f-Divergences via Restriction to Probability Measures},
+  Year = {2012}}</code></pre>
+</div>
+<p><strong>The Convexity and Design of Composite Multiclass Losses</strong><br />Mark D. Reid, <a href="http://ivg.au.tsinghua.edu.cn/index.php?n=People.PengSun">Peng Sun</a>, and <a href="http://axiom.anu.edu.au/~williams/">Robert C. Williamson</a><br />International Conference on Machine Learning <a href="http://icml.cc/2012/">(ICML 2012)</a><br />{ <a href="../../bits/pubs/icml12-multi.pdf">PDF</a> | <a href>Abstract</a> | <a href>BibTeX</a> | <a href="http://icml.cc/discuss/2012/367.html">Discuss</a>}</p>
+<div class="abstract">
+<h3>Abstract</h3>
+<p>We consider composite loss functions for multiclass prediction comprising a proper (<em>i.e.</em>, Fisher-consistent) loss over probability distributions and an inverse link function. We establish conditions for their (strong) convexity and explore their implications. We also show how the separation of concerns afforded by using this composite representation allows for the design of families of losses with the same Bayes risk.</p>
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@conference{Reid:2012,
+  Address = {Edinburgh, Scotland},
+  Author = {Reid, Mark D. and Williamson, Robert C. and Sun, Peng},
+  Booktitle = {Proceedings of the International Conference on Machine Learning},
+  Month = {June},
+  Title = {The Convexity and Design of Composite Multiclass Losses},
+  Year = {2012}}</code></pre>
+</div>
+<p><strong>AOSO-LogitBoost: Adaptive One-Vs-One LogitBoost for Multi-Class Problems</strong><br /><a href="http://ivg.au.tsinghua.edu.cn/index.php?n=People.PengSun">Peng Sun</a>, Mark D. Reid, and <a href="http://www.tsinghua.edu.cn/publish/auen/1713/2011/20110506105532098625469/20110506105532098625469_.html">Jie Zhou</a><br />International Conference on Machine Learning <a href="http://icml.cc/2012/">(ICML 2012)</a><br />{ <a href="../../bits/pubs/icml12-aoso.pdf">PDF</a> | <a href>Abstract</a> | <a href>BibTeX</a> | <a href="http://icml.cc/discuss/2012/569.html">Discuss</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+<p>This paper is dedicated to the improvement of model learning in multi-class LogitBoost for classification. Motivated by statistical view, LogitBoost can be seen as additive tree regression. Important facts in such a setting are 1) coupled classifier output as sum-to-zero constraint and 2) dense Hessian matrix arising in tree node split gain and node values fitting. On the one hand, the setting is too complicated for a tractable model learning algorithm; On the other hand, too aggressive simplification of the setting may lead to degraded performance. For example, the original LogitBoost is outperformed by ABC-LogitBoost due to the later’s more careful treatment for the above two key points in problem settings.</p>
+<p>In this paper we propose improved methods to address the challenge: we adopt 1) vector tree (<em>i.e.</em> node value is vector) that enforces sum-to-zero constraint and 2) adaptive block coordinate descent exploiting dense Hessian when computing tree split gain and node values. Higher classification accuracy and faster convergence rate are observed for a range of public data sets when comparing to both original and ABC LogitBoost.</p>
+</div>
+<div class="bibtex">
+<pre><code>@conference{Sun:2012,
+  Address = {Edinburgh, Scotland},
+  Author = {Sun, Peng and Reid, Mark D. and Zhou, Jie},
+  Booktitle = {Proceedings of the International Conference on Machine Learning},
+  Month = {June},
+  Title = {AOSO-LogitBoost: Adaptive One-Vs-One LogitBoost for Multi-Class Problem},
+  Year = {2012}}</code></pre>
+</div>
+<p><strong>Crowd &amp; Prejudice: An Impossibility Theorem for Crowd Labelling without a Gold Standard</strong><br /><a href="http://www.nikete.com/">Nicolás Della Penna</a> and Mark D. Reid<br />Collective Intelligence <a href="http://www.ci2012.org/accepted-papers">(CI 2012)</a><br />{ <a href="../../bits/pubs/ci12.pdf">PDF</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+A common use of crowd sourcing is to obtain labels for a dataset. Several algorithms have been proposed to identify uninformative members of the crowd so that their labels can be disregarded and the cost of paying them avoided. One common motivation of these algorithms is to try and do without any initial set of trusted labeled data. We analyse this class of algorithms as mechanisms in a game-theoretic setting to understand the incentives they create for workers. We find an impossibility result that without any ground truth, and when workers have access to commonly shared ‘prejudices’ upon which they agree but are not informative of true labels, there is always equilibria where all agents report the prejudice. A small amount amount of gold standard data is found to be sufficient to rule out these equilibria.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@inproceedings{DellaPenna:2012,
+	Author = {Della Penna, Nicol\'{a}s and Reid, Mark D.},
+	Booktitle = {Proceedings of Collective Intelligence (CI)},
+	Title = {Crowd \&amp; Prejudice: An Impossibility Theorem for Crowd Labelling without a Gold Standard},
+	Year = {2012}}</code></pre>
+</div>
+</div>
+<div class="section">
+<h2>2011</h2>
+<p><strong>Composite Multiclass Losses</strong><br />Elodie Vernet, <a href="http://axiom.anu.edu.au/~williams/">Robert C. Williamson</a>, and Mark D. Reid<br />Neural Information Processing Systems <a href="http://nips.cc/Conferences/2011/Program/accepted-papers.php">(NIPS 2011)</a><br />{ <a href="../../bits/pubs/nips11.pdf">PDF</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+We consider loss functions for multiclass prediction problems. We show when a multiclass loss can be expressed as a “proper composite loss”, which is the composition of a proper loss and a link function. We extend existing results for binary losses to multiclass losses. We determine the stationarity condition, Bregman representation, order-sensitivity, existence and uniqueness of the composite representation for multiclass losses. We subsume existing results on “classification calibration” by relating it to properness and show that the simple integral representation for binary proper losses can not be extended to multiclass losses.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@inproceedings{Vernet:2011,
+	Author = {Vernet, Elodie and Williamson, Robert C. and Reid, Mark D.},
+	Booktitle = {Proceedings of Neural Information Processing Systems (NIPS 2011)},
+	Title = {Composite Multiclass Losses},
+	Year = {2011}}</code></pre>
+</div>
+<p><strong>Mixability is Bayes Risk Curvature Relative to Log Loss</strong><br /><a href="http://homepages.cwi.nl/~erven/">Tim van Erven</a>, Mark D. Reid, and <a href="http://axiom.anu.edu.au/~williams/">Robert C. Williamson</a><br />Conference on Learning Theory <a href="http://colt2011.sztaki.hu/accepted_papers.html">(COLT 2011)</a><br />{ <a href="http://videolectures.net/colt2011_williamson_risk/">Video</a> | <a href="../../bits/pubs/colt11.pdf">PDF</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+Mixability of a loss governs the best possible performance when aggregating expert predictions with respect to that loss. The determination of the mixability constant for binary losses is straightforward but opaque. In the binary case we make this transparent and simpler by characterising mixability in terms of the second derivative of the Bayes risk of proper losses. We then extend this result to multiclass proper losses where there are few existing results. We show that mixability is governed by the Hessian of the Bayes risk, relative to the Hessian of the Bayes risk for log loss. We conclude by comparing our result to other work that bounds prediction performance in terms of the geometry of the Bayes risk. Although all calculations are for proper losses, we also show how to carry the results across to improper losses.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@inproceedings{van-Erven:2011,
+    Author = { {van Erven}, Tim and Reid, Mark D. and Williamson, Robert C.},
+    Booktitle = {Proceedings of the 24th Annual Conference on Learning Theory},
+    Title = {Mixability is Bayes Risk Curvature Relative to Log Loss},
+    Year = {2011}}</code></pre>
+</div>
+<h2>2010</h2>
+<p><strong>Convexity of Proper Composite Binary Losses</strong><br />Mark D. Reid and <a href="http://axiom.anu.edu.au/~williams/">Robert C. Williamson</a><br />International Conference on Artificial Intelligence and Statistics <a href="http://aistats.org/">(AISTATS 2010)</a><br />{ <a href="http://jmlr.csail.mit.edu/proceedings/papers/v9/reid10a/reid10a.pdf">PDF</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+A composite loss assigns a penalty to a real-valued prediction by associating the prediction with a probability via a link function then applying a class probability estimation (CPE) loss. If the risk for a composite loss is always minimised by predicting the value associated with the true class probability the composite loss is proper. We provide a novel, explicit and complete characterisation of the convexity of any proper composite loss in terms of its link and its “weight function” associated with its proper CPE loss.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<span class="citation">@inproceedings</span>{Reid:2010, Address = {Sardinia, Italy}, Author = {Reid, Mark D. and Williamson, Robert C.}, Booktitle = {Proceedings of the 13th International Conference on Artificial Intelligence and Statistics (AISTATS)}, Month = {May}, Series = {JMLR: W&amp;CP}, Title = {Convexity of Proper Composite Binary Losses}, Volume = {9}, Year = {2010}}
+</div>
+<h2>2009</h2>
+<p><strong>Kernel Conditional Quantile Estimation via Reduction Revisited</strong><br /><a href="http://users.rsise.anu.edu.au/~nquadrianto/">Novi Quadrianto</a>, <a href="http://www-kd.iai.uni-bonn.de/index.php?page=people_details&amp;id=21">Kristian Kersting</a>, Mark Reid, <a href="http://www.tiberiocaetano.com/">Tiberio Caetano</a>, and <a href="http://nicta.com.au/people/buntinew">Wray Buntine</a><br />IEEE International Conference on Data Mining <a href="http://www.cs.umbc.edu/ICDM09/program.html">(ICDM 2009)</a><br />{ <a href="../../bits/pubs/icdm09.pdf">PDF</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+Quantile regression refers to the process of estimating the quantiles of a conditional distribution and has many important applications within econometrics and data mining, among other domains. In this paper, we show how to estimate these quantile functions within a Bayes risk minimization framework using a Gaussian process prior. The resulting non-parametric probabilistic model is easy to implement and allows non-crossing quantile functions to be enforced. Moreover, it can directly be used in combination with tools and extensions of standard Gaussian Processes such as principled hyperparameter estimation, sparsification, and quantile regression with input-dependent noise rates. No existing approach enjoys all of these desirable properties. Experiments on benchmark datasets show that our method is competitive with state-of-the-art approaches.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@inproceedings{Quadrianto:2009,
+ Author = {Quadrianto, Novi and Kersting, Kristian and Reid, Mark D. and Caetano, Tiberio and Buntine, Wray},
+ Booktitle = {Proceedings of the IEEE International Conference on Data Mining (ICDM)},
+ Title = {Kernel Conditional Quantile Estimation via Reduction Revisited},
+ Year = {2009}}</code></pre>
+</div>
+<p><strong>Generalised Pinsker Inequalities</strong>.<br />Mark D. Reid and <a href="http://axiom.anu.edu.au/~williams/">Robert C. Williamson</a><br />Conference on Learning Theory <a href="http://www.cs.mcgill.ca/~colt2009/proceedings.html">(COLT 2009)</a><br />{ <a href="../../bits/pubs/colt09.pdf">PDF</a> | <a href="http://users.rsise.anu.edu.au/~mreid/files/slides/COLT2009.pdf">Slides</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+We generalise the classical Pinsker inequality which relates variational divergence to Kullback-Liebler divergence in two ways: we consider arbitrary f -divergences in place of KL divergence, and we assume knowledge of a sequence of values of generalised variational divergences. We then develop a best possible inequality for this doubly generalised situation. Specialising our result to the classical case provides a new and tight explicit bound relating KL to variational divergence (solving a problem posed by Vajda some 40 years ago). The solution relies on exploiting a connection between divergences and the Bayes risk of a learning problem via an integral representation.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@inproceedings{Reid:2009,
+ Author = {Reid, Mark D. and Williamson, Robert C.},
+ Booktitle = {Proceedings of the 22nd Annual Conference on Learning Theory},
+ Title = {Generalised Pinsker Inequalities},
+ Year = {2009}}</code></pre>
+</div>
+<p><strong>Surrogate Regret Bounds for Proper Losses</strong><br />Mark D. Reid and <a href="http://axiom.anu.edu.au/~williams/">Robert C. Williamson</a><br />International Conference on Machine Learning <a href="http://www.cs.mcgill.ca/~icml2009/abstracts.html">(ICML 2009)</a><br />{ <a href="../../bits/pubs/icml09.pdf">PDF</a> | <a href="http://users.rsise.anu.edu.au/~mreid/files/slides/ICML2009.pdf">Slides</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+We present tight surrogate regret bounds for the class of proper (i.e., Fisher consistent) losses. The bounds generalise the margin-based bounds due to Bartlett et al. (2006). The proof uses Taylor’s theorem and leads to new representations for loss and regret and a simple proof of the integral representation of proper losses. We also present a different formulation of a duality result of Bregman divergences which leads to a demonstration of the convexity of composite losses using canonical link functions.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@inproceedings{Reid:2009a,
+ Author = {Reid, Mark D. and Williamson, Robert C.},
+ Booktitle = {Proceedings of the International Conference on Machine Learning},
+ Pages = {897--904},
+ Title = {Surrogate Regret Bounds for Proper Losses},
+ Year = {2009}}</code></pre>
+</div>
+<h2>2004</h2>
+<p><strong>Improving Rule Evaluation Using Multitask Learning</strong><br />Mark D. Reid<br />International Conference on Inductive Logic Programming (ILP 2004)<br />{ <a href="../../bits/pubs/ilp04.pdf">PDF</a> | <a href="http://users.rsise.anu.edu.au/~mreid/files/slides/ICML2009.pdf">Slides</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+This paper introduces Deft, a new multitask learning approach for rule learning algorithms. Like other multitask learning systems, the one proposed here is able to improve learning performance on a primary task through the use of a bias learnt from similar secondary tasks. What distinguishes Deft from other approaches is its use of rule descriptions as a basis for task similarity. By translating a rule into a feature vector or “description”, the performance of similarly described rules on the secondary tasks can be used to modify the evaluation of the rule for the primary task. This explicitly addresses diﬃculties with accurately evaluating, and therefore ﬁnding, good rules from small datasets. Deft is implemented on top of an existing ILP system and the approach is tested on a variety of relational learning tasks. Given appropriate secondary tasks, the results show that Deft is able to compensate for insufficient training examples.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@inproceedings{Reid:2004,
+ Author = {Reid, Mark D.},
+ Booktitle = {Proceedings of the 14th International Conference on ILP},
+ Pages = {252--269},
+ Title = {Improving Rule Evaluation Using Multitask Learning},
+ Year = {2004}}</code></pre>
+</div>
+<h2>2000</h2>
+<p><strong>Using ILP to Improve Planning in Hierarchical Reinforcement Learning</strong><br />Mark Reid and <a href="http://www.cse.unsw.edu.au/~malcolmr/">Malcolm Ryan</a><br />International Conference on Inductive Logic Programming (ILP 2000)<br />{ <a href="../../bits/pubs/ilp00.pdf">PDF</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+Hierarchical reinforcement learning has been proposed as a solution to the problem of scaling up reinforcement learning. The RL-TOPs Hierarchical Reinforcement Learning System is an implementation of this proposal which structures an agent’s sensors and actions into various levels of representation and control. Disparity between levels of representation means actions can be misused by the planning algorithm in the system. This paper reports on how ILP was used to bridge these representation gaps and shows empirically how this improved the system’s performance. Also discussed are some of the problems encountered when using an ILP system in what is inherently a noisy and incremental domain.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@inproceedings{Reid:2000,
+ Author = {Reid, Mark D. and Ryan, Malcolm},
+ Booktitle = {Proceedings of the 10th International Conference on ILP},
+ Pages = {174--190},
+ Title = {Using ILP to Improve Planning in Hierarchical Reinforcement Learning},
+ Year = {2000}}</code></pre>
+</div>
+<p><strong>Learning to Fly: An Application of Hierarchical Reinforcement Learning</strong><br /><a href="http://www.cse.unsw.edu.au/~malcolmr/">Malcolm Ryan</a> and Mark Reid<br />International Conference on Machine Learning (ICML 2000)<br />{ <a href="../../bits/pubs/icml00.pdf">PDF</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+<p>Hierarchical reinforcement learning promises to be the key to scaling reinforcement learning methods to large, complex, real-world problems. Many theoretical models have been proposed but so far there has been little in the way of empirical work published to demonstrate these claims.</p>
+In this paper we begin to fill this void by demonstrating the application of the RL-TOPs hierarchical reinforcement learning system to the problem of learning to control an aircraft in a flight simulator. We explain the steps needed to encode the background knowledge for this domain and present experimental data to show the success of this technique.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@inproceedings{Ryan:2000,
+ Author = {Ryan, Malcolm and Reid, Mark D.},
+ Booktitle = {Proceedings of the 17th International Conference on Machine Learning (ICML)},
+ Pages = {807--814},
+ Title = {Learning to Fly: An Application of Hierarchical Reinforcement Learning},
+ Year = {2000}}</code></pre>
+</div>
+<h2>1999</h2>
+<p><strong>NRMIS: A Noise Resistant Model Inference System</strong><br /><a href="http://cs.anu.edu.au/~Eric.McCreath/">Eric McCreath</a> and Mark Reid<br />Discovery Science (DS 1999)<br />{ <a href="../../bits/pubs/ds99.pdf">PDF</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+Within the empirical ILP setting we propose a method of inducing definite programs from examples — even when those examples are incomplete and occasionally incorrect. This system, named NRMIS, is a top-down batch learner that can make use of intensional background knowledge and learn programs involving multiple target predicates. It consists of three components: a generalization of Shapiro’s contradiction backtracing algorithm; a heuristic guided search of refinement graphs; and a LIME-like theory evaluator. Although similar in spirit to MIS, NRMIS avoids its dependence on an oracle while retaining the expressiveness of a hypothesis language that allows recursive clauses and function symbols. NRMIS is tested on domains involving noisy and sparse data. The results illustrate NRMIS’s ability to induce accurate theories in all of these situations.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@inproceedings{McCreath:1999,
+ Author = {McCreath, Eric and Reid, Mark D.},
+ Booktitle = {Discovery Science},
+ Pages = {252--263},
+ Title = {NRMIS: A Noise Resistant Model Inference System},
+ Year = {1999}}</code></pre>
+</div>
+</div>
+<h2 id="book-chapters">Book Chapters</h2>
+<div class="section">
+<h2>2010</h2>
+<p><strong>Generalization Bounds</strong><br />Mark D. Reid<br />To appear in the <a href="http://www.springer.com/computer/ai/book/978-0-387-30768-8">Encyclopedia of Machine Learning</a>, November, 2010.<br />{ <a href="http://dl.dropbox.com/u/38668/Papers/Generalization_Bounds.pdf">PDF (Pre-print)</a> | <a href>BibTeX</a> }</p>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@incollection{Reid:2010a,
+ Author = {Reid, Mark D.},
+ Booktitle = {Encyclopedia of Machine Learning},
+ Editor = {Sammut, C. and Webb, G.},
+ Publisher = {Springer},
+ Title = {Generalization Bounds},
+ Volume = {XXVI},
+ Year = {2010}}</code></pre>
+</div>
+<p><strong>Squinting at a Sea of Dots: Visualising Australian Readerships using Statistical Machine Learning</strong><br /><a href="http://cass.anu.edu.au/humanities/school_sites/staffmod.php">Julieanne Lamond</a> and Mark D. Reid<br />Resourceful Reading: The New Empiricism, eResearch and Australian Literary Culture<br />{ <a href>BibTeX</a> }</p>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@incollection{Lamond:2010,
+ Address = {Sydney},
+ Author = {Lamond, Julieanne V. and Reid, Mark D.},
+ Booktitle = {Resourceful Reading: The New Empiricism, eResearch and Australian Literary Culture},
+ Editor = {Bode, Katherine and Dixon, Robert},
+ Pages = {223--239},
+ Publisher = {Sydney University Press},
+ Title = {Squinting at a Sea of Dots: Visualising Australian Readerships using Statistical Machine Learning},
+ Year = {2010}}</code></pre>
+</div>
+</div>
+<h2 id="refereed-workshops">Refereed Workshops</h2>
+<div class="section">
+<h2>2014</h2>
+<p><strong>Risk Dynamics in Trade Networks</strong><br /><a href="http://www.cs.berkeley.edu/~raf/">Rafael M. Frongillo</a> and Mark D. Reid<br /><a href="http://workshops.inf.ed.ac.uk/ml/nipstransactional/">Workshop on Transactional Machine Learning and E-Commerce</a> at NIPS 2014<br />{ <a href="../../bits/pubs/trans14.pdf">PDF</a> | <a href>Abstract</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+<p>We introduce a new framework to model interactions among agents which seek to trade to minimize their risk with respect to some future outcome. We quantify this risk using the concept of risk measures from finance, and introduce a class of trade dynamics which allow agents to trade contracts contingent upon the future outcome. We then show that these trade dynamics exactly correspond to a variant of randomized coordinate descent. By extending the analysis of these coordinate descent methods to account for our more organic setting, we are able to show convergence rates for very general trade dynamics, showing that the market or network converges to a unique steady state. Applying these results to prediction markets, we expand on recent results by adding convergence rates and general aggregation properties. Finally, we illustrate the generality of our framework by applying it to agent interactions on a scale-free network.</p>
+</div>
+<p><strong>Randomized Subspace Descent</strong><br /><a href="http://www.cs.berkeley.edu/~raf/">Rafael M. Frongillo</a> and Mark D. Reid<br /><a href="http://opt-ml.org">Workshop on Optimization for Machine Learning</a> at NIPS 2014<br />{ <a href="../../bits/pubs/optml14.pdf">PDF</a> | <a href>Abstract</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+<p>We develop a generalization of randomized coordinate descent for smooth convex problems, where the coordinates specify arbitrary subspaces, and derive standard O(1/ε) and O(1/ log ε) rates. For the special case of overlapping 2-block sub- spaces (i.e. graphs), which has received attention in the literature recently, we derive a convergence rate on a given graph in terms of its algebraic connectivity. Using this connection, we introduce bounds for graph topologies not previously considered. We conclude with preliminary progress toward the interesting open question: what is the best network structure for a given optimization problem?</p>
+</div>
+<h2>2012</h2>
+<p><strong>Interpreting Prediction Markets: A Stochastic Approach</strong><br /><a href="http://www.cs.berkeley.edu/~raf/">Rafael Frongillo</a>, <a href="http://www.nikete.com/">Nicolás Della Penna</a>, and Mark D. Reid<br />Workshop on <a href="http://icml2012marketswkshop.pbworks.com/">Markets, Mechanisms, and Multi-Agent Models</a> at ICML 2012<br />{ <a href="../../bits/pubs/mmmam12.pdf">PDF</a> | <a href>Abstract</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+We study the stochastic sequence of prices that results from traders with beliefs drawn from a given distribution sequentially interacting with an automated market maker. We relate this model to the classic market equilibrium analysis, as well as to the more recent line of research seeking to interpret prediction market prices. Along the way, we show a very natural stochastic market model which exactly corresponds to a stochastic mirror descent, and we leverage this new connection to make claims about the behaviour of the market.
+</div>
+<h2>2011</h2>
+<p><strong>Bandit Market Makers</strong><br /><a href="http://www.nikete.com/">Nicolás Della Penna</a> and Mark D. Reid<br />Poster at the <a href="http://www.cs.umass.edu/~wallach/workshops/nips2011css/">Second Workshop on Computational Social Science and the Wisdom of Crowds</a> at NIPS 2011<br />{ <a href="http://www.cs.umass.edu/~wallach/workshops/nips2011css/papers/Penna.pdf">PDF</a> | <a href>Abstract</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+We propose a flexible framework for profit-seeking market making by combining cost function based automated market makers with bandit learning algorithms. The key idea is to consider each parametrisation of the cost function as a bandit arm, and the minimum expected profits from trades executed during a period as the rewards. This allows for the creation of market makers that can adjust liquidity and bid-asks spreads dynamically to maximise profits.
+</div>
+<p><strong>Anatomy of a Learning Problem</strong><br />Mark D. Reid, <a href="https://researchers.anu.edu.au/researchers/montgomery-ej">James Montgomery</a>, and Mindika Premachandra<br />Talk at the <a href="http://rml.cecs.anu.edu.au/">Relations Between Machine Learning Problems</a> Workshop at NIPS 2011.<br />{ <a href="../../bits/pubs/nips11ws.pdf">PDF</a> | <a href>Abstract</a> | <a href="http://videolectures.net/site/normal_dl/tag=658116/nipsworkshops2011_reid_anatomy_01.pdf">Slides</a> | <a href="http://videolectures.net/nipsworkshops2011_reid_anatomy/">Video</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+In order to relate machine learning problems we argue that we need to be able to articulate what is meant by a single machine learning problem. By attempting to name the various aspects of a learning problem we hope to clarify ways in which learning problems might be related to each other. We tentatively put forward a proposal for an anatomy of learning problems that will serve as scaffolding for posing questions about relations. After surveying the way learning problems are discussed in a range of repositories and services. We then argue that the terms used to describe problems to better understand a range of viewpoints within machine learning ranging from the theoretical to the practical.
+</div>
+</div>
+<h2 id="thesis">Thesis</h2>
+<div class="section">
+<h2 id="section-19">2007</h2>
+<p><strong>DEFT Guessing: Using Inductive Transfer to Improve Rule Evaluation from Limited Data</strong><br />Mark D. Reid<br />School of Computer Science and Engineering, The University of New South Wales, Sydney, Australia.<br />{ <a href="../../bits/pubs/unsw07.pdf">PDF</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+<p>Algorithms that learn sets of rules describing a concept from its examples have been widely studied in machine learning and have been applied to problems in medicine, molecular biology, planning and linguistics. Many of these algorithms used a separate-and-conquer strategy, repeatedly searching for rules that explain different parts of the example set. When examples are scarce, however, it is difficult for these algorithms to evaluate the relative quality of two or more rules which ﬁt the examples equally well.</p>
+<p>This dissertation proposes, implements and examines a general technique for modifying rule evaluation in order to improve learning performance in these situations. This approach, called Description-based Evaluation Function Transfer (Deft), adjusts the way rules are evaluated on a target concept by taking into account the performance of similar rules on a related support task that is supplied by a domain expert. Central to this approach is a novel theory of task similarity that is deﬁned in terms of syntactic properties of rules, called descriptions, which define what it means for rules to be similar. Each description is associated with a prior distribution over classification probabilities derived from the support examples and a rule’s evaluation on a target task is combined with the relevant prior using Bayes’ rule. Given some natural conditions regarding the similarity of the target and support task, it is shown that modifying rule evaluation in this way is guaranteed to improve estimates of the true classification probabilities.</p>
+<p> 
+Algorithms to efficiently implement Deft are described, analysed and used to measure the effect these improvements have on the quality of induced theories. Empirical studies of this implementation were carried out on two artiﬁcial and two real-world domains. The results show that the inductive transfer of evaluation bias based on rule similarity is an effective and practical way to improve learning when training examples are limited.
+</p>
+ </div>
+
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@phdthesis{Reid:2007,
+ Address = {Sydney, Australia},
+ Author = {Reid, Mark D.},
+ School = {University of New South Wales},
+ Title = {DEFT Guessing: Using Inductive Transfer to Improve Rule Evaluation from Limited Data},
+ Year = {2007}}</code></pre>
+</div>
+</div>
+<h2 id="unrefereed-technical-reports">Unrefereed Technical Reports</h2>
+<div class="section">
+<h2>2015</h2>
+<p><strong>Fast rates in statistical and online learning</strong><br /><a href="http://homepages.cwi.nl/~erven/">Tim van Erven</a>, <a href="http://homepages.cwi.nl/~pdg/">Peter D. Grünwald</a>, <a href="http://users.cecs.anu.edu.au/~nmehta/">Nishant A. Mehta</a>, Mark D. Reid and <a href="http://axiom.anu.edu.au/~williams/">Robert C. Williamson</a><br />{ <a href="http://arxiv.org/abs/1507.02592">arXiv</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+The pursuit of fast rates in online and statistical learning has led to the conception of many conditions in learning theory under which fast learning is possible. We show that most of these conditions are special cases of a single, unifying condition, that comes in two forms: the central condition for ‘proper’ learning algorithms that always output a hypothesis in the given model, and stochastic mixability for online algorithms that may make predictions outside of the model. We show that, under surprisingly weak conditions, both conditions are, in a certain sense, equivalent. The central condition has a re-interpretation in terms of convexity of a set of pseudoprobabilities, linking it to density estimation under misspecification. For bounded losses, we show how the central condition enables a direct proof of fast rates and we prove its equivalence to the Bernstein condition, itself a generalization of the Tsybakov-Mammen margin condition, which has played a central role in obtaining fast rates in statistical learning. Yet, while the Bernstein condition is two-sided, the central condition is one-sided, making it more suitable to deal with unbounded losses. In its stochastic mixability form, our condition generalizes both a stochastic exp-concavity condition identified by Juditsky, Rigollet and Tsybakov, and Vovk’s notion of mixability. Our unifying conditions thus provide a significant step towards a characterization of fast rates in statistical learning, similar to how classical mixability characterizes constant regret in the sequential prediction with expert advice setting.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@article{vanErven:2015,
+ author = {{van Erven}, T. and Gr\&quot;unwald, P.D. and Mehta, N.A. and Reid, M.D. and Williamson, R.C.},
+ title = {Fast rates in statistical and online learning},
+ journal = {arXiv:1507.02592 [cs.LG]},
+ year = {2015},
+ month = {July}}</code></pre>
+</div>
+<h2>2014</h2>
+<p><strong>Risk Dynamics in Trade Networks</strong><br /><a href="http://www.cs.berkeley.edu/~raf/">Rafael M. Frongillo</a> and Mark D. Reid<br />{ <a href="http://arxiv.org/abs/1410.0413">arXiv</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+We introduce a new framework to model interactions among agents which seek to trade to minimize their risk with respect to some future outcome. We quantify this risk using the concept of risk measures from finance, and introduce a class of trade dynamics which allow agents to trade contracts contingent upon the future outcome. We then show that these trade dynamics exactly correspond to a variant of randomized coordinate descent. By extending the analysis of these coordinate descent methods to account for our more organic setting, we are able to show convergence rates for very general trade dynamics, showing that the market or network converges to a unique steady state. Applying these results to prediction markets, we expand on recent results by adding convergence rates and general aggregation properties. Finally, we illustrate the generality of our framework by applying it to agent interactions on a scale-free network.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@techreport{Frongillo:2014,
+ Author = {Frongillo, Rafael M and Reid, Mark D},
+ Institution = {arXiv:1410.0413},
+ Title = {Risk Dynamics in Trade Networks},
+ Year = {2014}}</code></pre>
+</div>
+<p><strong>Generalized Mixability via Entropic Duality</strong><br />Mark D. Reid, Rafael M. Frongillo, Robert C. Williamson, and Nishant Mehta<br />{ <a href="http://arxiv.org/abs/1406.6130">arXiv</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+Mixability is a property of a loss which characterizes when fast convergence is possible in the game of prediction with expert advice. We show that a key property of mixability generalizes, and the exp and log operations present in the usual theory are not as special as one might have thought. In doing this we introduce a more general notion of Φ-mixability where Φ is a general entropy (<em>i.e.</em>, any convex function on probabilities). We show how a property shared by the convex dual of any such entropy yields a natural algorithm (the minimizer of a regret bound) which, analogous to the classical aggregating algorithm, is guaranteed a constant regret when used with Φ-mixable losses. We characterize precisely which Φ have Φ-mixable losses and put forward a number of conjectures about the optimality and relationships between different choices of entropy.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@techreport{Reid:2014,
+ Author = {Reid, Mark D and Frongillo, Rafael M and Williamson, Robert C and Mehta, Nishant},
+ Institution = {arXiv:1406.6130},
+ Title = {Generalized mixability via entropic duality},
+ Year = {2014}}</code></pre>
+</div>
+<h2>2011</h2>
+<p><strong>PSI Draft Specification</strong><br />Mark D. Reid, James Montgomery, and Barry Drake<br />{ <a href="http://psi.cecs.anu.edu.au/">Project Site</a> | <a href="http://psi.cecs.anu.edu.au/spec/index.html">Specification</a> | <a href>Abstract</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+<p>The Protocols and Structures for Inference (PSI) project aims to develop an architecture for presenting machine learning algorithms, their inputs (data) and outputs (predictors) as resource-oriented RESTful web services1 in order to make machine learning technology accessible to a broader range of people than just machine learning researchers.</p>
+Currently, many machine learning implementations (e.g., in toolkits such as Weka, Orange, Elefant, Shogun, SciKit.Learn, etc.) are tied to specific choices of programming language, and data sets to particular formats (e.g., CSV, svmlight, ARFF). This limits their accessability, since new users may have to learn a new programming language to run a learner or write a parser for a new data format, and their interoperability, requiring data format converters and multiple language platforms. To address these limitations, the aim of the PSI service architecture is to present the main inferential entities – relations, attributes, learners, and predictors – as web resources that are accessible via a common interface. By enforcing a consistent interface for the entities involved in learning, interoperability is improved and irrelevant implementation details can be hidden to promote accessibility.
+</div>
+<h2>2010</h2>
+<p><strong>Conditional Random Fields and Support Vector Machines: A Hybrid Approach</strong><br /><a href="http://users.cecs.anu.edu.au/~qshi/">Qinfeng Shi</a>, Mark D. Reid, and <a href="http://www.tiberiocaetano.com/">Tiberio Caetano</a><br />arXiv:1009.3346 [cs.LG]<br />{ <a href="http://arxiv.org/abs/1009.3346">arXiv</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+<p>We propose a novel hybrid loss for multiclass and structured prediction problems that is a convex combination of log loss for Conditional Random Fields (CRFs) and a multiclass hinge loss for Support Vector Machines (SVMs). We provide a sufficient condition for when the hybrid loss is Fisher consistent for classification. This condition depends on a measure of dominance between labels - specifically, the gap in per observation probabilities between the most likely labels. We also prove Fisher consistency is necessary for parametric consistency when learning models such as CRFs.</p>
+We demonstrate empirically that the hybrid loss typically performs as least as well as - and often better than - both of its constituent losses on variety of tasks. In doing so we also provide an empirical comparison of the efficacy of probabilistic and margin based approaches to multiclass and structured prediction and the effects of label dominance on these results.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@misc{Shi:2010,
+ Author = {Shi, Qinfeng and Reid, Mark D. and Caetano, Tib{\'e}rio S.},
+ Howpublished = {arXiv:1009.3346v1 [cs.LG]},
+ Month = {September},
+ Title = {Conditional Random Fields and Support Vector Machines: A Hybrid Approach},
+ Year = {2010}}</code></pre>
+</div>
+<h2>2009</h2>
+<p><strong>Information, Divergence and Risk for Binary Experiments</strong><br />Mark D. Reid and <a href="http://axiom.anu.edu.au/~williams/">Robert C. Williamson</a><br />arXiv:0901.0356v1 [stat.ML]<br />{ <a href="http://arxiv.org/abs/0901.0356">arXiv</a> | <a href>Abstract</a> | <a href>BibTeX</a> }</p>
+<div class="abstract">
+<h3>Abstract</h3>
+We unify f-divergences, Bregman divergences, surrogate loss bounds (regret bounds), proper scoring rules, matching losses, cost curves, ROC-curves and information. We do this by systematically studying integral and variational representations of these objects and in so doing identify their primitives which all are related to cost-sensitive binary classification. As well as clarifying relationships between generative and discriminative views of learning, the new machinery leads to tight and more general surrogate loss bounds and generalised Pinsker inequalities relating f-divergences to variational divergence. The new viewpoint illuminates existing algorithms: it provides a new derivation of Support Vector Machines in terms of divergences and relates Maximum Mean Discrepancy to Fisher Linear Discriminants. It also suggests new techniques for estimating f-divergences.
+</div>
+<div class="bibtex">
+<h3>BibTeX</h3>
+<pre><code>@misc{Reid:2009c,
+ Author = {Reid, Mark D. and Williamson, Robert C.},
+ Howpublished = {arXiv:0901.0356v1 [stat.ML]},
+ Month = {January},
+ Title = {Information, Divergence and Risk for Binary Experiments},
+ Year = {2009}}</code></pre>
+</div>
+</div>
+<h2 id="patents">Patents</h2>
+<div class="section">
+<h2>2006</h2>
+<p><strong>Determining Page Complexity</strong><br />Barry James Drake and Mark Darren Reid<br />Australian Application Number: 2006252174<br />{ <a href="http://pericles.ipaustralia.gov.au/ols/searching/patsearch/search_section.jsp?sectionCode=DTL&amp;keyNo=2006252174&amp;type=S">Entry</a> }</p>
+</div>
+<script type="text/javascript" src="../../js/jquery.js"> </script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("a:contains('BibTeX')").click(function(event) { 
+			$(this).parent().nextAll(".bibtex").first().slideToggle("fast"); });
+
+		$("a:contains('BibTeX')").toggle(
+			function(){ $(this).text("Hide BibTeX") },
+			function(){ $(this).text("BibTeX") }
+		);
+
+		$("a:contains('Abstract')").click(function(event) { 
+			$(this).parent().nextAll(".abstract").first().slideToggle("fast"); });
+
+		$("a:contains('Abstract')").toggle(
+			function(){ $(this).text("Hide Abstract") },
+			function(){ $(this).text("Abstract") }
+		);
+
+	});
+</script>
+
+
+
+
+</div>
+
+
+
+    <!-- Footer with copyright and contact information -->
+  <div id="footer">
+	<address>
+		<span class="copyright">
+			Content &amp; Design by 
+			<a href="../../info/site.html">Mark Reid</a>
+			<br />
+			(<a rel="licence" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Some rights reserved</a>)			
+		</span>
+		<span class="engine">
+			Powered by 
+			<a href="http://jaspervdj.be/hakyll/" title="A static, minimalist, Haskell-powered CMS">Hakyll</a>
+		</span>
+	</address>
+  </div>
+
+</div>
+
+
+<!-- Google Analytics script -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-1051817-4");
+pageTracker._trackPageview();
+</script>
+<!--[if IE 6]>
+<script type="text/javascript"> 
+	/*Load jQuery if not already loaded*/ if(typeof jQuery == 'undefined'){ document.write("<script type=\"text/javascript\"   src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\"></"+"script>"); var __noconflict = true; } 
+	var IE6UPDATE_OPTIONS = {
+		icons_path: "http://static.ie6update.com/hosted/ie6update/images/"
+	}
+</script>
+<script type="text/javascript" src="http://static.ie6update.com/hosted/ie6update/ie6update.js"></script>
+<![endif]-->
+
+
+</body>
+</html>
+

@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+
+   <!-- Standard site meta information -->
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Gun Deaths vs. Gun Ownership ← Inductio Ex Machina ← Mark Reid</title>
+   <meta name="author" content="Mark Reid" />
+
+   <link rel="openid.server" href="http://www.myopenid.com/server" />
+   <link rel="openid.delegate" href="http://mark.reid.name" />
+
+   <link rel="start" href="../" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="../css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="../css/screen.css" type="text/css" media="all" />
+   <link rel="stylesheet" href="../css/print.css" type="text/css" media="print" />
+   <link rel="stylesheet" href="../css/widgets.css" type="text/css" media="all" />
+   <link rel="stylesheet" href="../css/amjr.css" type="text/css" media="all" />
+
+ 	<meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@mdreid">
+    <meta name="twitter:site" content="@mdreid">
+    <meta name="twitter:title" content="Gun Deaths vs. Gun Ownership">
+    <meta name="twitter:description" content="Looking at some data on gun-related deaths and gun ownership worldwide in the wake of the Sandy Hook shooting.">
+
+<!-- MathJax configuration and loading -->
+<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		extensions: ["tex2jax.js"],
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["\\(","\\)"] ],
+			displayMath: [ ["\\[","\\]"] ],
+			processEscapes: true
+		},
+		TeX: { equationNumbers: { autoNumber: "AMS" } },
+		"HTML-CSS": { availableFonts: ["TeX"] }
+	});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+
+</head>
+
+<body id="Blog">
+
+<div id="site">
+  <div id="header">
+<h1>
+	<a href="../blog/" title="A machine learning blog">Inductio ex Machina</a>
+	<span class="byline">← <a href="../">Mark Reid</a></span>
+</h1>
+<ul class="nav">
+  <li><a class="home" href="../blog/">Home</a></li>
+  <li><a class="info" href="../blog/info.html">Info</a></li>
+  <li><a class="past" href="../blog/past.html">Past</a></li>
+  <li><a class="kith" href="../blog/kith.html">Kith</a></li>
+</ul>
+</div>
+
+<div id="page">
+
+<h1 class="emphnext">Gun Deaths vs. Gun Ownership</h1>
+
+<p>In the wake of the <a href="http://en.wikipedia.org/wiki/Sandy_Hook_Elementary_School_shooting">tragic shooting</a> at Sandy Hook Elementary School there was a flurry of discussion about gun control in my Twitter and Facebook feeds. One statistic from an April 2012 <a href="http://www.newyorker.com/reporting/2012/04/23/120423fa_fact_lepore?currentPage=all&amp;mobify=0">New Yorker article</a> caught my attention:</p>
+<blockquote>
+<p>The United States is the country with the highest rate of civilian gun ownership in the world. (The second highest is Yemen, where the rate is nevertheless only half that of the U.S.) No civilian population is more powerfully armed.</p>
+</blockquote>
+<p>I posted this quote on Facebook and was asked whether there was any correlation between rates of gun ownership and gun-related deaths. After 20 minutes of grabbing some data on worldwide <a href="http://en.wikipedia.org/wiki/Number_of_guns_per_capita_by_country">gun ownership</a> and <a href="http://en.wikipedia.org/wiki/List_of_countries_by_firearm-related_death_rate">gun deaths</a> from Wikipedia and running it through <a href="http://www.r-project.org">R</a> I produced the following graph.</p>
+<div class="figure">
+<img src="../pics/figures/deaths-vs-guns.png" alt="Figure 1: Gun-related deaths per capita vs. gun ownership per capita in OECD countries." /><p class="caption"><em>Figure 1</em>: Gun-related deaths per capita vs. gun ownership per capita in OECD countries.</p>
+</div>
+<div class="note">
+<strong>Update - 19 Dec. 2012</strong>: The above graph was correct for the data I obtained for Wikipedia on the 17th. It has since been updated. See the update at the end of this post for details.
+</div>
+<p>I posted this graph on Twitter late on Sunday night and woke up this morning to find it had been retweeted over 200 times. In addition, there were a large number of questions and requests for different graphs.</p>
+<blockquote class="twitter-tweet tw-align-center"><p>
+Out of curiosity, I grabbed gun death and gun ownership data for OECD countries from Wikipedia and ran it through R: <a href="https://t.co/hgsOeQzp" title="https://dl.dropbox.com/u/38668/deaths-vs-guns.png">dl.dropbox.com/u/38668/deaths…</a>
+</p>
+— Mark Reid (<span class="citation">@mdreid</span>) <a href="https://twitter.com/mdreid/status/280269141942878208" data-datetime="2012-12-16T11:12:25+00:00">December 16, 2012</a>
+</blockquote>
+
+<script src="//platform.twitter.com/widgets.js" charset="utf-8"> </script>
+
+<p>So that others can analyse the data I used themselves, I thought I would write up how I created the graph.</p>
+<h2 id="the-data">The Data</h2>
+<p>The first step was finding data on gun ownership and gun-related deaths and getting it into R.</p>
+<p>A quick search revealed Wikipedia articles on <a href="http://en.wikipedia.org/wiki/List_of_countries_by_firearm-related_death_rate">countries by firearm-related death rate</a> and <a href="http://en.wikipedia.org/wiki/Number_of_guns_per_capita_by_country">Number of guns per capita by country</a>. I cut and pasted the tables in these articles into a <a href="http://code.google.com/p/macvim/">text editor</a> and saved them as CSV files. I also grabbed a <a href="http://en.wikipedia.org/wiki/List_of_OECD_countries_by_GDP_per_capita">list of OECD countries</a> from Wikipedia and converted it. You can grab the resulting files here:</p>
+<ul>
+<li><a href="../bits/guns/data/deaths.csv">deaths.csv</a> (as of 17 Dec. 2012)</li>
+<li><a href="../bits/guns/data/guns.csv">guns.csv</a> (as of 17 Dec. 2012)</li>
+<li><a href="../bits/guns/data/oecd.csv">oecd.csv</a> (as of 17 Dec. 2012)</li>
+</ul>
+<div class="note">
+<strong>Update - 19 Dec. 2012</strong>: The above data was what was available on Wikipedia when I wrote this post. It has since been changed. See the discussion at the end of this post for details.
+</div>
+<h2 id="the-code">The Code</h2>
+<p>The R code I used to create the plot is given below. It simply reads in the data from the guns and deaths CSV files, merges them, adds a column denoting whether a country is in the OECD, and then plots the results.</p>
+<pre><code>guns &lt;- read.table(&quot;data/guns.csv&quot;, sep=&quot;\t&quot;, header=TRUE)
+deaths &lt;- read.table(&quot;data/deaths.csv&quot;, sep=&quot;\t&quot;, header=TRUE)
+oecd &lt;- read.table(&quot;data/oecd.csv&quot;, sep=&quot;\t&quot;, header=TRUE)
+
+data &lt;- merge(guns, deaths, by=&quot;Country&quot;)
+data$OECD &lt;- data$Country %in% oecd$Country
+
+with(subset(data, data$OECD == TRUE), {
+	plot(Deaths ~ Guns,
+		main=&quot;Gun Deaths vs Gun Ownership&quot;,
+		xlab=&quot;Guns per 100 people&quot;,
+		ylab=&quot;Gun deaths per 100k people&quot;,
+		xlim=c(0,100)
+	);
+	text(Guns, Deaths, Country, pos=1)
+})</code></pre>
+<p>You can get all the code I used to generate the figures in this post here:</p>
+<ul>
+<li><a href="../bits/guns/guns.R">guns.R</a></li>
+</ul>
+<h2 id="other-graphs">Other Graphs</h2>
+<p>I was asked a number of good questions about the graph I posted on Twitter. In particular, several people were surprised at the number of gun-related deaths for Switzerland. As the following graph of gun homicides vs. gun ownership shows, most of those deaths are actually suicides.</p>
+<div class="figure">
+<img src="../pics/figures/homicide-vs-guns.png" alt="Figure 2: Gun homicides per capita vs. gun ownership per capita in OECD countries." /><p class="caption"><em>Figure 2</em>: Gun homicides per capita vs. gun ownership per capita in OECD countries.</p>
+</div>
+<div class="figure">
+<img src="../pics/figures/homicide-vs-guns-detail.png" alt="Figure 3: Detail of gun homicides per capita vs. gun ownership per capita in OECD countries." /><p class="caption"><em>Figure 3</em>: Detail of gun homicides per capita vs. gun ownership per capita in OECD countries.</p>
+</div>
+<p>Finally, here is a plot of homicide vs. ownership across all countries — not just those in the OECD. The mass of countries in the lower left corner is unreadble but you can see those countries with either high homicide rates or high gun ownership clearly.</p>
+<div class="figure">
+<img src="../pics/figures/homicide-vs-guns-all.png" alt="Figure 4: Gun homicides per capita vs. gun ownership per capita in all countries." /><p class="caption"><em>Figure 4</em>: Gun homicides per capita vs. gun ownership per capita in all countries.</p>
+</div>
+<p>Just to be clear, I am not making any claims about the effect of gun ownership on shootings. I just wanted to show how easy it is to use freely available data to help answer reasonable questions about heated political issues like gun control.</p>
+<p>I’ll leave you to draw your own conclusions.</p>
+<h2 id="update-19th-dec.-2012">Update (19th Dec. 2012)</h2>
+<p>The response and attention to these plots — both positive and negative — on Twitter, in the comments below, and via email has been a little overwhelming. So much so that my site went down yesterday due to me hitting the (usually sufficient) bandwidth cap my host provides.</p>
+<h3 id="data-updates">Data Updates</h3>
+<p>Several people noted that the data I plotted for Switzerland was inconsistent with what was on Wikipedia. If you look at the <a href="http://en.wikipedia.org/w/index.php?title=List_of_countries_by_firearm-related_death_rate&amp;action=history">edit history</a> for the firearm-related death rate page on Wikipedia you will see that someone updated the Switzerland data late on the 16th of December. Taking into account that Canberra, Australia is GMT+11 this update occurred after I scraped the page for the data I used here.</p>
+<p>I have redone the OECD plots with data scraped from the same pages as of 3:30pm on the 19th. You can see the results and get the new data below.</p>
+<div class="figure">
+<img src="../pics/figures/deaths-vs-guns-20121219.png" alt="Figure 1 (updated): Gun-related Deaths vs. Gun Ownership for OECD countries." /><p class="caption"><em>Figure 1 (updated)</em>: Gun-related Deaths vs. Gun Ownership for OECD countries.</p>
+</div>
+<div class="figure">
+<img src="../pics/figures/homicide-vs-guns-20121219.png" alt="Figure 2 (updated): Gun Homicides vs. Gun Ownership for OECD countries." /><p class="caption"><em>Figure 2 (updated)</em>: Gun Homicides vs. Gun Ownership for OECD countries.</p>
+</div>
+<p>The new data is here:</p>
+<ul>
+<li><a href="../bits/guns/data/guns-20121219.csv">guns–20121219.csv</a></li>
+<li><a href="../bits/guns/data/deaths-20121219.csv">deaths–20121219.csv</a></li>
+</ul>
+<h3 id="other-analyses">Other Analyses</h3>
+<p>A number of people pointed me to analyses they had done of similar data, criticisms of this post, and alternative sources of data. Here is a summary of some of those other contributions:</p>
+<ul>
+<li><p><a href="http://diegobasch.com">Diego Basch</a> redid some of the above plots with <a href="http://diegobasch.com/homicides-vs-gun-ownership">overall homicide data</a> (not just gun homicide).</p></li>
+<li><p><a href="http://aphyr.com">aphyr</a> redid one of my plots on a log scale and also <a href="http://aphyr.com/posts/261-firearm-homicides-vs-gun-prevalence">compared gun homicide to income and wealth</a>.</p></li>
+<li><p><a href="https://twitter.com/dominikus">Dominikus Baur</a> created a more <a href="http://do.minik.us/shorts/guns/guns.html">interactive version</a> of the above plots using d3.</p></li>
+<li><p><a href="https://twitter.com/DataJunkie">Ryan Rosario</a> pointed me towards <a href="http://globalsociology.com/2012/12/15/on-the-guns-thing-i-would-just-like-to-point-out/">another analysis</a> of deaths vs. ownership.</p></li>
+<li><p><a href="https://twitter.com/finemrespice">finem respice</a> has a <a href="http://www.finemrespice.com/node/120">very detailed response</a> to this post (and other reporting) that explains why the data I used for Switzerland in my initial graphs was incorrect.</p></li>
+<li><p><a href="http://www.businessinsider.com/author/walter-hickey">Walter Hickey</a> at Business Insider <a href="http://www.businessinsider.com/shooting-gun-laws-2012-12">summarised my post</a>. There is a vigorous discussion in the comments there.</p></li>
+<li><p><a href="http://www.levreyzin.com">Lev Reyzin</a> tweeted some plots of <a href="https://twitter.com/lreyzin/status/280773248629735424">homicides vs. percentage of gun ownership</a>, included one <a href="https://twitter.com/lreyzin/status/281106705746632704">broken down by US states</a>.</p></li>
+<li><p><a href="https://twitter.com/cutflat">Tim Raupach</a> pointed me towards Nate Silver’s <a href="http://fivethirtyeight.blogs.nytimes.com/2012/12/18/in-gun-ownership-statistics-partisan-divide-is-sharp/">analysis of US gun ownership statistics</a>.</p></li>
+</ul>
+<h3 id="disclaimer">Disclaimer</h3>
+<p>Finally, in light of some of the more vocal criticism I’ve received, I feel I should reiterate a few points:</p>
+<ul>
+<li><p>At no point have I ever claimed that this is even close to a rigorous analysis. In my original tweet and here I have made it clear that I have used data from Wikipedia. Since I thought it was common knowledge that Wikipedia should <em>never</em> be used as a primary source for any kind of real research, I didn’t expect people to confuse this post with a serious study.</p></li>
+<li><p>I have not attempted to use these plots to draw any kind of conclusion about the relationship between gun ownership and gun deaths. Indeed, I do not think there exists a simple explanation. All I intended to do was attempt to shed some light on a question I was asked about a possible correlation.</p></li>
+<li><p>I will not run any kind of statistical test on the above data (e.g., rank correlation coefficients). For any such quantity to be meaningful I would need to assume that the data I collected was much more carefully controlled for. Since I just grabbed it from Wikipedia, this is clearly not a valid assumption.</p></li>
+<li><p>I do not intend to create more graphs showing other data or other statistics. Other people (see the links above) have already done so for a variety of alternative data. Also, I realise their are better sources of data out there than Wikipedia. However, as I’ve said before, my intention was not to do a definitive study but rather show how a readily accessible source (i.e., Wikipedia) can be used to quickly get an overview of a topic.</p></li>
+</ul>
+<p>I will probably not the last person to use Wikipedia for this sort of amateur analysis. Therefore, if you believe the data I have used is incorrect or out of date, I suggest you solve the problem at the source and update (with references) the relevant entries on Wikipedia.</p>
+<p>If you have a question about other possible correlations or relationships, feel free to apply the code above to what ever sources of data you think might help answer it. I’d appreciate it if you link to what you find in the comments below.</p>
+
+
+<address class="signature">
+	<a class="author" href="http://mark.reid.name">Mark Reid</a>
+  <span class="date">December 17, 2012</span>
+  <span class="location">Canberra, Australia</span>
+</address>
+
+</div>
+<address id="feed" class="quiet right">Subscribe: <a href="../blog/atom.xml" title="Subscribe to Atom feed"><em>Atom Feed</em></a></address>
+
+
+<!-- Disqus Comments -->
+<div id="disqus_thread"></div>
+
+<!-- Enable Disqus comments -->
+<script type="text/javascript">
+        var disqus_iframe_css = "http://mark.reid.name/css/screen.css";
+        var disqus_title = "Gun Deaths vs. Gun Ownership";
+        var disqus_message = "Looking at some data on gun-related deaths and gun ownership worldwide in the wake of the Sandy Hook shooting.";
+</script>
+<script type="text/javascript" src="http://disqus.com/forums/markreid/embed.js"></script>
+
+<noscript>
+    <a href="http://markreid.disqus.com/?url=ref">View the discussion thread.</a>
+</noscript>
+
+
+
+
+    <!-- Footer with copyright and contact information -->
+  <div id="footer">
+	<address>
+		<span class="copyright">
+			Content &amp; Design by 
+			<a href="../info/site.html">Mark Reid</a>
+			<br />
+			(<a rel="licence" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Some rights reserved</a>)			
+		</span>
+		<span class="engine">
+			Powered by 
+			<a href="http://jaspervdj.be/hakyll/" title="A static, minimalist, Haskell-powered CMS">Hakyll</a>
+		</span>
+	</address>
+  </div>
+
+</div>
+
+
+<!-- Google Analytics script -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-1051817-4");
+pageTracker._trackPageview();
+</script>
+<!--[if IE 6]>
+<script type="text/javascript"> 
+	/*Load jQuery if not already loaded*/ if(typeof jQuery == 'undefined'){ document.write("<script type=\"text/javascript\"   src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\"></"+"script>"); var __noconflict = true; } 
+	var IE6UPDATE_OPTIONS = {
+		icons_path: "http://static.ie6update.com/hosted/ie6update/images/"
+	}
+</script>
+<script type="text/javascript" src="http://static.ie6update.com/hosted/ie6update/ie6update.js"></script>
+<![endif]-->
+
+
+</body>
+</html>
+
+
+

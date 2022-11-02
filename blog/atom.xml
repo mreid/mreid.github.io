@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>Inductio Ex Machina</title>
+    <link href="http://mark.reid.name/blog/atom.xml" rel="self" />
+    <link href="http://mark.reid.name" />
+    <id>http://mark.reid.name/blog/atom.xml</id>
+    <author>
+        <name>Mark Reid</name>
+        <email>mark@reid.name</email>
+    </author>
+    <updated>2015-08-05T00:00:00Z</updated>
+    <entry>
+    <title>Predictive APIs and Apps Conference</title>
+    <link href="http://mark.reid.name/blog/predictive-apis-and-apps-conference.html" />
+    <id>http://mark.reid.name/blog/predictive-apis-and-apps-conference.html</id>
+    <published>2015-08-05T00:00:00Z</published>
+    <updated>2015-08-05T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>I’m very happy to be involved with this year’s <a href="http://www.papis.io">Predictive APIs and Apps</a> conference, which is held in Sydney this year. We’ve got a great line up of speakers on a wide range of topics, including what look to be two very interesting keynotes:</p>
+<ul>
+<li><p><a href="http://www.moe-lange.com/danny/">Danny Lange</a> from the General Manager at Amazon Machine Learning on <a href="http://lanyrd.com/2015/papis2015/sdqbmb/">Real-World Predictive Applications with Amazon Machine Learning</a>; and</p></li>
+<li><p><a href="http://users.cecs.anu.edu.au/~williams/">Bob Williamson</a> from NICTA’s Machine Learning Group talking about <a href="http://lanyrd.com/2015/papis2015/sdprmy/">Predictive Technologies and the Prediction of Technology</a></p></li>
+</ul>
+<p>There are also a number of talks and tutorials by researchers and practitioners from Google, Microsoft, Big ML, NVIDIA, Upwork, Telefonica, and many others. For more details, please check out the <a href="http://lanyrd.com/2015/papis2015/schedule/">conference schedule</a>.</p>
+<p>I’ll be part of a <a href="http://lanyrd.com/2015/papis2015/sdpfzf/">panel discussion</a> on research challenges surrounding predictive APIs and applications with <a href="http://lanyrd.com/profile/petersen-4634/bio/">Poul Petersen</a>, the Chief Infrastructure Officer at Big ML, and <a href="http://research.microsoft.com/en-us/um/people/mbilenko/">Misha Bilenko</a>, the leader of the Algorithms team at Microsoft Azure Machine Learning.</p>
+<p>I expect we will talk about challenges around managing privacy, large data sets, transparency, and interoperability of various systems, as well as some of the other issues that Beua Cronin raised last year in his post on <a href="http://radar.oreilly.com/2014/10/challenges-facing-predictive-apis.html">challenges facing predictive APIs</a>.</p>
+<p>If you have any specific questions or topics you’d like us to discussion, please leave them in the comments below and I’ll see whether I can work them into the discussion and reort back.</p>
+<p>To kick things off, there will be a huge <a href="http://www.meetup.com/Big-Data-Analytics/events/224142436/">Big Data Analytics Meetup</a> tonight with over 350 registered attendees. Four of the speakers from the PAPIs conference representing and talking about the predictive API offerings from Google, Microsoft, Big ML, and Amazon.</p>
+<p>The PAPIs conference starts tomorrow (August, 6th), and if any of the above look interesting it is still possible to <a href="http://www.papis.io/2015#register">register for tickets</a>.</p>
+<p>Hope to see you there!</p>
+]]></summary>
+</entry>
+<entry>
+    <title>COLT 2015 in Review</title>
+    <link href="http://mark.reid.name/blog/colt-2015.html" />
+    <id>http://mark.reid.name/blog/colt-2015.html</id>
+    <published>2015-07-07T00:00:00Z</published>
+    <updated>2015-07-07T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>It’s been about three weeks since I jotted down some notes about <a href="http://www.learningtheory.org/colt2015/">COLT</a> this year while I was on the train from Paris to Lille (for ICML). I’ve finally made some time to polish them a little and put them up in continuing attempt to <a href="/blog/restarting.html">get back into blogging</a>.</p>
+<p>COLT this year was held at the Jussieu campus of the <a href="http://www.upmc.fr/en/index.html">Université Pierre et Marie Curie</a> in the 5th arrondissement of Paris. I was fortunate to be staying a short walk away at the air-conditioned <a href="http://www.paris-hotel-des-nations-st-germain.com/en/home/?r=3955002">Hotels Des Nations Saint Germain</a> since the temperature was over 40ºC on the first few days. Apart from the slightly uncomfortable temperature though, this was a very hard conference to fault: the venue, talks, poster sessions, invited lectures, catering, and events were all excellent.</p>
+<p>I’ve tried to capture some of the highlights below, as well as the parts of the <a href="http://easychair.org/smart-program/COLT2015/index.html">full program</a> that I saw and intend to follow up on.</p>
+<h2 id="invited-talks">Invited Talks</h2>
+<p>The talk by Fields medalist <a href="https://en.wikipedia.org/wiki/Cédric_Villani">Cédric Villani</a> on the <em>Synthetic Theory of Ricci Curvature</em> was a thought-provoking and entertaining highlight of COLT — at least the parts I was able to comprehend. He started his talk by explaining the distinction between <em>analytic</em> and <em>synthetic</em> theories by way of the example of convexity. The analytic take on convexity is what Villani called a “local” and “effective” theory: a function is convex if its Hessian is positive semi-definite. It’s local because the Hessian is defined using neighbourhoods of points and effective because often one can compute the and test the Hessian. The synthetic definition of a convex function is the <a href="/blog/behold-jensens-inequality.html">usual one</a> where the value at the average of two points be no more than the average of the values at those points. This, while typically harder to establish than the analytic definition, has the advantage of being easily generalised to non-differentiable functions and leads more directly to useful inequalities.</p>
+<p>The rest of his talk I found a little more difficult to follow but from what I recall, he sketched out several definitions of positive <a href="https://en.wikipedia.org/wiki/Ricci_curvature">Ricci curvature</a>. In two dimensions it is the “correction” to the distance between two orthonormal vectors relative to Euclidean space or the expansion of the median of triangles due to the space; in three or more, the rate of change of a volume element along a geodesic. From there he listed the way this concept connected a variety of ideas and bounds from information theory and optimal transport.</p>
+<p>It seems a large portion of the talk was taken from <a href="http://cedricvillani.org/wp-content/uploads/2015/07/takagi-2.pdf">notes</a> that were based on lectures he gave this year at Tsinghua University and ETH Zürich.</p>
+<div class="figure">
+<img src="/pics/villani.jpg" alt="Cédric Villani’s talk on Ricci curvature." /><p class="caption">Cédric Villani’s talk on Ricci curvature.</p>
+</div>
+<p>Slightly more down to earth, but no less engaging were <a href="http://www.cs.yale.edu/homes/spielman/">Daniel Spielman</a>’s and <a href="http://theory.stanford.edu/~tim/">Tim Roughgarden</a>’s talks.</p>
+<p>Dan gave an excellent and intuitive introduction to Laplacians, their properties, and connections to finding solutions of special types of linear equations. He then went onto discuss some impressive results he and others developed in solving these systems using “<a href="http://arxiv.org/abs/0808.4134">sparsification</a>” of graphs associated with the Laplacian matrices. The resulting, almost linear-time algorithms will likely form the basis of many efficient techniques in machine learning, maximum flow problems, and PDEs. An overview of part of his talk can be found in <a href="http://www.cs.yale.edu/homes/spielman/PAPERS/icm10post.pdf">these notes</a>.</p>
+<p>Tim gave a fascinating overview of how several ideas from learning theory, including no-regret learning and PAC-style analysis, have recently made their way into economics and game theory. One focus of the talk that caught my attention was his discussion of what he calls an “extension theorem” for <a href="https://en.wikipedia.org/wiki/Price_of_anarchy">price of anarchy</a> results.</p>
+<p>Roughly speaking, price of anarchy results measure how inefficient multiagent games become when agents behave selfishly relative to a optimal, centrally coordinated plan (<em>e.g.</em>, routing traffic). These results were originally stated in terms of Nash equilibria which are known to be “fragile” solution concepts. More recently, <a href="http://theory.stanford.edu/~tim/papers/robust.pdf">more robust analyses</a> are possible by replacing the assumption that agents play their equilibrium strategy with a much weaker assumption that they engage in repeated play that generates no-regret outcome sequences. The striking thing about Tim’s extension theorem is that he shows how equilibrium-based price of anarchy proofs for a large class of “smooth” games can be automatically transformed into proofs for the weaker, no-regret versions.</p>
+<p>It’s rare and exciting to see this type of “meta” theorem that applies to whole classes of existing results. To top it off, there seems to be a lot of scope and interest in developing more connections like these between economics, game theory, and machine learning.</p>
+<h2 id="other-talks-posters">Other Talks &amp; Posters</h2>
+<p>Although I wasn’t able to attend all of the regular sessions, I did see a lot of interesting stuff that I hope to catch up on now that I’m home. I think the format for the talks this year worked really well. There were a handful of carefully picked 20 minute talks and the rest of the speakers got 5 minutes to pique the interest of the audience enough to have them come to their posters.</p>
+<p>Of the longer talks, I really enjoyed <a href="http://www.cs.berkeley.edu/~christos/">Christos Papadimitriou</a>’s one on his work with <a href="http://www.cc.gatech.edu/~vempala/">Santosh Vempala</a> on <em><a href="http://jmlr.org/proceedings/papers/v40/Papadimitriou15.html">Cortical Learning via Prediction</a></em> and <a href="http://www.princeton.edu/~sbubeck/">Sébastien Bubeck</a>’s very well delivered blackboard talk on <em><a href="http://jmlr.org/proceedings/papers/v40/Bubeck15b.html">The Entropic Barrier</a></em> with <a href="http://www.wisdom.weizmann.ac.il/~ronene/">Ronen Eldan</a> (<a href="http://arxiv.org/abs/1412.1587">arXiv preprint</a>).</p>
+<p>From what I’ve understood of it so far, Christos and Santosh have built upon Leslie Valiant’s <a href="https://books.google.com.au/books/about/Circuits_of_the_mind.html?id=JqfwAAAAMAAJ">neuroidal model of the brain</a>.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> They show that by introducing a new operation, caled PJOIN for “predictive join”, they are able to implement pattern recognition algorithms that do not suffer the combinatorial explosion that occurs if limited to the model’s original operations (JOIN &amp; LINK). I’m hoping to spend some time looking at this further and alongside some interesting recent work by <a href="https://sites.google.com/site/dbalduzzi/">David Balduzzi</a> on <a href="http://arxiv.org/pdf/1401.1465v1.pdf">Cortical Prediction Markets</a>. I’ve been thinking about <a href="http://arxiv.org/abs/1410.0413">networks of traders</a> with <a href="http://people.seas.harvard.edu/~raf/">Raf</a> recently and think these neurologically inspired takes on networks provide an interesting perspective.</p>
+<p>Sébastien and Ronen’s work give a very natural construction of a <a href="https://en.wikipedia.org/wiki/Self-concordant_function">self-concordant barrier</a> for convex bodies. Given a compact convex body <span class="math">\(\mathcal{K} \subset \mathbb{R}^n\)</span> they define <span class="math">\(f\)</span> to be the log partition function for the exponential family of densities <span class="math">\(p_\theta\)</span> with natural parameters <span class="math">\(\theta \in \mathcal{K}\)</span> relative to the uniform distribution. The Fenchel dual, <span class="math">\(f^*(x) = -H(p_{\theta(x)})\)</span> with <span class="math">\(\theta(x) = \nabla f^*(x)\)</span> is then a <span class="math">\((1 + o(1))n\)</span>-self-concordant barrier for <span class="math">\(\mathcal{K}\)</span>. Using this elegant connection between barriers, exponential families, and duals, they are able to recover near-optimal bounds for online linear optimisation problems with bandit feedback.</p>
+<p><a href="http://people.seas.harvard.edu/~raf/">Raf</a> and I have looked at <a href="http://mark.reid.name/bits/pubs/maxent13-convex-gefs.pdf">convex dual interpretations and generalisations of exponental families</a> and some similar ideas were used to get a new perspective on fast rates in online learning in our <a href="http://jmlr.org/proceedings/papers/v40/Reid15.html">COLT paper</a> this year with <a href="http://users.cecs.anu.edu.au/~nmehta/">Nishant</a> and <a href="http://users.cecs.anu.edu.au/~williams/">Bob</a>. One thing I’d like to understand better is the connection between universal barriers and what we call “entropic duals”, which I think coincide in the case of Shannon entropy. However, we show that fast rates in online prediction with expert advice can be obtained for losses satisfying a mixability condition defined in terms any Legendre function defined on convex bodies (what we call “generalised entropies”). I’d be curious to see whether there are similar implications for OLO bandit games.</p>
+<p>Also in the “things I’d like to understand better” bucket is the connection between our generalised Aggregating Algorithm and the results <a href="http://people.cecs.anu.edu.au/user/5197">Kamal</a>, <a href="http://users.cecs.anu.edu.au/~williams/">Bob</a>, and <a href="http://users.cecs.anu.edu.au/~xzhang/">Xinhua</a> presented on their characterisation of <a href="http://jmlr.org/proceedings/papers/v40/Kamalaruban15.html">Exp-concave proper losses</a> and its relationship to mixability. From my brief discussions with them it seems that mixability and exp-concavity are effective the same condition, it’s just that the latter is a parameterisation-dependent version of the former.</p>
+<p>It was good to see a number of other papers that looked at proper losses/scores and property elicitation, including:</p>
+<ul>
+<li><p><em><a href="http://jmlr.org/proceedings/papers/v40/Agarwal15.html">On Consistent Surrogte Risk Minimization and Property Elicitation</a></em> by <a href="http://clweb.csa.iisc.ernet.in/cse12/arpit.agarwal/">Arpit Agarwal</a> and <a href="http://www.shivani-agarwal.net">Shivani Agarwal</a>.</p></li>
+<li><p><em><a href="http://jmlr.org/proceedings/papers/v40/Frongillo15.html">Vector-Valued Property Elicitation</a></em> by <a href="http://people.seas.harvard.edu/~raf/">Raf</a> and <a href="http://research.microsoft.com/en-us/people/iankash/">Ian Kash</a>.</p></li>
+<li><p><em><a href="http://jmlr.org/proceedings/papers/v40/Telgarsky15.html">Convex Risk Minimization and Conditional Probability Estimation</a></em> by <a href="http://cseweb.ucsd.edu/~mtelgars/">Matus Telgarsky</a> <a href="http://research.microsoft.com/en-us/people/mdudik/">Miro Dudík</a> and <a href="http://research.microsoft.com/en-us/people/schapire/">Rob Schapire</a>.</p></li>
+</ul>
+<p>There were also a couple of other bandit-related papers that I plan to look more closely at.</p>
+<p><a href="http://www.wisdom.weizmann.ac.il/~shamiro/">Ohad Shamir</a> had a nice paper <em><a href="http://jmlr.org/proceedings/papers/v40/Shamir15.html">On the Complexity of Bandit Linear Optimization</a></em> that provides some new bounds on rates for bandit games. Curiously, he shows that certain innocuous modifications that have no effect in full information games (such as translation of the action space) can adversely affect guarantees in the bandit setting.</p>
+<p><a href="http://www.tau.ac.il/~nogaa/">Noga Alon</a> and co. had a follow up to some of their earlier work on graph feedback models for bandits where taking an action will reveal the rewards for neighbouring actions on a known graph. In their new paper, <em><a href="http://jmlr.org/proceedings/papers/v40/Alon15.html">Online Learning with Feedback Graphs: Beyond Bandits</a></em>, they neatly characterise three rates regimes — roughly <span class="math">\(\sqrt{T}\)</span>, <span class="math">\(T^{2/3}\)</span>, and <span class="math">\(T\)</span> — in terms of whether the feedback graph is “strongly observable” (<em>i.e.</em>, neighbours of each vertex <span class="math">\(i\)</span> include <span class="math">\(i\)</span> or all vertices except <span class="math">\(i\)</span>), “weakly observable” (<em>i.e.</em>,if all vertices have neighbours), or “unobservable” (<em>i.e.</em>, one or more vertices have no neighbours).</p>
+<h2 id="wining-dining-on-a-boat">Wining &amp; Dining (on a boat!)</h2>
+<p>Finally, I’d be remiss not to mention the conference events, which easily lived up to the quality of the conference content. The COLT cocktail party on top of the Zamansky tower gave us a stunning view of of Paris, as did the one hosted by Criteo at their lab. The conference dinner was also extremely scenic, cruising up and down the Seine on a floating restaurant while being treated to some delicious French food and wine.</p>
+<div class="figure">
+<img src="/pics/paris-sunset.jpg" alt="Parisian sunset from top of the Zamansky tower" /><p class="caption">Parisian sunset from top of the Zamansky tower</p>
+</div>
+<p>All in all, this was a fantastic COLT — easily one of the best I’ve been to. Congratulations and thanks to <a href="http://homepages.cwi.nl/~pdg/">Peter</a>, <a href="http://www.cs.princeton.edu/~ehazan/">Elad</a>, and <a href="https://sites.google.com/site/vianneyperchet/">Vianney</a> for a wonderful job organising it.</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>A notable coincidence (at least for me) is that the one and only previous time I was in Paris in 2001 I was reading a copy of Valiant’s <em>Circuits of the Mind</em> that I’d picked up in New York. Strangely, I hadn’t really seen much referencing that work in the in the interim.<a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+]]></summary>
+</entry>
+<entry>
+    <title>Upcoming Conference in Sydney on Predictive APIs and Apps</title>
+    <link href="http://mark.reid.name/blog/papis-call-for-papers.html" />
+    <id>http://mark.reid.name/blog/papis-call-for-papers.html</id>
+    <published>2015-03-11T00:00:00Z</published>
+    <updated>2015-03-11T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>After a big kick-off in Barcelona last year with <a href="http://www.papis.io/blog/2015/01/papis-numbers">over 200 attendees</a>, the second <a href="http://www.papis.io">International Conference on Predictive APIs and Apps</a> will be held in Sydney on the 6th–7th of August, 2015. The aim of this conference is to bring together people from academia, industry, and government to share ideas and experiences around building apps that make use of machine learning APIs and services.</p>
+<p>I’m very pleased to announce that I’ll be the <a href="http://www.papis.io/team/">Research Chair</a> for this year’s conference and will help look after the <a href="http://www.papis.io/cfp#research">research track</a> of the conference, which will be running for the first time this year. One of my jobs is to help get the word out the <a href="http://www.papis.io/cfp">Call for Proposals</a> that is requesting submissions for review by <strong>March 29th, 2015</strong>.</p>
+<p>As described on the <a href="http://www.papis.io/cfp">Call for Proposals</a> page, the research track is looking for proposals up to 8 pages in length that discuss techniques and problems encountered by those of you that create predictive APIs and services. Topics for proposals include (but are not limited to):</p>
+<ul>
+<li>Software engineering: design patterns and best practises</li>
+<li>Distributed systems: scaling out services and APIs</li>
+<li>Machine Learning / Data Science automation</li>
+<li>Interoperability between services / APIs / tools etc.</li>
+</ul>
+<p>This new track aims to complement the tutorials and other presentations that will focus more on describing how predictive APIs and apps are. Because of the <a href="http://www.papis.io/blog/2015/01/papis-numbers">solid mix</a> of academics, developers, and business people I think this will be a great opportunity to get your work in front of a lot of people who use this sort of technology on a daily basis.</p>
+<p>As an added incentive, PAPIs will take place just before <a href="http://www.kdd.org/kdd2015/">KDD 2015</a>, which will run from the 10th–13th of August. So if you are already planning on coming to KDD, consider coming a little earlier and attending PAPIs too.</p>
+<p>Finally, it would be great if you could help me spread the word to anyone you think might be interested in submitting to or attending PAPIs. For example, by retweeting or otherwise sharing the following:</p>
+<blockquote class="twitter-tweet" lang="en"><p>
+Calling for proposals! Real-world <a href="https://twitter.com/hashtag/machinelearning?src=hash">#machinelearning</a>, <a href="https://twitter.com/hashtag/predictive?src=hash">#predictive</a> <a href="https://twitter.com/hashtag/APIs?src=hash">#APIs</a> &amp; <a href="https://twitter.com/hashtag/apps?src=hash">#apps</a>: use cases, lessons learnt, research <a href="http://t.co/tJOfpYhwxp">http://t.co/tJOfpYhwxp</a>
+</p>
+— PAPIs.io (<span class="citation">@papisdotio</span>) <a href="https://twitter.com/papisdotio/status/570988529255374849">February 26, 2015</a>
+</blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>Let me know if you plan to be in Sydney for the conference and would like to meet up. Hope to see you there!</p>
+]]></summary>
+</entry>
+<entry>
+    <title>Reflecting and Restarting</title>
+    <link href="http://mark.reid.name/blog/restarting.html" />
+    <id>http://mark.reid.name/blog/restarting.html</id>
+    <published>2015-01-05T00:00:00Z</published>
+    <updated>2015-01-05T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>The date of my last blog post — the 30th of August, 2013 — has been increasingly tormenting me (<em>2013!</em>) so I’ve decided that the start of the new year is as good a time as any to start writing here again.</p>
+<p>I’m not entirely sure why blogging fell by the wayside in 2014. As my <a href="/work/news">news feed</a> suggests, it’s not as though there has been a lack of things to write about in the last 16 months:</p>
+<ul>
+<li><p>two papers at <a href="http://www.maxent2013.org/">MaxEnt 2013</a>, one on <a href="/bits/pubs/maxent13-convex-gefs.pdf">generalised exponential families</a> and the other on their <a href="/bits/pubs/maxent13-update-gefs.pdf">conjugate priors</a>;</p></li>
+<li><p>a couple of journal papers, one in <a href="http://dx.doi.org/10.1109/TPAMI.2014.2306414">PAMI on hybrid losses</a> and the other in <a href="http://dx.doi.org/10.1007/s10994-014-5434-3">MLJ on a new boosting technique</a>;</p></li>
+<li><p>co-organising two workshops, one on <a href="http://bigml.cs.tsinghua.edu.cn/~dmpi-icml2014-workshop/home">divergence methods for probabilistic inference</a> at ICML and the other on <a href="http://workshops.inf.ed.ac.uk/ml/nipstransactional/">transactional ML and e-commerce</a> at NIPS;</p></li>
+<li><p>releasing <a href="https://github.com/psi-project/">the code</a> and <a href="http://psi.cecs.anu.edu.au/demo/">demo service</a> for the <a href="http://psi.cecs.anu.edu.au/">Protocols and Structures for Inference project</a>, as well as receiving a generous Amazon <a href="http://aws.amazon.com/grants/">AWS in Education</a> grant to launch the demo site on AWS;</p></li>
+<li><p>a fantastic, month-long visit at <a href="http://research.microsoft.com/en-us/labs/newyork/default.aspx">Microsoft’s New York lab</a>;</p></li>
+<li><p>a two week visit to Tsinghua University as part of the <a href="http://industry.gov.au/science/internationalcollaboration/acsrf/Pages/YoungResearchers.aspx">Australia-China Young Scientist Exchange Program</a>;</p></li>
+<li><p>and last, but not least, Mindika Premachandra submitted her PhD thesis on prediction markets for review.</p></li>
+</ul>
+<p>Amongst all that, I’ve been working with a number of collaborators on some fascinating connections via convex duality between fast rates for online learning, mirror descent, risk measures, prediction markets, and graphical models. You can grab preprints of some of this stuff on the arXiv (<em><a href="http://arxiv.org/abs/1410.0413">Risk Dynamics in Trade Networks</a></em> and <em><a href="http://arxiv.org/abs/1406.6130">Generalized Mixability via Entropic Duality</a></em>).</p>
+<p>I’ve been meaning to write up some overviews of this most recent work for ages so expect some posts on risk measures and entropic duals very soon.</p>
+]]></summary>
+</entry>
+<entry>
+    <title>What does the “OSS” in MLOSS mean?</title>
+    <link href="http://mark.reid.name/blog/what-does-the-oss-in-mloss-mean.html" />
+    <id>http://mark.reid.name/blog/what-does-the-oss-in-mloss-mean.html</id>
+    <published>2013-08-30T00:00:00Z</published>
+    <updated>2013-08-30T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>I was recently asked to become an Action Editor for the <a href="http://jmlr.org/mloss/">Machine Learning and Open Source Software (MLOSS)</a> track of Journal of Machine Learning Research. Of course, I gladly accepted since the <a href="http://jmlr.org/mloss/mloss-info.html">aim</a> of the JMLR MLOSS track (as well as the <a href="http://mloss.org/about/">broader MLOSS project</a>) — to encourage the creation and use of open source software within machine learning — is well aligned with my own interests and attitude towards scientific software.</p>
+<p>Shortly after I joined, one of the other editors raised a question about how we are to interpret an item in the <a href="http://jmlr.org/mloss/mloss-info.html">review criteria</a> that states that reviewers should consider the “freedom of the code (lack of dependence on proprietary software)” when assessing submissions. What followed was an engaging email discussion amongst the Action Editors about the how to clarify our position.</p>
+<p>After some discussion (summarised below), we settled on the following guideline which tries to ensure MLOSS projects are as open as possible while recognising the fact that MATLAB, although “closed”, is nonetheless widely used within the machine learning community and has an open “work-alike” in the form of <a href="http://www.gnu.org/software/octave/">GNU Octave</a>:</p>
+<blockquote>
+<p><strong>Dependency on Closed Source Software</strong></p>
+<p>We strongly encourage submissions that do not depend on closed source and proprietary software. Exceptions can be made for software that is widely used in a relevant part of the machine learning community and accessible to most active researchers; this should be clearly justified in the submission.</p>
+<p>The most common case here is the question whether we will accept software written for Matlab. Given its wide use in the community, there is no strict reject policy for MATLAB submissions, but we strongly encourage submissions to strive for compatibility with Octave unless absolutely impossible.</p>
+</blockquote>
+<h2 id="the-discussion">The Discussion</h2>
+<p>There were a number of interesting arguments raised during the discussion, so I offered to write them up in this post for posterity and to solicit feedback from the machine learning community at large.</p>
+<h3 id="reviewing-and-decision-making">Reviewing and decision making</h3>
+<p>A couple of arguments were put forward in favour of a strict “no proprietary dependencies” policy.</p>
+<p>Firstly, allowing proprietary dependencies may limit our ability to find reviewers for submissions — an already difficult job. Secondly, stricter policies have the benefit of being unambiguous, which would avoid future discussions about the acceptability of future submission.</p>
+<h3 id="promoting-open-ports">Promoting open ports</h3>
+<p>An argument made in favour of accepting projects with proprietary dependencies was that doing so may actually increase the chances of its code being forked to produce a version with no such dependencies.</p>
+<p><a href="http://mikiobraun.de">Mikio Braun</a> explored this idea further along with some broader concerns in a <a href="http://blog.mikiobraun.de/2013/08/curation-collaboration-science.html">blog post</a> about the role of curation and how it potentially limits collaboration.</p>
+<h3 id="where-do-we-draw-the-line">Where do we draw the line?</h3>
+<p>Some of us had concerns about what exactly constitutes a proprietary dependency and came up with a number of examples that possibly fall into a grey area.</p>
+<p>For example, how do operating systems fit into the picture? What if the software in question only compiles on Windows or OS X? These are both widely used but proprietary. Should we ensure MLOSS projects also work on Linux?</p>
+<p>Taking a step up the development chain, what if the code base is most easily built using proprietary development tools such as Visual Studio or XCode? What if libraries such as MATLAB’s Statistics Toolbox or Intel’s MKL library are needed for performance reasons?</p>
+<p>Things get even more subtle when we note that certain data formats (<em>e.g.</em>, for medical imaging) are proprietary. Should such software be excluded even though the algorithms might work on other data?</p>
+<p>These sorts of considerations suggested that a very strict policy may be difficult to enforce in practice.</p>
+<h3 id="what-is-our-focus">What is our focus?</h3>
+<p>It is pretty clear what position Richard Stallman or other fierce free software advocates would take on the above questions: reject all of them! It is not clear that such an extreme position would necessarily suit the goals of the MLOSS track of JMLR.</p>
+<p>Put another way, is the focus of MLOSS the “ML” or the “OSS”? The consensus seemed to be that we want to promote open source software to benefit machine learning, not the other way around.</p>
+<h2 id="looking-at-the-data">Looking At The Data</h2>
+<p>Towards the end of the discussion, I made the argument that if we cannot be coherent we should at least be consistent and presented some data on all the <a href="http://jmlr.org/mloss/">accepted MLOSS submissions</a>. Table 1 below shows the breakdown of languages used by the 50 projects that have been accepted to the JMLR track to date. I’ll note that some projects use and/or target multiple languages and that, because I only spent half an hour surveying the projects, I may have inadvertently misrepresented some (if I’ve done so, let me know).</p>
+<table>
+<caption><em>Table 1</em>: Frequency of languages used in MLOSS projects.</caption>
+<tbody>
+<tr class="odd">
+<td align="right"><strong>Language</strong></td>
+<td align="center">C++</td>
+<td align="center">Java</td>
+<td align="center">Matlab</td>
+<td align="center">Octave</td>
+<td align="center">Python</td>
+<td align="center">C</td>
+<td align="center">R</td>
+</tr>
+<tr class="even">
+<td align="right"><strong>Count</strong></td>
+<td align="center">15</td>
+<td align="center">13</td>
+<td align="center">11</td>
+<td align="center">10</td>
+<td align="center">9</td>
+<td align="center">5</td>
+<td align="center">4</td>
+</tr>
+</tbody>
+</table>
+<p>From this we can see that MATLAB is fairly well-represented amongst the accepted MLOSS projects. I took a closer look and found that of the 11 projects that are written in (or provide bindings for) MATLAB, all but one of them provide support for GNU Octave compatibility as well.</p>
+<h2 id="closing-thoughts">Closing Thoughts</h2>
+<p>I think the position we’ve adopted is realistic, consistent, and suitably aspirational. We want to encourage and promote projects that strive for openness and the positive effects it enables (<em>e.g.</em>, reproducibility and reuse) but do not want to strictly rule out submissions that require a widely used, proprietary platform such as MATLAB.</p>
+<p>Of course, a project like MLOSS is only as strong as the community it serves so we are keen to get feedback about this decision from people who use and create machine learning software so feel free to leave a comment or contact one of us by email.</p>
+<hr />
+<p><strong>Shameless Plug</strong>: If you are working on some open source software for machine learning, I encourage you to consider submitting your work to the <a href="http://jmlr.org/mloss/">JMLR MLOSS track</a> or the upcoming <a href="http://mloss.org/workshop/nips13/">NIPS 2013 Workshop on Machine Learning Open Source Software</a> (I’m on the program committee).</p>
+]]></summary>
+</entry>
+
+</feed>

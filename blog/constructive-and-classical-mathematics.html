@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+
+   <!-- Standard site meta information -->
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Constructive and Classical Mathematics ← Inductio Ex Machina ← Mark Reid</title>
+   <meta name="author" content="Mark Reid" />
+
+   <link rel="openid.server" href="http://www.myopenid.com/server" />
+   <link rel="openid.delegate" href="http://mark.reid.name" />
+
+   <link rel="start" href="../" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="../css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="../css/screen.css" type="text/css" media="all" />
+   <link rel="stylesheet" href="../css/print.css" type="text/css" media="print" />
+   <link rel="stylesheet" href="../css/widgets.css" type="text/css" media="all" />
+   <link rel="stylesheet" href="../css/amjr.css" type="text/css" media="all" />
+
+ 	<meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@mdreid">
+    <meta name="twitter:site" content="@mdreid">
+    <meta name="twitter:title" content="Constructive and Classical Mathematics">
+    <meta name="twitter:description" content="A simple example involving irrational numbers makes me think that constructive mathematics has something going for it.">
+
+<!-- MathJax configuration and loading -->
+<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		extensions: ["tex2jax.js"],
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["\\(","\\)"] ],
+			displayMath: [ ["\\[","\\]"] ],
+			processEscapes: true
+		},
+		TeX: { equationNumbers: { autoNumber: "AMS" } },
+		"HTML-CSS": { availableFonts: ["TeX"] }
+	});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+
+</head>
+
+<body id="Blog">
+
+<div id="site">
+  <div id="header">
+<h1>
+	<a href="../blog/" title="A machine learning blog">Inductio ex Machina</a>
+	<span class="byline">← <a href="../">Mark Reid</a></span>
+</h1>
+<ul class="nav">
+  <li><a class="home" href="../blog/">Home</a></li>
+  <li><a class="info" href="../blog/info.html">Info</a></li>
+  <li><a class="past" href="../blog/past.html">Past</a></li>
+  <li><a class="kith" href="../blog/kith.html">Kith</a></li>
+</ul>
+</div>
+
+<div id="page">
+
+<h1 class="emphnext">Constructive and Classical Mathematics</h1>
+
+<p>I have a (very) amateur interest in the philosophy of mathematics. My interest was recently piqued again after finishing the very readable “<a href="http://www.librarything.com/work/3362656/book/17581191">Introducing Philosophy of Mathematics</a>” by Michèle Friend. Since then, I’ve been a lot more aware of terms like “constructivist”, “realist”, and “formalist” as they apply to mathematics.</p>
+<p>Today, I was flicking through the entry on “<a href="http://plato.stanford.edu/entries/mathematics-constructive/">Constructivist Mathematics</a>” in the <a href="http://plato.stanford.edu/">Stanford Encyclopedia of Philosophy</a> and found a simple example of some of the problems with non-constructive take on what disjunction means in mathematical statements. The article calls it “well-worn” but I hadn’t seen it before.</p>
+<p>Consider the statement:</p>
+<blockquote>
+<p>There exists irrational numbers a and b such that a<sup>b</sup> is rational.</p>
+</blockquote>
+<p>The article gives a slick proof that this statement is true by invoking the <a href="http://en.wikipedia.org/wiki/Law_of_the_excluded_middle">law of the excluded middle</a> (LEM). That is, every number must be either rational or irrational.</p>
+<p>Now consider <span class="math">\(\sqrt{2}^{\sqrt{2}}\)</span>. By the LEM, this must rational or irrational:</p>
+<ul>
+<li><p>Case 1: If it is rational then we have proved the statement since we know <span class="math">\(a = b = \sqrt{2}\)</span> is irrational.</p></li>
+<li><p>Case 2: If <span class="math">\(\sqrt{2}^{\sqrt{2}}\)</span> is irrational then choosing <span class="math">\(a = \sqrt{2}^{\sqrt{2}}\)</span> and <span class="math">\(b = \sqrt{2}\)</span> as our two irrational numbers gives <span class="math">\({\sqrt{2}^{\sqrt{2}^{\sqrt{2}}}} = {\sqrt{2}^2} = 2\)</span> — a rational number.</p></li>
+</ul>
+<p>Either way, we’ve proven the existence of two irrational numbers yielding a rational one. The problem with this is that this argument is non-constructive and so we don’t know which of case 1 and case 2 is true, we only know that one of them must be<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. This is a simple case of <i>reductio ad absurdum</i> in disguise.</p>
+<p>As a born-again computer scientist (my undergraduate degree was pure maths and my PhD in computer science) I’ve become increasingly suspicious of these sorts of proof and more <a href="http://en.wikipedia.org/wiki/Constructivism_%28mathematics%29">constructivist</a> — even <a href="http://en.wikipedia.org/wiki/Intuitionism">intuitionist</a> — in my tastes. I think the seed of doubt was planted during the awkward discussions of the <a href="http://en.wikipedia.org/wiki/Axiom_of_choice">Axiom of Choice</a> in my functional analysis lectures. The sense of unease is summed up nicely in the following joke:</p>
+<blockquote>
+<p>The Axiom of Choice is obviously true, the well-ordering principle obviously false, and who can tell about Zorn’s lemma?</p>
+</blockquote>
+<p>Of course, all those concepts are equivalent but that’s far from intuitive.</p>
+<p>I don’t think I’m extremist enough to take a wholeheartedly computational view of mathematics — denying all but the computable real numbers and functions, thereby making <a href="http://math.andrej.com/2006/03/27/sometimes-all-functions-are-continuous/">all functions continuous</a> — but it is a tempting view of the subject.</p>
+<p>In machine learning, I think there is a fairly pragmatic take on the philosophy of mathematics. For example, classical theorems from functional analysis are used to derive results involving kernels but when it comes to implementation, estimations and approximations are used with abandon. In my opinion, this is a <a href="http://www.daniel-lemire.com/blog/archives/2008/06/05/why-pure-theory-is-wasteful/">healthy way for the theory in this area to proceed</a>. As in physics, if the experimental work reveals inconsistencies with a theory, revisit the maths. If that doesn’t work, <a href="http://diveintomark.org/archives/2008/06/11/purity">talk to the philosophers</a>.</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>It turns out that, by [Gelfond’s Theorem](http://en.wikipedia.org/wiki/Gelfond’s_theorem) that <span class="math">\(\sqrt{2}^{\sqrt{2}}\)</span> is transcendental, and therefore irrational so the second case alone proves the statement. However, I’m not sure what machinery is required to prove Gelfond’s theorem.<a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+
+
+<address class="signature">
+	<a class="author" href="http://mark.reid.name">Mark Reid</a>
+  <span class="date">June 12, 2008</span>
+  <span class="location">Canberra, Australia</span>
+</address>
+
+</div>
+<address id="feed" class="quiet right">Subscribe: <a href="../blog/atom.xml" title="Subscribe to Atom feed"><em>Atom Feed</em></a></address>
+
+
+<!-- Disqus Comments -->
+<div id="disqus_thread"></div>
+
+<!-- Enable Disqus comments -->
+<script type="text/javascript">
+        var disqus_iframe_css = "http://mark.reid.name/css/screen.css";
+        var disqus_title = "Constructive and Classical Mathematics";
+        var disqus_message = "A simple example involving irrational numbers makes me think that constructive mathematics has something going for it.";
+</script>
+<script type="text/javascript" src="http://disqus.com/forums/markreid/embed.js"></script>
+
+<noscript>
+    <a href="http://markreid.disqus.com/?url=ref">View the discussion thread.</a>
+</noscript>
+
+
+
+
+    <!-- Footer with copyright and contact information -->
+  <div id="footer">
+	<address>
+		<span class="copyright">
+			Content &amp; Design by 
+			<a href="../info/site.html">Mark Reid</a>
+			<br />
+			(<a rel="licence" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Some rights reserved</a>)			
+		</span>
+		<span class="engine">
+			Powered by 
+			<a href="http://jaspervdj.be/hakyll/" title="A static, minimalist, Haskell-powered CMS">Hakyll</a>
+		</span>
+	</address>
+  </div>
+
+</div>
+
+
+<!-- Google Analytics script -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-1051817-4");
+pageTracker._trackPageview();
+</script>
+<!--[if IE 6]>
+<script type="text/javascript"> 
+	/*Load jQuery if not already loaded*/ if(typeof jQuery == 'undefined'){ document.write("<script type=\"text/javascript\"   src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\"></"+"script>"); var __noconflict = true; } 
+	var IE6UPDATE_OPTIONS = {
+		icons_path: "http://static.ie6update.com/hosted/ie6update/images/"
+	}
+</script>
+<script type="text/javascript" src="http://static.ie6update.com/hosted/ie6update/ie6update.js"></script>
+<![endif]-->
+
+
+</body>
+</html>
+
+
+

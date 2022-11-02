@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+
+   <!-- Standard site meta information -->
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Prediction with Expert Advice as Online Convex Optimisation ← Inductio Ex Machina ← Mark Reid</title>
+   <meta name="author" content="Mark Reid" />
+
+   <link rel="openid.server" href="http://www.myopenid.com/server" />
+   <link rel="openid.delegate" href="http://mark.reid.name" />
+
+   <link rel="start" href="../" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="../css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="../css/screen.css" type="text/css" media="all" />
+   <link rel="stylesheet" href="../css/print.css" type="text/css" media="print" />
+   <link rel="stylesheet" href="../css/widgets.css" type="text/css" media="all" />
+   <link rel="stylesheet" href="../css/amjr.css" type="text/css" media="all" />
+
+ 	<meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@mdreid">
+    <meta name="twitter:site" content="@mdreid">
+    <meta name="twitter:title" content="Prediction with Expert Advice as Online Convex Optimisation">
+    <meta name="twitter:description" content="A short note describing the Prediction With Expert Advice game and why it is a special case of Online Convex Optimisation.">
+
+<!-- MathJax configuration and loading -->
+<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		extensions: ["tex2jax.js"],
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["\\(","\\)"] ],
+			displayMath: [ ["\\[","\\]"] ],
+			processEscapes: true
+		},
+		TeX: { equationNumbers: { autoNumber: "AMS" } },
+		"HTML-CSS": { availableFonts: ["TeX"] }
+	});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+
+</head>
+
+<body id="Blog">
+
+<div id="site">
+  <div id="header">
+<h1>
+	<a href="../blog/" title="A machine learning blog">Inductio ex Machina</a>
+	<span class="byline">← <a href="../">Mark Reid</a></span>
+</h1>
+<ul class="nav">
+  <li><a class="home" href="../blog/">Home</a></li>
+  <li><a class="info" href="../blog/info.html">Info</a></li>
+  <li><a class="past" href="../blog/past.html">Past</a></li>
+  <li><a class="kith" href="../blog/kith.html">Kith</a></li>
+</ul>
+</div>
+
+<div id="page">
+
+<h1 class="emphnext">Prediction with Expert Advice as Online Convex Optimisation</h1>
+
+<p>I have been working with <a href="http://users.cecs.anu.edu.au/%7Ewilliams/">Bob Williamson</a> and <a href="http://www.timvanerven.nl/">Tim Van Erven</a> recently to <a href="../bits/pubs/colt11.pdf">better understand</a> the notion of <em>mixability</em> in what is known as the Prediction With Expert Advice (PWEA) setting for online learning. I was curious as to how this setting <a href="http://rml.cecs.anu.edu.au/">relates</a> to another one that is commonly studied in learning theory: <a href="http://webdocs.cs.ualberta.ca/~maz/publications/ICML03.pdf">online convex optimisation</a> (OCO).</p>
+<p>It is already known that PWEA is a special case of OCO (see, for example, Peter Bartlett’s <a href="http://www.stat.berkeley.edu/~bartlett/talks/BeijingCourse2010.html">summer school course</a> or Kalai and Vempala’s <a href="http://people.cs.uchicago.edu/~kalai/papers/onlineopt/onlineopt.pdf">JCSS paper</a>) but I wanted to work out the correspondence explicitly for myself. Since there is one of those obvious-in-hindsight tricks involved I thought it would be worth writing up and sharing it.</p>
+<h2 id="introduction">Introduction</h2>
+<p><a href="http://onlineprediction.net/?n=Main.PredictionWithExpertAdvice">Prediction With Expert Advice</a> is typically posed as a game where in each round a learner receives advice in the form of predictions from a set of experts about a future outcome and then merges these expert opinions to form its own prediction. The outcome is then revealed and the learner and all of the experts receive a penalty depending on how well their prediction fits with the revealed outcome. This penalty is determined by a fixed loss function that is known to the learner. The aim of the learner in this game is to incur an aggregate penalty over many rounds that is not much worse than the best expert.</p>
+<p>You can easily imagine playing such a game yourself: each day you check a dozen different weather forecasts then make up your own mind about the chance of rain tomorrow, e.g., you predict a 75% chance of rain. The next day it will either rain or not and imagine that you and the experts lose points depending on how bad your predictions were: predicting a 75% chance when it is sunny loses you more points than if you predicted a 20% chance of rain. The function that determines exactly how many points you lose for predicting p% chance of rain when the outcome is sunny is called the <em>loss function</em>.</p>
+<p>Mixability is a property of a loss function that characterises when learning can occur efficiently in a PWEA game. That is, when it is possible to make the difference between the learner and the best expert—the <em>regret</em>—decrease rapidly (specifically like <span class="math">\(1/T\)</span> after <span class="math">\(T\)</span> rounds).</p>
+<p>In our <a href="../bits/pubs/colt11.pdf">recent COLT paper</a> we were able to characterise mixability in terms of the curvature of the loss for a natural class of losses known as <em><a href="../blog/proper-losses.html">proper losses</a></em>. These losses are “sensible” in that if the true probability of an outcome is <span class="math">\(p\)</span> then the expected loss is minimised by predicting <span class="math">\(p\)</span>. This seemingly innocent requirement actually gives rise to a lot of geometric structure that has been well studied in the economics literature, and that we exploit in our paper.</p>
+<p>Online Convex Optimisation is a similar type of game to PWEA in that both are <a href="http://onlineprediction.net/?n=Main.CompetitiveOn-linePrediction">competitive online prediction</a> games: a learner repeatedly makes predictions and receives a penalty based on that prediction and its performance is compared to a class of simple alternatives. The main differences between PWEA and OCO are that: the learner does not have access to expert predictions and their penalties; the regret of the learner is relative to a possibly uncountable set of alternatives; and the loss functions involved are assumed to be convex.</p>
+<p>Despite these differences, it is possible to present Prediction With Expert Advice as a very special case of Online Convex Optimisation. After formalising the two games, I’ll present the “trick” for turning the former into the latter.</p>
+<h2 id="prediction-with-expert-advice">Prediction with Expert Advice</h2>
+<p>In the general Prediction with Expert Advice (PWEA) game a learner competes against <span class="math">\(K\)</span> experts in a game consisting of <span class="math">\(T\)</span> rounds. Each round, the each expert reveals a prediction from <span class="math">\(\Delta^N\)</span>, the set of probabilities over <span class="math">\(N\)</span> outcomes. The learner observes and combines these to form its own prediction from <span class="math">\(\Delta^N\)</span>. The world then reveals one of <span class="math">\(N\)</span> outcomes <span class="math">\(y \in [N] = 1, \ldots, N\)</span> and the experts’ and learner’s predictions are assessed via a loss function <span class="math">\(\ell : \Delta^N \to R^n\)</span> so that a prediction <span class="math">\(p\)</span> incurs a penalty <span class="math">\(\ell_y(p)\)</span> when outcome <span class="math">\(y\)</span> occurs.</p>
+<p>Expressed in a kind of pseudo-code, the game is:</p>
+<blockquote>
+<p>For <span class="math">\(t = 1, …, T\)</span>:</p>
+<ol style="list-style-type: decimal">
+<li>Experts make predictions <span class="math">\(p^{1,t}, … p^{K,t} \in \Delta^N\)</span></li>
+<li>Learner predicts <span class="math">\(p^t\)</span> based on expert predictions</li>
+<li>World reveals outcome <span class="math">\(y^t \in \{ 1, … n \}\)</span></li>
+<li>Experts incur penalties <span class="math">\(\ell_{y^t}(p^{k,t})\)</span> and the learner incurs <span class="math">\(\ell_{y^t}(p^t)\)</span></li>
+</ol>
+</blockquote>
+<p>The aim of the learner in this game is to minimise its total loss <span class="math">\(L^T = \sum_t \ell_{y^t}(p^t)\)</span> relative to the smallest expert loss <span class="math">\(\min_k L^T(k) = \min_k \sum_t \ell_{y^t}(p^{k,t})\)</span>. The difference <span class="math">\(L^T - \min_k L^T(k)\)</span> is called the <em>regret</em>.</p>
+<h2 id="online-convex-optimisation">Online Convex Optimisation</h2>
+<p>Online Convex Optimisation (OCO) is similar in that a sequential game is played over <span class="math">\(T\)</span> rounds where a learner makes prediction from some convex set <span class="math">\(X \subset R^d\)</span>. However, as mentioned above, the OCO game is simpler in that there are no (explicit) experts and more general in that the finite number of outcomes that the world can reveal is replaced by an arbitrary set of convex functions <span class="math">\(F\)</span>. The function <span class="math">\(f\in F\)</span> chosen by the world and used to assign a penalty <span class="math">\(f(x)\)</span> to the learner.</p>
+<p>Expressed in pseudo-code, OCO is the following game:</p>
+<blockquote>
+<p>For <span class="math">\(t = 1, …, T\)</span>:</p>
+<ol style="list-style-type: decimal">
+<li>Learner predicts <span class="math">\(x^t \in X \subset R^d\)</span></li>
+<li>World reveals a convex function <span class="math">\(f^t \in F\)</span></li>
+<li>Learner incurs penalty <span class="math">\(f^t(x^t)\)</span></li>
+</ol>
+</blockquote>
+<p>The learner’s aim here is to minimise the regret relative to the best single prediction <span class="math">\(x \in X\)</span> in hindsight. That is, the learner wants to minimise the difference between <span class="math">\(L^T = \sum_t f^t(x^t)\)</span> and <span class="math">\(\min_x L^T(x) = \min_x \sum_t f^t(x)\)</span>. Once again, the difference <span class="math">\(L^T - \min_x L^T(x)\)</span> is called the <em>regret</em>.</p>
+<h2 id="pwea-is-a-special-case-of-oco">PWEA is a special case of OCO</h2>
+<p>We can show that PWEA is a special case of OCO by defining an OCO game that mimics the PWEA game.</p>
+<p>The main trick is to define the set of functions <span class="math">\(F\)</span> for OCO so that step 1 in the PWEA game (where the experts reveal their predictions) can be simulated. Specifically, if for each <span class="math">\(t\in[T]\)</span> in the PWEA game expert <span class="math">\(k\)</span> makes prediction <span class="math">\(p^{k,t}\)</span> and the outcome is <span class="math">\(y^t\)</span>, we define a OCO game via a sequence of linear (and thus convex) functions <span class="math">\(f^t\)</span>. These are defined so that <span class="math">\(f^t(e^k) = \ell_{y^t}(p^{k,t})\)</span> where <span class="math">\(e^k\)</span> the vertices of <span class="math">\(\Delta^K\)</span> and are linearly extended to all <em>mixtures</em> of <span class="math">\(K\)</span> experts, denoted <span class="math">\(x \in X = \Delta^K\)</span>, by defining <span class="math">\(f^t(x) = \sum_k x_k f^t(e^k)\)</span>.</p>
+<p>This construction means that the learner in the OCO game can always mimic the performance of a single, fixed expert <span class="math">\(k\)</span> in the PWEA game by constantly playing <span class="math">\(e^k\)</span>. In some sense, this is how step 1 of the PWEA game is recovered in the OCO game.</p>
+<p>Now consider what happens when we minimise the total loss for this OCO game. This involves finding a mixture <span class="math">\(x \in \Delta^K\)</span> such that <span class="math">\(L^T(x) = \sum_t f^t(x)\)</span> is minimised. Since <span class="math">\(f^t(x) = \sum_k x_k \ell_{y^t}(p^{k,t})\)</span> we see that <span class="math">\(L^T(x) = \sum_k x_k \sum_t \ell_{y^t}(p^{k,t}) = \sum_k x_k L^T(k)\)</span> where <span class="math">\(L^T(k)\)</span> is the total loss for expert <span class="math">\(k\)</span> in the PWEA game. This weighted sum is clearly minimised by choosing the mixture <span class="math">\(x \in \Delta^K\)</span> that puts all its mass on the single expert <span class="math">\(k\)</span> corresponding to the smallest <span class="math">\(L^T(k)\)</span> term. Furthermore, for that choice of <span class="math">\(x = e^k\)</span> we have <span class="math">\(L^T(x) = L^T(k)\)</span> and so <span class="math">\(\min_x L^T(x) = \min_k L^T(k)\)</span>.</p>
+<p>The above argument shows that any PWEA game can be presented as an OCO game and that the best single expert in the PWEA game corresponds to the best single prediction in the corresponding OCO game.</p>
+<h2 id="regret-bounds">Regret Bounds</h2>
+<p>Since the minimal total loss in the PWEA and OCO games are equivalent, we can look at the regrets for both games by just considering the total loss for each. If a learner playing the OCO game predicts <span class="math">\(x^t\)</span> at round <span class="math">\(t\)</span> the loss it incurs is <span class="math">\(f^t(x^t) = \sum_k x_k^t \ell_{y^t}(p^{k,t})\)</span>. If all of the partial losses <span class="math">\(\ell_y\)</span> are <em>convex</em> then we see that predicting <span class="math">\(p^t = \sum_k x_k^t p^{x,t}\)</span> in the PWEA game will incur a penalty <span class="math">\(\ell_{y^t}(p^t) \le f^t(x^t)\)</span> in that round.</p>
+<p>Therefore, any regret bound that holds for OCO will also hold for an OCO-simulated PWEA game with convex losses since the OCO regret dominates the PWEA regret achieved by just playing convex combinations of the expert predictions. For a recent summary of lower and upper bounds for various types of online optimisation games, I point the reader to the <a href="http://colt2008.cs.helsinki.fi/papers/111-Abernethy.pdf">COLT 2008 paper</a> by <a href="http://www.cs.berkeley.edu/~jake/">Jake Abernethy</a> and co-authors.</p>
+<p>What happens if the PWEA losses <span class="math">\(\ell_y\)</span> are not convex? The same reduction argument can be run only if for every mixture <span class="math">\(x \in \Delta^K\)</span> there exists prediction <span class="math">\(p(x) \in \Delta^N\)</span> such that for all outcomes <span class="math">\(y\)</span> we have <span class="math">\(\ell_y(p(x)) \le \sum_k x_k \ell_y(p(x))\)</span>. This is similar condition required of the <a href="http://onlineprediction.net/?n=Main.SubstitutionFunction">substitution function</a> needed in the <a href="http://onlineprediction.net/?n=Main.WeakAggregatingAlgorithm">Weak Aggregating Algorithm</a> so I suspect this condition is related to mixability but will leave the details for another time.</p>
+
+
+<address class="signature">
+	<a class="author" href="http://mark.reid.name">Mark Reid</a>
+  <span class="date">September 15, 2011</span>
+  <span class="location">Canberra, Australia</span>
+</address>
+
+</div>
+<address id="feed" class="quiet right">Subscribe: <a href="../blog/atom.xml" title="Subscribe to Atom feed"><em>Atom Feed</em></a></address>
+
+
+<!-- Disqus Comments -->
+<div id="disqus_thread"></div>
+
+<!-- Enable Disqus comments -->
+<script type="text/javascript">
+        var disqus_iframe_css = "http://mark.reid.name/css/screen.css";
+        var disqus_title = "Prediction with Expert Advice as Online Convex Optimisation";
+        var disqus_message = "A short note describing the Prediction With Expert Advice game and why it is a special case of Online Convex Optimisation.";
+</script>
+<script type="text/javascript" src="http://disqus.com/forums/markreid/embed.js"></script>
+
+<noscript>
+    <a href="http://markreid.disqus.com/?url=ref">View the discussion thread.</a>
+</noscript>
+
+
+
+
+    <!-- Footer with copyright and contact information -->
+  <div id="footer">
+	<address>
+		<span class="copyright">
+			Content &amp; Design by 
+			<a href="../info/site.html">Mark Reid</a>
+			<br />
+			(<a rel="licence" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Some rights reserved</a>)			
+		</span>
+		<span class="engine">
+			Powered by 
+			<a href="http://jaspervdj.be/hakyll/" title="A static, minimalist, Haskell-powered CMS">Hakyll</a>
+		</span>
+	</address>
+  </div>
+
+</div>
+
+
+<!-- Google Analytics script -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-1051817-4");
+pageTracker._trackPageview();
+</script>
+<!--[if IE 6]>
+<script type="text/javascript"> 
+	/*Load jQuery if not already loaded*/ if(typeof jQuery == 'undefined'){ document.write("<script type=\"text/javascript\"   src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\"></"+"script>"); var __noconflict = true; } 
+	var IE6UPDATE_OPTIONS = {
+		icons_path: "http://static.ie6update.com/hosted/ie6update/images/"
+	}
+</script>
+<script type="text/javascript" src="http://static.ie6update.com/hosted/ie6update/ie6update.js"></script>
+<![endif]-->
+
+
+</body>
+</html>
+
+
+

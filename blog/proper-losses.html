@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+
+   <!-- Standard site meta information -->
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Probability Estimation: An Introduction ← Inductio Ex Machina ← Mark Reid</title>
+   <meta name="author" content="Mark Reid" />
+
+   <link rel="openid.server" href="http://www.myopenid.com/server" />
+   <link rel="openid.delegate" href="http://mark.reid.name" />
+
+   <link rel="start" href="../" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="../css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="../css/screen.css" type="text/css" media="all" />
+   <link rel="stylesheet" href="../css/print.css" type="text/css" media="print" />
+   <link rel="stylesheet" href="../css/widgets.css" type="text/css" media="all" />
+   <link rel="stylesheet" href="../css/amjr.css" type="text/css" media="all" />
+
+ 	<meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@mdreid">
+    <meta name="twitter:site" content="@mdreid">
+    <meta name="twitter:title" content="Probability Estimation: An Introduction">
+    <meta name="twitter:description" content="Probability estimation is an important class of problem in machine learning. In this, the first of a series of posts, I discuss a natural class of losses for these problems.">
+
+<!-- MathJax configuration and loading -->
+<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		extensions: ["tex2jax.js"],
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["\\(","\\)"] ],
+			displayMath: [ ["\\[","\\]"] ],
+			processEscapes: true
+		},
+		TeX: { equationNumbers: { autoNumber: "AMS" } },
+		"HTML-CSS": { availableFonts: ["TeX"] }
+	});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+
+</head>
+
+<body id="Blog">
+
+<div id="site">
+  <div id="header">
+<h1>
+	<a href="../blog/" title="A machine learning blog">Inductio ex Machina</a>
+	<span class="byline">← <a href="../">Mark Reid</a></span>
+</h1>
+<ul class="nav">
+  <li><a class="home" href="../blog/">Home</a></li>
+  <li><a class="info" href="../blog/info.html">Info</a></li>
+  <li><a class="past" href="../blog/past.html">Past</a></li>
+  <li><a class="kith" href="../blog/kith.html">Kith</a></li>
+</ul>
+</div>
+
+<div id="page">
+
+<h1 class="emphnext">Probability Estimation: An Introduction</h1>
+
+<p>In my recent research I have been looking at relationships between various types of learning problems. One surprisingly rich class of problems is that of probability estimation. In this series of posts I will highlight some of the interesting theory I’ve uncovered about them in the machine learning, statistics and economics literature.</p>
+<h2 id="binary-classification">Binary Classification</h2>
+<p>The quintessential type of learning problem in machine learning is binary classification. Given a training sample of instances, each labelled “positive” or “negative”, the aim is to learn to predict the correct label from previously unseen instances. A well known example of a binary classification problem is predicting whether an email is spam or not spam.</p>
+<p>A binary classification problem can be stated as an optimisation: find function that minimises the average number of misclassifications on new instances drawn from the distribution that generated the training sample. Put another way, if we have to pay a penalty of $1 each time we predict a positive instance as negative or <em>vice versa</em> then we want to find a predictor that minimises our expected loss.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
+<p>Formally, we will say an instance <span class="math">\(x\)</span> is positive if it has associated label <span class="math">\(y = 1\)</span> and negative if its label <span class="math">\(y = 0\)</span>. We then define the <em>0–1 misclassification loss</em> for a binary prediction <span class="math">\(p\)</span> when the label is <span class="math">\(y\)</span> to be <span class="math">\[
+	\ell_{01}(y,p) = 
+	\begin{cases}
+		1, &amp;	y \ne p \\
+		0, &amp;	\text{otherwise}.
+	\end{cases}
+\]</span></p>
+<p>Now suppose that an instance <span class="math">\(x\)</span> has a positive label with probability <span class="math">\(\eta\)</span> and we have made a prediction <span class="math">\(p\)</span>. For that <span class="math">\(x\)</span> the <em>point-wise risk</em> is <span class="math">\[
+	L_{01}(\eta,p) 
+	= \eta\,\ell_{01}(1,p) + (1-\eta)\,\ell_{01}(0,p).
+\]</span></p>
+<p>The first term is the average loss of a prediction <span class="math">\(p\)</span> in the case of a positive example, occurring with probability <span class="math">\(\eta\)</span>, and the second term is the average loss for a negative example, occurring with probability <span class="math">\(1-\eta\)</span>.</p>
+<p>Returning to the spam example, suppose that with probability 0.95 a randomly chosen recipient says a particular email is spam. A prediction of “spam” for that email will incur an average loss of <span class="math">\(0.95\times 0 + 0.05\times 1 = 0.05\)</span> whereas a prediction of “not spam” incurs a loss of 0.95.</p>
+<h2 id="probability-estimation">Probability Estimation</h2>
+<p>Now suppose that instead of merely predicting the correct label we wanted to know the <em>probability</em> that an email was considered spam. In this case we would have a different but related type of learning problem: binary class probability estimation.</p>
+<p>As predictions here are probabilities instead of concrete predictions, there is no sensible notion of a misclassification. How can a prediction that an email is spam with probability 0.9 be wrong? If it really isn’t spam it may just be one of the 10% of cases that are consistent with the probability estimate.</p>
+<p>What we really want is a penalty with an <em>expected value</em> that is minimised if our probability estimates are consistent with the <em>true probability</em> of a positive label for a given instance. This fairly natural requirement on the loss for a probability estimation problem is known as <em>Fisher consistency</em>.</p>
+<p>If <span class="math">\(\ell(y,p)\)</span> is a loss for probability estimation then the above requirement can be framed in terms of its associated point-wise risk: <span class="math">\(L(\eta,p) = \eta\,\ell(1,p) + (1-\eta)\,\ell(0,p)\)</span>. Stated formally, Fisher consistency says that no matter what true probability <span class="math">\(\eta\)</span> we have <span class="math">\[
+	\min_{p\in[0,1]} L(\eta,p) = L(\eta,\eta).
+\]</span></p>
+<p>That is, predicting <span class="math">\(p = \eta\)</span> always achieves the smallest possible point-wise risk.</p>
+<p>We will call losses that have this Fisher consistency property <em>proper losses</em> in line with the terminology of <em>proper scoring rules</em> used when probability elicitation is studied in economics.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> We will see several interesting connections between these two concepts in future posts.</p>
+<h2 id="examples">Examples</h2>
+<p>One common loss functions used for probability estimation is <em>square loss</em> <span class="math">\[	
+	\ell_{\text{sq}}(y,p) = y(1-p)^2 + (1-y) p^2.
+\]</span></p>
+<p>The easiest way to convince yourself this is Fisher consistent is to examine when the derivatives of its point-wise risk with respect to <span class="math">\(p\)</span> vanishes. In the case of square loss we see that <span class="math">\[
+	\frac{\partial}{\partial p} L_{\text{sq}}(\eta,p)
+	= -2\eta(1-p) + 2(1-\eta)p = 2(p-\eta)
+\]</span></p>
+<p>which is 0 only when <span class="math">\(p=\eta\)</span> and so <span class="math">\(\ell_{\text{sq}}\)</span> is proper.</p>
+<p>While Fisher consistency seems like a fairly innocuous and natural constraint for probability estimation it has some impressive implications that I will explore in some future posts.</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Of course, in the case of spam the penalty is not as symmetric as described here. Incorrectly predicting spam as “not spam” is mildly annoying whereas predicting that an important email that your career depends upon as “spam” and sending it to the Trash folder is potentially disastrous!<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>Scoring rules are usually framed in terms of rewards rather than penalties so loss and scoring rules are additive inverse and minimisation here becomes maximisation there.<a href="#fnref2">↩</a></p></li>
+</ol>
+</div>
+
+
+<address class="signature">
+	<a class="author" href="http://mark.reid.name">Mark Reid</a>
+  <span class="date">March  1, 2009</span>
+  <span class="location">Canberra, Australia</span>
+</address>
+
+</div>
+<address id="feed" class="quiet right">Subscribe: <a href="../blog/atom.xml" title="Subscribe to Atom feed"><em>Atom Feed</em></a></address>
+
+
+<!-- Disqus Comments -->
+<div id="disqus_thread"></div>
+
+<!-- Enable Disqus comments -->
+<script type="text/javascript">
+        var disqus_iframe_css = "http://mark.reid.name/css/screen.css";
+        var disqus_title = "Probability Estimation: An Introduction";
+        var disqus_message = "Probability estimation is an important class of problem in machine learning. In this, the first of a series of posts, I discuss a natural class of losses for these problems.";
+</script>
+<script type="text/javascript" src="http://disqus.com/forums/markreid/embed.js"></script>
+
+<noscript>
+    <a href="http://markreid.disqus.com/?url=ref">View the discussion thread.</a>
+</noscript>
+
+
+
+
+    <!-- Footer with copyright and contact information -->
+  <div id="footer">
+	<address>
+		<span class="copyright">
+			Content &amp; Design by 
+			<a href="../info/site.html">Mark Reid</a>
+			<br />
+			(<a rel="licence" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Some rights reserved</a>)			
+		</span>
+		<span class="engine">
+			Powered by 
+			<a href="http://jaspervdj.be/hakyll/" title="A static, minimalist, Haskell-powered CMS">Hakyll</a>
+		</span>
+	</address>
+  </div>
+
+</div>
+
+
+<!-- Google Analytics script -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-1051817-4");
+pageTracker._trackPageview();
+</script>
+<!--[if IE 6]>
+<script type="text/javascript"> 
+	/*Load jQuery if not already loaded*/ if(typeof jQuery == 'undefined'){ document.write("<script type=\"text/javascript\"   src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\"></"+"script>"); var __noconflict = true; } 
+	var IE6UPDATE_OPTIONS = {
+		icons_path: "http://static.ie6update.com/hosted/ie6update/images/"
+	}
+</script>
+<script type="text/javascript" src="http://static.ie6update.com/hosted/ie6update/ie6update.js"></script>
+<![endif]-->
+
+
+</body>
+</html>
+
+
+

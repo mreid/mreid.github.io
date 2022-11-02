@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+
+   <!-- Standard site meta information -->
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Fisher Information and the Hessian of Log Likelihood ← Inductio Ex Machina ← Mark Reid</title>
+   <meta name="author" content="Mark Reid" />
+
+   <link rel="openid.server" href="http://www.myopenid.com/server" />
+   <link rel="openid.delegate" href="http://mark.reid.name" />
+
+   <link rel="start" href="../" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="../css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="../css/screen.css" type="text/css" media="all" />
+   <link rel="stylesheet" href="../css/print.css" type="text/css" media="print" />
+   <link rel="stylesheet" href="../css/widgets.css" type="text/css" media="all" />
+   <link rel="stylesheet" href="../css/amjr.css" type="text/css" media="all" />
+
+ 	<meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@mdreid">
+    <meta name="twitter:site" content="@mdreid">
+    <meta name="twitter:title" content="Fisher Information and the Hessian of Log Likelihood">
+    <meta name="twitter:description" content="A brief note spelling out a key relationship in information geometry.">
+
+<!-- MathJax configuration and loading -->
+<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		extensions: ["tex2jax.js"],
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["\\(","\\)"] ],
+			displayMath: [ ["\\[","\\]"] ],
+			processEscapes: true
+		},
+		TeX: { equationNumbers: { autoNumber: "AMS" } },
+		"HTML-CSS": { availableFonts: ["TeX"] }
+	});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+
+</head>
+
+<body id="Blog">
+
+<div id="site">
+  <div id="header">
+<h1>
+	<a href="../blog/" title="A machine learning blog">Inductio ex Machina</a>
+	<span class="byline">← <a href="../">Mark Reid</a></span>
+</h1>
+<ul class="nav">
+  <li><a class="home" href="../blog/">Home</a></li>
+  <li><a class="info" href="../blog/info.html">Info</a></li>
+  <li><a class="past" href="../blog/past.html">Past</a></li>
+  <li><a class="kith" href="../blog/kith.html">Kith</a></li>
+</ul>
+</div>
+
+<div id="page">
+
+<h1 class="emphnext">Fisher Information and the Hessian of Log Likelihood</h1>
+
+<p>I’ve been taking some tentative steps into <a href="http://cscs.umich.edu/~crshalizi/notabene/info-geo.html">information geometry</a> lately which, like all good mathematics, involves sitting alone in a room being confused almost all the time.</p>
+<p>I was not off to a very good start when a seemingly key relationship between Fisher information and the second derivative of the log likelihood eluded me, despite being described as “obvious” or “simple” in <a href="http://books.google.com.au/books?id=5-70HAAACAAJ&amp;dq=watanabe+statistical+learning+theory">several</a> <a href="http://books.google.com.au/books/about/Methods_of_Information_Geometry.html?id=vc2FWSo7wLUC">books</a>. I finally figured out the main trick and thought I’d share it here in case someone else has trouble with it (e.g., me in six months).</p>
+<h2 id="fisher-information">Fisher Information</h2>
+<p>Fisher information is a quantity associated with parametric families of probability distributions. Let <span class="math">\(X\)</span> be a set of outcomes and for each parameter <span class="math">\(\theta\)</span> in some set <span class="math">\(\Theta\subset R^d\)</span> let <span class="math">\(p_\theta(x)\)</span> be the distribution over <span class="math">\(X\)</span> associated with <span class="math">\(\theta\)</span>. The <em>Fisher information</em> for the family <span class="math">\(P = \{ p_\theta : \theta \in \Theta \}\)</span> is the matrix valued function where the entry<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> at the <span class="math">\(i\)</span>th row and <span class="math">\(j\)</span>th column is <span class="math">\[
+	\displaystyle
+	I_{i,j}(\theta) 
+	= \mathbb{E}_X
+	\left[ 
+		\left( D_i \log p_\theta(X) \right) \left( D_j \log p_\theta(X) \right)
+	\right]
+\]</span> where the expectation is over the random variable <span class="math">\(X\)</span> drawn from the distribution <span class="math">\(p_\theta\)</span>, and <span class="math">\(D_i\)</span> denotes the partial derivative <span class="math">\(\frac{\partial}{\partial\theta_i}\)</span>. The Fisher information is always symmetric and positive semi-definite and can be seen as measuring the “sensitivity” of the <em>log likelihood</em> <span class="math">\(\log p_\theta(x)\)</span> on the outcomes in a neighbourhood of <span class="math">\(\theta\)</span>.</p>
+<h2 id="and-the-hessian-of-log-likelihood">… and the Hessian of log likelihood</h2>
+<p>The result that had me puzzled for some time was the “obvious” fact that <span class="math">\[
+	\displaystyle
+	I_{i,j}(\theta) 
+	= - \mathbb{E}_X 
+	\left[ 
+		D_{i,j} \log p_\theta(X) 
+	\right]
+\]</span> where <span class="math">\(D_{i,j}\)</span> denotes the second-order partial derivative <span class="math">\(\frac{\partial^2}{\partial\theta_i \partial\theta_j}\)</span>. What this says is that the Fisher information is closely related to the curvature of the log likelihood function, as measured by its <em>Hessian</em> — that is, the matrix of its second derivatives <span class="math">\(H[\log p_\theta(x)] = (D_{i,j} \log p_\theta(x))_{i,j=1}^d\)</span>.</p>
+<p>After much head-scratching, I realised that the “trick” I was missing was the observation that (under some mild conditions) the second derivatives and integrals can be switched so <span class="math">\[
+	\displaystyle
+	\int_X D_{i,j} p_\theta(X)\,dx 
+	= D_{i,j} \int_X p_\theta(X)\,dx 
+	= D_{i,j} 1
+	= 0
+\]</span> since each <span class="math">\(p_\theta\)</span> is a distribution.</p>
+<p>With the above identity in hand, establishing the relationship between Fisher information and the Hessian of log likelihood is just an application of the chain and product rules and noting that <span class="math">\(D_i \log p_\theta(x) = \frac{D_i p_\theta(x)}{p_\theta(x)}\)</span>. Thus, <span class="math">\[
+	\displaystyle
+	D_{i,j} \log p_\theta(x)
+	= D_i \left( \frac{D_j p_\theta(x)}{p_\theta(x)} \right)
+	= \frac{D_{i,j} p_\theta(x)}{p_\theta(x)} 
+		- \frac{D_i p_\theta(x)}{p_\theta(x)} \frac{D_j p_\theta(x)}{p_\theta(x)}.
+\]</span></p>
+<p>Taking expectations and using the aforementioned trick gives the result since <span class="math">\(\mathbb{E}_X \left[ \frac{D_{i,j} p_\theta(x)}{p_\theta(x)} \right] = \int_X  D_{i,j} p_\theta(x)\,dx = 0\)</span>.</p>
+<p>Everything is obvious in hindsight!</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>I’m going to ignore issues such as convergence, existence, etc. Just assume things are “well-behaved” where necessary.<a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+
+
+<address class="signature">
+	<a class="author" href="http://mark.reid.name">Mark Reid</a>
+  <span class="date">April  4, 2012</span>
+  <span class="location">Canberra, Australia</span>
+</address>
+
+</div>
+<address id="feed" class="quiet right">Subscribe: <a href="../blog/atom.xml" title="Subscribe to Atom feed"><em>Atom Feed</em></a></address>
+
+
+<!-- Disqus Comments -->
+<div id="disqus_thread"></div>
+
+<!-- Enable Disqus comments -->
+<script type="text/javascript">
+        var disqus_iframe_css = "http://mark.reid.name/css/screen.css";
+        var disqus_title = "Fisher Information and the Hessian of Log Likelihood";
+        var disqus_message = "A brief note spelling out a key relationship in information geometry.";
+</script>
+<script type="text/javascript" src="http://disqus.com/forums/markreid/embed.js"></script>
+
+<noscript>
+    <a href="http://markreid.disqus.com/?url=ref">View the discussion thread.</a>
+</noscript>
+
+
+
+
+    <!-- Footer with copyright and contact information -->
+  <div id="footer">
+	<address>
+		<span class="copyright">
+			Content &amp; Design by 
+			<a href="../info/site.html">Mark Reid</a>
+			<br />
+			(<a rel="licence" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Some rights reserved</a>)			
+		</span>
+		<span class="engine">
+			Powered by 
+			<a href="http://jaspervdj.be/hakyll/" title="A static, minimalist, Haskell-powered CMS">Hakyll</a>
+		</span>
+	</address>
+  </div>
+
+</div>
+
+
+<!-- Google Analytics script -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-1051817-4");
+pageTracker._trackPageview();
+</script>
+<!--[if IE 6]>
+<script type="text/javascript"> 
+	/*Load jQuery if not already loaded*/ if(typeof jQuery == 'undefined'){ document.write("<script type=\"text/javascript\"   src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\"></"+"script>"); var __noconflict = true; } 
+	var IE6UPDATE_OPTIONS = {
+		icons_path: "http://static.ie6update.com/hosted/ie6update/images/"
+	}
+</script>
+<script type="text/javascript" src="http://static.ie6update.com/hosted/ie6update/ie6update.js"></script>
+<![endif]-->
+
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+
+   <!-- Standard site meta information -->
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>A Universality Cultist Responds ← Inductio Ex Machina ← Mark Reid</title>
+   <meta name="author" content="Mark Reid" />
+
+   <link rel="openid.server" href="http://www.myopenid.com/server" />
+   <link rel="openid.delegate" href="http://mark.reid.name" />
+
+   <link rel="start" href="../" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="../css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="../css/screen.css" type="text/css" media="all" />
+   <link rel="stylesheet" href="../css/print.css" type="text/css" media="print" />
+   <link rel="stylesheet" href="../css/widgets.css" type="text/css" media="all" />
+   <link rel="stylesheet" href="../css/amjr.css" type="text/css" media="all" />
+
+ 	<meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@mdreid">
+    <meta name="twitter:site" content="@mdreid">
+    <meta name="twitter:title" content="A Universality Cultist Responds">
+    <meta name="twitter:description" content="An attempt to set the record straight about the role of generalisation bounds in polite society.">
+
+<!-- MathJax configuration and loading -->
+<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		extensions: ["tex2jax.js"],
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["\\(","\\)"] ],
+			displayMath: [ ["\\[","\\]"] ],
+			processEscapes: true
+		},
+		TeX: { equationNumbers: { autoNumber: "AMS" } },
+		"HTML-CSS": { availableFonts: ["TeX"] }
+	});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+
+</head>
+
+<body id="Blog">
+
+<div id="site">
+  <div id="header">
+<h1>
+	<a href="../blog/" title="A machine learning blog">Inductio ex Machina</a>
+	<span class="byline">← <a href="../">Mark Reid</a></span>
+</h1>
+<ul class="nav">
+  <li><a class="home" href="../blog/">Home</a></li>
+  <li><a class="info" href="../blog/info.html">Info</a></li>
+  <li><a class="past" href="../blog/past.html">Past</a></li>
+  <li><a class="kith" href="../blog/kith.html">Kith</a></li>
+</ul>
+</div>
+
+<div id="page">
+
+<h1 class="emphnext">A Universality Cultist Responds</h1>
+
+<p>I recently discovered a very good machine learning blog called <a href="http://mlstat.wordpress.com/">Innou</a> by Harsha Veeramachaneni. In particular, the provocative title of his latest post—<a href="http://mlstat.wordpress.com/2010/10/31/the-cult-of-universality-in-statistical-learning-theory/">The Cult of Universality in Statistical Learning Theory</a>—was what caught my eye. As a recent <a href="http://mark.reid.name/work/pubs/">convert and evangelist</a> of the besieged cult, I felt compelled to clear up some all too common misunderstandings and misconceptions that hound our noble organisation.</p>
+<p>Before I start, I just want to make it clear that while I dislike some of Harsha’s arguments I don’t disagree with all of his conclusions: there <em>is</em> an unfortunate disconnect between the theory and practice of machine learning; generalisation bounds found in the literature <em>are</em> often too focused on the worst-case; and his call for “medicine bottle rules” for analyses has some merit.</p>
+<h2 id="what-do-generalisation-bounds-actually-say">What Do Generalisation Bounds Actually Say?</h2>
+<p>As Harsha rightly points out, generalisation bounds appear all over the machine learning literature. To the uninitiated they appear <a href="http://mark.reid.name/iem/clarity-and-mathematics.html">cryptic, opaque, and unnecessary</a>. To make matters worse, there is something <a href="http://en.wikipedia.org/wiki/Cargo_cult">cargo cultish</a> about their use in many papers. “If I say exactly the right incantation of <span class="math">\(\epsilon\)</span>s, <span class="math">\(\delta\)</span>s, VCs, and inequality signs”, our hopeful author thinks, “the High Priests of Reviewing will be appeased and not sacrifice my first-born paper.” Mind you, it seems theorists do <a href="http://www.inherentuncertainty.org/2010/08/section-d.html">something similar with experimental results</a> too.</p>
+<p>But I digress…</p>
+<p>Let’s have a look at a typical <em>uniform convergence bound</em> for generalisation errors: &gt; Let <span class="math">\(L\)</span> be a learning algorithm that, when given a training sample <span class="math">\(S\)</span>, returns a classifier from the hypothesis space <span class="math">\(H\)</span>, and let <span class="math">\(D\)</span> be any joint distribution over instances and labels. Then, with high probability over samples <span class="math">\(S\)</span> from the product distribution <span class="math">\(D^m\)</span>, the expected error of the classifier <span class="math">\(h = L(S) \in H\)</span> is at most the training error of <span class="math">\(h\)</span> on evaluated on the sample <span class="math">\(S\)</span> plus some function of <span class="math">\(m\)</span> and the complexity of <span class="math">\(H\)</span>.</p>
+<p>Now this is certainly more long-winded than the way Harsha put it but I want to make a few things more explicit and prefer to make a clear distinction between a learning algorithm (or “learner”) and the classifiers (or, more generally, “predictors”) they produce. A learner learns a classifier that classifies<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>.</p>
+<p>I also explicitly talk about the product distribution <span class="math">\(D^m\)</span> from which i.i.d. samples are drawn. The “high probability” clause is with respect to this product distribution, not the example distribution <span class="math">\(D\)</span>. Finally, the complexity is a function of the entire set <span class="math">\(H\)</span>, not any particular classifier <span class="math">\(h\)</span> that the learner might return.</p>
+<p>These are known as uniform convergence bounds because they show how much the empirical error can deviate from its corresponding true error for all classifiers in <span class="math">\(H\)</span> simultaneously.</p>
+<h2 id="the-hybrid-svmnn-example">The Hybrid SVM+NN Example</h2>
+<p>The main criticism Harsha has against the type of generalisation bounds described above is that they are quantified over <em>all possible</em> data generating distributions <span class="math">\(D\)</span>. To show why this “universality” is a problem Harsha constructs a hypothetical learning algorithm that is a hybrid SVM and nearest neighbour learner which I’ll call SVM+NN.</p>
+<p>As he describes it, the learner first tries to fit a good linear classifier to a training set using an SVM and then effectively “memorises” the correct label for all of the training examples misclassified by that linear classifier. An extra parameter <span class="math">\(\epsilon\)</span> is introduced that determines how close a test instance must be to a memorised training example to take on the training example’s label. If a test instance is not within <span class="math">\(\epsilon\)</span> of a memorised instance the linear classifier is used to label it.</p>
+<p>He then makes the following argument. By making <span class="math">\(\epsilon\)</span> very small the contribution to predictions made by the memorised points is negligible and so the generalisation error for the SVM and the SVM+NN classifier should be almost identical. However, the training error for SVM+NN is going to be zero and its complexity very large so the generalisation bound for SVM+NN is vacuous. Since it is the requirement that the bound hold over all distributions that makes the bound vacuous the desire for universal bounds like these is misguided.</p>
+<p>As I said earlier, I don’t necessarily disagree with Harsha’s conclusion, however the example he uses to make this argument is somewhat misleading. Uniform convergence bounds specifically address how well the empirical error of a classifier estimates true error. The SVM+NN algorithm does not have a meaningful training error—it is zero for all training sets by construction.</p>
+<p>To put it another way, it is not universality that leads to a vacuous generalisation bound for SVM+NN, it is the fact that SVM+NN does not have an empirical error that depends on the training examples.</p>
+<p>Borrowing Harsha’s analogy and stretching it even further: SVM+NN is a bicycle that is purposely built to be extremely bad at holding up pants.</p>
+<h2 id="escaping-the-cult">Escaping the Cult</h2>
+<p>So although I don’t buy the particulars of Harsha’s argument against uniform convergence bounds, I do agree that there is room in learning theory for generalisation bounds that take into account what might be known <em>a priori</em> about the data generating distributions. In fact, I can confidently say we are not alone in wanting refined bounds as there is already a number of good results along these lines.</p>
+<p>The first that springs to mind are bounds under what is now called the “<a href="http://www.proba.jussieu.fr/~tsybakov/tsybakov.html">Tsybakov</a> noise condition”. This pertains to distributions for binary classification in which the positive and negative data distributions do not overlap too much. This type of distribution is particularly suited to linear classifiers and it was shown that for these algorithms faster rates of convergence can be obtained when the noise condition holds. See Mammen and Tsybakov’s <em><a href="http://dx.doi.org/10.1214/aos/1017939240">Smooth discrimination analysis</a></em> and Steinwart’s <em><a href="http://www.ccs3.lanl.gov/~ingo/publications/mtns-04.ps">When do Support Vector Machines learn fast?</a></em> for more details.</p>
+<p>Another type of bound that provides a refined analysis can be found in the “luckiness” framework, first introduced by John Shawe-Taylor in 1998 and later built upon in Herbrich and Williamson’s <em><a href="http://jmlr.csail.mit.edu/papers/v3/herbrich02a.html">Algorithmic Luckiness</a></em>. While these bounds are universal in that they apply to any choice of data distributions, they are data dependent and algorithm specific and can lead to tighter bounds for paricular assumptions about the data and algorithm.</p>
+<p>If you just want bounds that depend on the complexity of a classifier rather than the complexity of the learner’s hypothesis space, <a href="http://mark.reid.name/iem/a-compression-lemma.html">PAC-Bayesian bounds</a> provide a tight family of bounds of this type. Once again, these are still universal in the sense of holding for all data distributions but are less worst-case in that the bounds vary depending on which classifier the learner returns.</p>
+<h2 id="reading-the-fine-print">Reading the Fine Print</h2>
+<p>One thing I did like in Harsha’s discussion was the idea of “medicine bottle rules”: a small set of instructions that should be followed when analysing learning algorithms. There purpose is to give some guidance about what the analysis is for, how to administer it, when not to use them, and warn about any strange side effects.</p>
+<p>In the case of uniform convergence bounds there should have been a label that stated: &gt; These bounds are for the analysis of algorithms that have a meaningful empirical risk. Not to be used for the treatment of non-ERM algorithms. Inappropriate application may result in headaches, irritability, and vacuousness.</p>
+<p>Please consult your doctor if pain persists.</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>I often wonder how much <a href="http://www.cs.waikato.ac.nz/ml/weka/">Weka</a>’s API is to blame for this. Programs using <a href="http://weka.sourceforge.net/doc/weka/classifiers/Classifier.html">weka.classifiers.Classifier</a> must call <code>buildClassifier()</code> and <code>classifyInstance()</code> on the same object, confusing the notion of a learning algorithm (e.g., the decision tree learner <a href="http://weka.sourceforge.net/doc/weka/classifiers/trees/Id3.html">Id3</a>) and the thing learnt (a decision tree classifier).<a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+
+
+<address class="signature">
+	<a class="author" href="http://mark.reid.name">Mark Reid</a>
+  <span class="date">November  1, 2010</span>
+  <span class="location">Canberra, Australia</span>
+</address>
+
+</div>
+<address id="feed" class="quiet right">Subscribe: <a href="../blog/atom.xml" title="Subscribe to Atom feed"><em>Atom Feed</em></a></address>
+
+
+<!-- Disqus Comments -->
+<div id="disqus_thread"></div>
+
+<!-- Enable Disqus comments -->
+<script type="text/javascript">
+        var disqus_iframe_css = "http://mark.reid.name/css/screen.css";
+        var disqus_title = "A Universality Cultist Responds";
+        var disqus_message = "An attempt to set the record straight about the role of generalisation bounds in polite society.";
+</script>
+<script type="text/javascript" src="http://disqus.com/forums/markreid/embed.js"></script>
+
+<noscript>
+    <a href="http://markreid.disqus.com/?url=ref">View the discussion thread.</a>
+</noscript>
+
+
+
+
+    <!-- Footer with copyright and contact information -->
+  <div id="footer">
+	<address>
+		<span class="copyright">
+			Content &amp; Design by 
+			<a href="../info/site.html">Mark Reid</a>
+			<br />
+			(<a rel="licence" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Some rights reserved</a>)			
+		</span>
+		<span class="engine">
+			Powered by 
+			<a href="http://jaspervdj.be/hakyll/" title="A static, minimalist, Haskell-powered CMS">Hakyll</a>
+		</span>
+	</address>
+  </div>
+
+</div>
+
+
+<!-- Google Analytics script -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-1051817-4");
+pageTracker._trackPageview();
+</script>
+<!--[if IE 6]>
+<script type="text/javascript"> 
+	/*Load jQuery if not already loaded*/ if(typeof jQuery == 'undefined'){ document.write("<script type=\"text/javascript\"   src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\"></"+"script>"); var __noconflict = true; } 
+	var IE6UPDATE_OPTIONS = {
+		icons_path: "http://static.ie6update.com/hosted/ie6update/images/"
+	}
+</script>
+<script type="text/javascript" src="http://static.ie6update.com/hosted/ie6update/ie6update.js"></script>
+<![endif]-->
+
+
+</body>
+</html>
+
+
+
